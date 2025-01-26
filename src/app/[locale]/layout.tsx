@@ -6,13 +6,13 @@ import {Urbanist, Cairo} from "next/font/google";
 
 import "../style.css";
 
-export const fontEn = Urbanist({
+const fontEn = Urbanist({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-en",
 });
 
-export const fontAr = Cairo({
+const fontAr = Cairo({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-ar",
