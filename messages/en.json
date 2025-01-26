@@ -1,0 +1,52 @@
+{
+  "page_title": {
+    "real_state_portal": "Real State Portal",
+    "home": "Home",
+    "projects": "Projects",
+    "explore": "Explore",
+    "offers": "Offers",
+    "contact_us": "Contact Us"
+  },
+  "common": {
+    "login_register": "Register / Login",
+    "description": "RealEstate Portal is your ultimate destination for finding, buying, or renting properties with ease and confidence. Our platform connects buyers, sellers, and renters in one seamless experience.",
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "gmail": "Gmail",
+    "phone": "Phone",
+    "address": "Address"
+  },
+  "footer": {
+    "create_account": "Create Account",
+    "new_projects": "New Projects",
+    "testimonials": "Testimonials",
+    "explore": "Explore",
+    "contact_us": "Contact Us",
+    "copy_right": "All rights reserved © 2025 <text>RealEstate Portal</text>",
+    "helpful_links": "helpful Links",
+    "top_projects": "Top Projects"
+  },
+  "home": {
+    "discover_title": "Best Travel Advisor for all your travel needs",
+    "explore_more": "Explore More",
+    "featured_projects": "FEATURED projects",
+    "top_rated_projects": "Top Rated <span>Projects</span>",
+    "discover_the_latest_projects": "Discover the latest <span>Projects</span>",
+    "popular_cities": "POPULAR CITIES",
+    "area_across_the_town": "<span>Area</span> across the town",
+    "uae": "UAE",
+    "GEORGIA": "Georgia",
+    "project_offers": "Project Offers",
+    "explore_exclusive_project_offers": "Explore our exclusive project <span>Offers</span>",
+    "recent_projects": "Recent Projects",
+    "discover_the_latest_achievements": "Discover Our latest <span>Achievements</span>",
+    "our_partners": "Our partners",
+    "meet_our_partners": "meet With Our <span>Partners</span>",
+    "hero_title": "Find Your Dream Space with <span>RealEstate Portal</span>",
+    "hero_description": "More than 1000+ house avaiable for sell & rent in countrys",
+    "residental": "Residental",
+    "commercial": "Commercial",
+    "land": "Land"
+  }
+}

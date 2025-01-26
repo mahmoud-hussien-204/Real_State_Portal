@@ -1,0 +1,53 @@
+import {NextIntlClientProvider} from "next-intl";
+
+import {getMessages, getTranslations} from "next-intl/server";
+
+import {Urbanist, Cairo} from "next/font/google";
+
+import "../style.css";
+
+export const font_en = Urbanist({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-en",
+});
+
+export const font_ar = Cairo({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-ar",
+});
+
+interface IProps extends React.PropsWithChildren {
+  params: {locale: ILocales};
+}
+
+export async function generateMetadata({params: {locale}}: IProps) {
+  const t = await getTranslations({locale});
+  return {
+    title: {
+      template: `${t("page_title.real_state_portal")} | %`,
+      default: `${t("page_title.real_state_portal")} | ${t("page_title.home")}`,
+    },
+  };
+}
+
+export default async function LocaleLayout({children, params: {locale}}: IProps) {
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
+  const isRtl = locale === "ar";
+
+  return (
+    <html lang={locale} dir={isRtl ? "rtl" : "ltr"}>
+      <body
+        className={`${isRtl ? font_ar.className : font_en.className} ${font_en.variable} ${font_ar.variable}`}
+      >
+        <NextIntlClientProvider messages={messages}>
+          <main>{children}</main>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
