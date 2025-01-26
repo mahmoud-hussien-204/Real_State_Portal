@@ -6,13 +6,13 @@ import {Urbanist, Cairo} from "next/font/google";
 
 import "../style.css";
 
-export const font_en = Urbanist({
+export const fontEn = Urbanist({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-en",
 });
 
-export const font_ar = Cairo({
+export const fontAr = Cairo({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-ar",
@@ -42,7 +42,7 @@ export default async function LocaleLayout({children, params: {locale}}: IProps)
   return (
     <html lang={locale} dir={isRtl ? "rtl" : "ltr"}>
       <body
-        className={`${isRtl ? font_ar.className : font_en.className} ${font_en.variable} ${font_ar.variable}`}
+        className={`${isRtl ? fontAr.className : fontEn.className} ${fontEn.variable} ${fontAr.variable}`}
       >
         <NextIntlClientProvider messages={messages}>
           <main>{children}</main>

@@ -35,7 +35,7 @@ const HeroSection = () => {
     <section className='flex min-h-[58.5rem] flex-col'>
       <div className='bg-grid bg-half-gradient flex h-full flex-1 items-end pt-4.5rem'>
         <Container className='relative z-10'>
-          <div className='grid h-full grid-cols-2 items-end gap-0.5rem'>
+          <div className='grid h-full items-end gap-0.5rem xl:grid-cols-2'>
             <div className='flex h-full items-center'>
               <div>
                 <span className='mb-1.88rem inline-flex h-[4.4375rem] items-center justify-center gap-0.5rem rounded-full bg-colors-primary-colors-50 px-1.75rem text-18 font-bold text-colors-grey-colors-2000'>

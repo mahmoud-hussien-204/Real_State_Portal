@@ -1,5 +1,3 @@
-import {AppHelper} from "@/helpers/appHelper";
-
 import {Link} from "@/i18n/routing";
 
 import IconLineArrowRight from "@/icons/IconLineArrowRight";

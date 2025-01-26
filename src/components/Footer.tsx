@@ -185,7 +185,8 @@ const FooterSocialMedia = ({children, href}: {href: string} & React.PropsWithChi
   <a
     target='_blank'
     href={href}
-    className='border-colors-neutral-150/20 flex h-3rem min-w-9rem items-center justify-center gap-0.5rem rounded-0.75rem border bg-white px-0.5rem text-12 font-bold text-colors-primary-colors-600 transition-colors duration-200 hover:bg-colors-primary-colors-300 hover:text-white'
+    className='flex h-3rem min-w-9rem items-center justify-center gap-0.5rem rounded-0.75rem border border-colors-neutral-150/20 bg-white px-0.5rem text-12 font-bold text-colors-primary-colors-600 transition-colors duration-200 hover:bg-colors-primary-colors-300 hover:text-white'
+    rel='noreferrer'
   >
     {children}
   </a>

@@ -30,7 +30,7 @@ const ToggleLanguage = () => {
 
   return (
     <LinkButton
-      className='rounded-0.625rem border-colors-neutral-250 h-3.5rem border font-semibold leading-1.25rem font-14'
+      className='h-3.5rem rounded-0.625rem border border-colors-neutral-250 font-semibold leading-1.25rem font-14'
       variant='neutral'
       href={pathname}
       locale={reversedLanguages[locale as ILocales].locale}
