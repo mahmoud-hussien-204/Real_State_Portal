@@ -211,3 +211,43 @@ export const fakeDataPartners = [
     image: "/partner7.png",
   },
 ];
+
+export const fakePropertyFilters = [
+  {
+    name: "Country",
+    filterName: "country",
+    options: ["Gerogia", "UAE"],
+  },
+  {
+    name: "City",
+    filterName: "city",
+    options: ["Dubai", "Dubai 2", "Dubai 3", "Dubai 4", "Dubai 5"],
+  },
+  {
+    name: "Developer",
+    filterName: "developer",
+    options: [
+      "Hassan Allam",
+      "Hassan Allam 2",
+      "Hassan Allam 3",
+      "Hassan Allam 4",
+      "Hassan Allam 5",
+    ],
+  },
+  {
+    name: "Project",
+    filterName: "project",
+    options: [
+      "ICity New Cairo",
+      "ICity New Cairo 2",
+      "ICity New Cairo 3",
+      "ICity New Cairo 4",
+      "ICity New Cairo 5",
+    ],
+  },
+  {
+    name: "Unit Type",
+    filterName: "unit_type",
+    options: ["Villas", "Apartments", "Offices"],
+  },
+];

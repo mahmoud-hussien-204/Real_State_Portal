@@ -7,6 +7,12 @@
     "offers": "Offers",
     "contact_us": "Contact Us"
   },
+  "page_hero_title": {
+    "projects": "<span>Projects</span> Page",
+    "explore": "<span>Explore</span> Page",
+    "offers": "<span>Offers</span> Page",
+    "contact_us": "<span>Contact Us</span> Page"
+  },
   "common": {
     "login_register": "Register / Login",
     "description": "RealEstate Portal is your ultimate destination for finding, buying, or renting properties with ease and confidence. Our platform connects buyers, sellers, and renters in one seamless experience.",
@@ -15,7 +21,13 @@
     "instagram": "Instagram",
     "gmail": "Gmail",
     "phone": "Phone",
-    "address": "Address"
+    "address": "Address",
+    "price": "Price",
+    "to": "To",
+    "from": "From",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search"
   },
   "footer": {
     "create_account": "Create Account",
@@ -48,5 +60,15 @@
     "residental": "Residental",
     "commercial": "Commercial",
     "land": "Land"
+  },
+  "projects": {
+    "property_listing": "Property Listing",
+    "available_properties": "There are currently 164,814 Availability.",
+    "find_property": "Find Property",
+    "reset": "Reset"
+  },
+  "offers": {
+    "offers_listing": "Offers Listing",
+    "available_offers": "There are currently 164,814 Availability."
   }
 }
