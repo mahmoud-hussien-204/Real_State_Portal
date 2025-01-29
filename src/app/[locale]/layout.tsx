@@ -27,7 +27,7 @@ export async function generateMetadata({params: {locale}}: IProps) {
   return {
     title: {
       template: `${t("page_title.real_state_portal")} | %`,
-      default: `${t("page_title.real_state_portal")} | ${t("page_title.home")}`,
+      default: `${t("page_title.real_state_portal")}`,
     },
   };
 }

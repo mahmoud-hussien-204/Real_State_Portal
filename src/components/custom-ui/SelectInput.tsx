@@ -14,9 +14,10 @@ export type SelectInputProp = {
   placeholder?: string;
   options: SelectOption[];
   className?: string;
+  icon?: React.ReactNode;
 };
 
-const SelectInput = ({placeholder, options, className}: SelectInputProp) => {
+const SelectInput = ({placeholder, options, className, icon}: SelectInputProp) => {
   return (
     <Select>
       <SelectTrigger
@@ -25,6 +26,7 @@ const SelectInput = ({placeholder, options, className}: SelectInputProp) => {
           className
         )}
       >
+        {icon}
         <SelectValue placeholder={<span className='opacity-50'>{placeholder}</span>} />
       </SelectTrigger>
       <SelectContent className='z-[10001] bg-white'>

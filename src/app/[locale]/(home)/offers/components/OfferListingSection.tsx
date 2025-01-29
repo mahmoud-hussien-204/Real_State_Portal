@@ -11,9 +11,12 @@ const OfferListingSection = () => {
       <Container>
         <SectionHeader title='offers.offers_listing' subtitle='offers.available_offers' />
 
-        <div className='mt-5 flex w-full flex-wrap justify-center gap-x-[5%] gap-y-8'>
+        <div className='mt-5 flex w-full flex-wrap justify-center gap-x-[5%] gap-y-8 md:justify-start'>
           {fakeDataProjects.map((project, index) => (
-            <ProjectItem key={index} className='max-w-[50rem] flex-grow' />
+            <ProjectItem
+              key={index}
+              className='max-w-full flex-grow lg:max-w-[50rem] lg:flex-grow-0'
+            />
           ))}
         </div>
 
@@ -21,7 +24,7 @@ const OfferListingSection = () => {
           totalPages={11}
           currentPage={1}
           onPageChange={() => {}}
-          className='mx-auto mt-4 max-w-full gap-6 overflow-x-auto'
+          className='mx-auto mt-6 max-w-full gap-6 overflow-x-auto'
         />
       </Container>
     </section>

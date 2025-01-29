@@ -251,3 +251,124 @@ export const fakePropertyFilters = [
     options: ["Villas", "Apartments", "Offices"],
   },
 ];
+export const fakePropertyTypeOptions = [
+  {
+    label: "Villas",
+    value: "villas",
+  },
+  {
+    label: "Apartments",
+    value: "Apartments",
+  },
+  {
+    label: "Offices",
+    value: "offices",
+  },
+];
+export const fakeCountryOptions = [
+  {
+    label: "Georgia",
+    value: "georgia",
+  },
+  {
+    label: "UAE",
+    value: "uae",
+  },
+];
+export const fakeCityOptions = [
+  {
+    label: "Dubai",
+    value: "dubai",
+  },
+  {
+    label: "Dubai 2",
+    value: "dubai 2",
+  },
+  {
+    label: "Dubai 3",
+    value: "dubai 3",
+  },
+  {
+    label: "Dubai 4",
+    value: "dubai 4",
+  },
+  {
+    label: "Dubai 5",
+    value: "dubai 5",
+  },
+];
+
+export const fakeAreaOptions = [
+  {
+    label: "100m",
+    value: "100m",
+  },
+  {
+    label: "300m",
+    value: "300m",
+  },
+  {
+    label: "500m",
+    value: "500m",
+  },
+];
+
+export const fakeDevelopers = [
+  {
+    label: "Hassan Allam",
+    value: "Hassan Allam",
+  },
+  {
+    label: "Hassan Allam 2",
+    value: "Hassan Allam 2",
+  },
+  {
+    label: "Hassan Allam 3",
+    value: "Hassan Allam 3",
+  },
+  {
+    label: "Hassan Allam 4",
+    value: "Hassan Allam 4",
+  },
+  {
+    label: "Hassan Allam 5",
+    value: "Hassan Allam 5",
+  },
+];
+
+export const fakeProjects = [
+  {
+    label: "ICity New Cairo",
+    value: "ICity New Cairo",
+  },
+  {
+    label: "ICity New Cairo 2",
+    value: "ICity New Cairo 2",
+  },
+  {
+    label: "ICity New Cairo 3",
+    value: "ICity New Cairo 3",
+  },
+  {
+    label: "ICity New Cairo 4",
+    value: "ICity New Cairo 4",
+  },
+  {
+    label: "ICity New Cairo 5",
+    value: "ICity New Cairo 5",
+  },
+];
+export const fakeFinishingSpecs = [
+  {
+    label: "Fully Finished",
+    value: "Fully Finished",
+  },
+  {
+    label: "Partially Finished",
+    value: "Partially Finished",
+  },
+  {
+    label: "Not Finished",
+    value: "Not Finished",
+  },
+];
