@@ -3,12 +3,14 @@
     "real_state_portal": "Real State Portal",
     "home": "Home",
     "projects": "Projects",
+    "projects_details": "Projects Details",
     "explore": "Explore",
     "offers": "Offers",
     "contact_us": "Contact Us"
   },
   "page_hero_title": {
     "projects": "<span>Projects</span> Page",
+    "projects_details": "<span>Projects</span> Details",
     "explore": "<span>Explore</span> Page",
     "offers": "<span>Offers</span> Page",
     "contact_us": "<span>Contact Us</span> Page"
