@@ -129,14 +129,12 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
         </div>
 
         <div
-          className={AppHelper.className(
-            "mb-1rem flex items-center justify-center gap-0.5rem border-t pt-1rem sm:justify-start",
-            {
-              "justify-center": direction === "vertical",
-              "border-t-black/10": variant === "light",
-              "border-t-white/10": variant === "dark",
-            }
-          )}
+          className={AppHelper.className("mb-1rem flex items-center gap-0.5rem border-t pt-1rem", {
+            "justify-start": direction === "horizontal",
+            "justify-center": direction === "vertical",
+            "border-t-black/10": variant === "light",
+            "border-t-white/10": variant === "dark",
+          })}
         >
           <Image
             src={ImageProjectAvatar}
@@ -164,12 +162,12 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
         </div>
 
         <div
-          className={AppHelper.className("flex justify-center sm:block", {
+          className={AppHelper.className("", {
             "flex justify-center": direction === "vertical",
           })}
         >
           <LinkButton
-            href='/explore/${1}'
+            href={`/projects/${1}`}
             className='min-w-[10.75rem] rounded-full font-14'
             variant='secondary'
           >

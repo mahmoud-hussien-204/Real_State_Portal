@@ -20,7 +20,9 @@ import IconLand from "@/icons/IconLand";
 
 import IconCommercial from "@/icons/IconCommercial";
 
-enum EnumTabs {
+import FilterHeroSection from "./FilterHeroSection";
+
+export enum EnumTabs {
   RESIDENTIAL = "residential",
   COMMERCIAL = "commercial",
   LAND = "Land",
@@ -92,7 +94,9 @@ const HeroSection = () => {
           </div>
         </Container>
       </div>
-      <div className='h-[10.75rem] bg-white'></div>
+      <div className='h-[10.75rem] bg-white'>
+        <FilterHeroSection />
+      </div>
     </section>
   );
 };

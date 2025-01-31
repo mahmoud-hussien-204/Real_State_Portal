@@ -1,8 +1,13 @@
 import Button from "@/components/Button";
+
 import SelectInput from "@/components/custom-ui/SelectInput";
+
 import {fakeAreaOptions, fakeCountryOptions, fakePropertyTypeOptions} from "@/constants";
+
 import {translate} from "@/helpers/translate";
+
 import {useTranslations} from "next-intl";
+
 import {IoSearch} from "react-icons/io5";
 
 const OffersFilterHeader = () => {

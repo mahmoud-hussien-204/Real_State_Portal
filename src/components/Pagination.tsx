@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   className,
 }) => {
-  const [pageRange] = useState(5); // Number of visible page buttons
+  const [pageRange] = useState(3); // Number of visible page buttons
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return; // Prevent invalid page navigation
@@ -43,8 +43,8 @@ const Pagination: React.FC<PaginationProps> = ({
           currentPage === 1 ? "cursor-not-allowed opacity-50" : "hover:bg-gray-200"
         }`}
       >
-        {translate("common.previous")}
         <FiChevronLeft className='size-[1.3rem]' />
+        {translate("common.previous")}
       </button>
     );
 

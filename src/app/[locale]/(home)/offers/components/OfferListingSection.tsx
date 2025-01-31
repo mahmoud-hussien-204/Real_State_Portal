@@ -1,8 +1,13 @@
 "use client";
+
 import Container from "@/components/Container";
+
 import Pagination from "@/components/Pagination";
+
 import ProjectItem from "@/components/ProjectItem";
+
 import SectionHeader from "@/components/SectionHeader";
+
 import {fakeDataProjects} from "@/constants";
 
 const OfferListingSection = () => {

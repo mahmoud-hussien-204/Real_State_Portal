@@ -175,6 +175,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "custom-black-gradient":
           "linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%)",
+        "custom-primary-gradient": "linear-gradient(180deg, #000 0%, #530000 100%)",
       },
       borderRadius: {
         "0.5rem": "0.5rem",

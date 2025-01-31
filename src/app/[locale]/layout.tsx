@@ -40,7 +40,7 @@ export default async function LocaleLayout({children, params: {locale}}: IProps)
   const isRtl = locale === "ar";
 
   return (
-    <html lang={locale} dir={isRtl ? "rtl" : "ltr"}>
+    <html lang={locale} dir={isRtl ? "rtl" : "ltr"} className='scroll-pt-8.5rem scroll-smooth'>
       <body
         className={`${isRtl ? fontAr.className : fontEn.className} ${fontEn.variable} ${fontAr.variable}`}
       >
