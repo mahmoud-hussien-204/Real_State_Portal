@@ -75,7 +75,13 @@
     "project_expected_delivery": "Expected Delivery Date",
     "totals number of units": "totals number of units",
     "project_development_stage": "Project Development Stage",
-    "project_status": "Project Status"
+    "project_status": "Project Status",
+    "area": "Area",
+    "service_charge": "Service Charge",
+    "view": "View",
+    "furniturex": "FurnitureX",
+    "rental_returns": "Rental Returns",
+    "capital_appreciaito": "Capital Appreciation"
   },
   "footer": {
     "create_account": "Create Account",

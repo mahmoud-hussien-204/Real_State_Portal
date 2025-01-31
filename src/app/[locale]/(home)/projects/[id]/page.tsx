@@ -196,6 +196,44 @@ const ProjectDetailsPage = () => {
                   </div>
                 </Box>
               </section>
+              <section id='view' className='col-span-2'>
+                <Box title={t("common.project_view")}>
+                  <div className='grid grid-cols-2 gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem'>
+                    <Item
+                      icon={<IconCalender />}
+                      title={t("common.project_expected_delivery")}
+                      subtitle='12/2/2028'
+                    />
+                    <Item
+                      icon={<IconStats />}
+                      title={t("common.project_development_stage")}
+                      subtitle='New Launch'
+                    />
+                    <Item
+                      icon={<IconBuilding />}
+                      title={t("common.totals number of units")}
+                      subtitle='39'
+                    />
+                    <Item
+                      icon={<IconBuilding />}
+                      title={t("common.totals number of units")}
+                      subtitle='39'
+                    />
+                  </div>
+                </Box>
+              </section>
+              <section id='structure' className='col-span-2'>
+                <Box title={t("common.project_structure")}>
+                  <div className='grid grid-cols-3 gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem'>
+                    <Item title={t("common.area")} subtitle='12/2/2028' />
+                    <Item title={t("common.service_charge")} subtitle='New Launch' />
+                    <Item title={t("common.view")} subtitle='39' />
+                    <Item title={t("common.furniturex")} subtitle='39' />
+                    <Item title={t("common.rental_returns")} subtitle='39' />
+                    <Item title={t("common.capital_appreciaito")} subtitle='39' />
+                  </div>
+                </Box>
+              </section>
             </div>
           </div>
         </Container>
