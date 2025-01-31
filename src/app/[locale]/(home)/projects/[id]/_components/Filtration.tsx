@@ -9,7 +9,7 @@ const subscribe = (callback: () => void) => {
   };
 };
 
-const snapShot = () => window.location.hash || "#overview";
+const snapShot = () => window.location.hash || "#developer";
 
 const links = [
   {
@@ -57,9 +57,11 @@ const links = [
 const Filtration = () => {
   const tab = useSyncExternalStore(subscribe, snapShot);
 
+  console.log(tab);
+
   return (
     <nav className='sticky top-2rem z-40 flex items-center justify-between gap-0.75rem overflow-x-auto rounded-full bg-white'>
-      {links.map((link, index) => (
+      {links.map((link) => (
         <a
           key={link.href}
           href={link.href}
@@ -67,7 +69,7 @@ const Filtration = () => {
             "rounded-inherit flex h-4.5rem items-center justify-center px-1rem text-center font-medium text-colors-grey-colors-1000 transition-all duration-200 font-18",
             {
               "bg-colors-primary-colors-400 !px-3rem font-bold text-colors-grey-colors-100":
-                link.href === tab || (index === 0 && !tab),
+                link.href === tab,
             }
           )}
         >
