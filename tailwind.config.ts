@@ -64,7 +64,7 @@ const config: Config = {
           "--colors-primary-colors-950": "#97020D",
 
           "--text-dark-grey": "#656F77",
-
+          "--input": "#DCDCDC",
           "--gray-1": "#333333",
           "--gray-3": "#828282",
           "--gray-4": "#BDBDBD",
@@ -75,6 +75,7 @@ const config: Config = {
           "--colors-grey-colors-800": "#606060",
           "--colors-grey-colors-900": "#4A4A4A",
           "--colors-grey-colors-1000": "#333333",
+          "--colors-grey-colors-1500": "#24252699",
           "--colors-grey-colors-2000": "#111111",
 
           "--neural-colors-50": "#F6F6F6",
@@ -129,10 +130,11 @@ const config: Config = {
         "colors-primary-colors-950": "var(--colors-primary-colors-950)",
 
         "text-dark-grey": "var(--text-dark-grey)",
-
+        input: "var(--input)",
         "gray-1": "var(--gray-1)",
         "gray-3": "var(--gray-3)",
         "gray-4": "var(--gray-4)",
+
         "colors-grey-colors-100": "var(--colors-grey-colors-100)",
         "colors-grey-colors-150": "var(--colors-grey-colors-150)",
         "colors-grey-colors-300": "var(--colors-grey-colors-300)",
@@ -140,6 +142,7 @@ const config: Config = {
         "colors-grey-colors-800": "var(--colors-grey-colors-800)",
         "colors-grey-colors-900": "var(--colors-grey-colors-900)",
         "colors-grey-colors-1000": "var(--colors-grey-colors-1000)",
+        "colors-grey-colors-1500": "var(--colors-grey-colors-1500)",
         "colors-grey-colors-2000": "var(--colors-grey-colors-2000)",
 
         "neural-colors-50": "var(--neural-colors-50)",

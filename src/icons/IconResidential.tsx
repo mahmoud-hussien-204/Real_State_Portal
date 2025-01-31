@@ -1,6 +1,13 @@
-const IconResidential = () => {
+const IconResidential = ({className}: {className?: string}) => {
   return (
-    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      fill='none'
+      viewBox='0 0 24 24'
+      className={className}
+    >
       <path
         className='fill-current'
         d='M18.315 10.105a3.16 3.16 0 0 1-3.158-3.157V5.685a.631.631 0 1 1 1.264 0v1.263c0 1.044.85 1.894 1.894 1.894s1.895-.85 1.895-1.894v-1.13l-1.858-4.18a.63.63 0 0 0-.577-.374H3.698a.63.63 0 0 0-.577.375l-1.858 4.18v1.129c0 1.044.85 1.894 1.895 1.894s1.894-.85 1.894-1.894V5.685a.631.631 0 1 1 1.264 0v1.263a3.16 3.16 0 0 1-3.158 3.157A3.16 3.16 0 0 1 0 6.948V5.685a.6.6 0 0 1 .054-.257l1.913-4.302A1.9 1.9 0 0 1 3.697 0h14.078c.748 0 1.428.442 1.731 1.126l1.913 4.302q.053.122.054.257v1.263a3.16 3.16 0 0 1-3.158 3.157'

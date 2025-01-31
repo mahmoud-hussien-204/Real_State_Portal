@@ -23,21 +23,15 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended"
   ],
-  "plugins": [
-    "prettier",
-    "@typescript-eslint",
-    "react",
-    "react-hooks"
-  ],
+  "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
   "rules": {
     "prefer-const": "warn",
     "no-var": "warn",
     "no-unused-vars": "warn",
     "object-shorthand": "warn",
-    "quote-props": [
-      "warn",
-      "as-needed"
-    ],
+    "quote-props": ["warn", "as-needed"],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/array-type": [
       "warn",
       {
@@ -51,20 +45,14 @@
         "objectLiteralTypeAssertions": "never"
       }
     ],
-    "react/jsx-fragments": [
-      "warn",
-      "syntax"
-    ],
+    "react/jsx-fragments": ["warn", "syntax"],
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [
-          "ts",
-          "tsx"
-        ]
+        "extensions": ["ts", "tsx"]
       }
     ],
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",

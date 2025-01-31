@@ -3,19 +3,56 @@
     "real_state_portal": "Real State Portal",
     "home": "Home",
     "projects": "Projects",
+    "projects_details": "Projects Details",
     "explore": "Explore",
     "offers": "Offers",
     "contact_us": "Contact Us"
   },
+  "page_hero_title": {
+    "projects": "<span>Projects</span> Page",
+    "projects_details": "<span>Projects</span> Details",
+    "explore": "<span>Explore</span> Page",
+    "offers": "<span>Offers</span> Page",
+    "contact_us": "<span>Contact Us</span> Page"
+  },
   "common": {
     "login_register": "Register / Login",
+    "login": "Login",
+    "register": "Register",
+    "remember_me": "Remember Me",
+    "forgot_password": "Forgot Password?",
+    "your_email_address": "Your Email Address",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "dont_have_an_account": "Don't have an account?",
+    "already_have_an_account": "Already have an account?",
+    "create_account": "Create Account",
+    "or": "Or",
+    "google": "Google",
     "description": "RealEstate Portal is your ultimate destination for finding, buying, or renting properties with ease and confidence. Our platform connects buyers, sellers, and renters in one seamless experience.",
     "whatsapp": "WhatsApp",
     "facebook": "Facebook",
     "instagram": "Instagram",
     "gmail": "Gmail",
     "phone": "Phone",
-    "address": "Address"
+    "address": "Address",
+    "price": "Price",
+    "to": "To",
+    "from": "From",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "city": "City",
+    "country": "Country",
+    "area": "Area",
+    "property_type": "Property Type",
+    "developer": "Developer",
+    "project": "Project",
+    "finishing_specs": "Finishing Specs",
+    "area_size": "Area Size",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "delivery_date": "Delivery Date"
   },
   "footer": {
     "create_account": "Create Account",
@@ -48,5 +85,30 @@
     "residental": "Residental",
     "commercial": "Commercial",
     "land": "Land"
+  },
+  "projects": {
+    "property_listing": "Property Listing",
+    "available_properties": "There are currently 164,814 Availability.",
+    "find_property": "Find Property",
+    "reset": "Reset"
+  },
+  "offers": {
+    "offers_listing": "Offers Listing",
+    "available_offers": "There are currently 164,814 Availability."
+  },
+  "contact_us": {
+    "contact_form": "Contact Form",
+    "fill_out": "Fill out the form and one of our property consultants will contact you.",
+    "your_name": "Your Name",
+    "full_name": "Full Name",
+    "email_or_phone": "Email Or Phone",
+    "your_message": "Your Message",
+    "message": "Message",
+    "send_request": "Send Request"
+  },
+  "explore": {
+    "enter_place": "Enter Place",
+    "find_your_project": "Find Your Project",
+    "enter_keyword": "Enter Keyword"
   }
 }

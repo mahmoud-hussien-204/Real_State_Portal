@@ -15,24 +15,31 @@ import IconArrowRight from "@/icons/IconArrowRight";
 interface IProps {
   direction?: "vertical" | "horizontal";
   variant?: "dark" | "light";
+  className?: string;
 }
 
-const ProjectItem = ({direction = "horizontal", variant = "light"}: IProps) => {
+const ProjectItem = ({direction = "horizontal", variant = "light", className}: IProps) => {
   return (
     <div
-      className={AppHelper.className("h-full rounded-1.25rem px-1.25rem py-0.75rem", {
-        "flex items-center gap-1rem": direction === "horizontal",
-        "w-full max-w-[25.2rem]": direction === "vertical",
-        "bg-colors-grey-colors-100": variant === "light",
-        "bg-[#0E0E0E]": variant === "dark",
-      })}
+      className={AppHelper.className(
+        "h-full rounded-1.25rem px-1.25rem py-0.75rem",
+        {
+          "flex flex-wrap items-center justify-center gap-1rem sm:flex-nowrap sm:justify-start":
+            direction === "horizontal",
+          "w-full max-w-[25.2rem]": direction === "vertical",
+          "bg-colors-grey-colors-100": variant === "light",
+          "bg-[#0E0E0E]": variant === "dark",
+        },
+        className
+      )}
     >
-      <div className='rounded-1.25rem'>
+      <div className='w-full rounded-sm sm:w-auto sm:rounded-1.25rem'>
         <Image
           src={ImageProject}
           alt=''
           className={AppHelper.className("rounded-inherit", {
-            "h-[17.25rem] max-h-full w-[17.3125rem] max-w-full": direction === "horizontal",
+            "h-[17.25rem] max-h-full w-full max-w-full sm:w-[17.3125rem]":
+              direction === "horizontal",
             "h-full max-h-[15.9rem] w-full": direction === "vertical",
           })}
         />
@@ -40,7 +47,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light"}: IProps) => {
 
       <div className='flex-1'>
         <h3
-          className={AppHelper.className("font-26 mb-1rem font-semibold leading-[1.92563rem]", {
+          className={AppHelper.className("mb-1rem font-semibold leading-[1.92563rem] font-26", {
             "mt-1rem": direction === "vertical",
             "text-colors-grey-colors-2000": variant === "light",
             "text-colors-grey-colors-100": variant === "dark",
@@ -122,11 +129,14 @@ const ProjectItem = ({direction = "horizontal", variant = "light"}: IProps) => {
         </div>
 
         <div
-          className={AppHelper.className("mb-1rem flex items-center gap-0.5rem border-t pt-1rem", {
-            "justify-center": direction === "vertical",
-            "border-t-black/10": variant === "light",
-            "border-t-white/10": variant === "dark",
-          })}
+          className={AppHelper.className(
+            "mb-1rem flex items-center justify-center gap-0.5rem border-t pt-1rem sm:justify-start",
+            {
+              "justify-center": direction === "vertical",
+              "border-t-black/10": variant === "light",
+              "border-t-white/10": variant === "dark",
+            }
+          )}
         >
           <Image
             src={ImageProjectAvatar}
@@ -154,7 +164,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light"}: IProps) => {
         </div>
 
         <div
-          className={AppHelper.className({
+          className={AppHelper.className("flex justify-center sm:block", {
             "flex justify-center": direction === "vertical",
           })}
         >

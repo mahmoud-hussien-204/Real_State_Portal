@@ -211,3 +211,164 @@ export const fakeDataPartners = [
     image: "/partner7.png",
   },
 ];
+
+export const fakePropertyFilters = [
+  {
+    name: "Country",
+    filterName: "country",
+    options: ["Gerogia", "UAE"],
+  },
+  {
+    name: "City",
+    filterName: "city",
+    options: ["Dubai", "Dubai 2", "Dubai 3", "Dubai 4", "Dubai 5"],
+  },
+  {
+    name: "Developer",
+    filterName: "developer",
+    options: [
+      "Hassan Allam",
+      "Hassan Allam 2",
+      "Hassan Allam 3",
+      "Hassan Allam 4",
+      "Hassan Allam 5",
+    ],
+  },
+  {
+    name: "Project",
+    filterName: "project",
+    options: [
+      "ICity New Cairo",
+      "ICity New Cairo 2",
+      "ICity New Cairo 3",
+      "ICity New Cairo 4",
+      "ICity New Cairo 5",
+    ],
+  },
+  {
+    name: "Unit Type",
+    filterName: "unit_type",
+    options: ["Villas", "Apartments", "Offices"],
+  },
+];
+export const fakePropertyTypeOptions = [
+  {
+    label: "Villas",
+    value: "villas",
+  },
+  {
+    label: "Apartments",
+    value: "Apartments",
+  },
+  {
+    label: "Offices",
+    value: "offices",
+  },
+];
+export const fakeCountryOptions = [
+  {
+    label: "Georgia",
+    value: "georgia",
+  },
+  {
+    label: "UAE",
+    value: "uae",
+  },
+];
+export const fakeCityOptions = [
+  {
+    label: "Dubai",
+    value: "dubai",
+  },
+  {
+    label: "Dubai 2",
+    value: "dubai 2",
+  },
+  {
+    label: "Dubai 3",
+    value: "dubai 3",
+  },
+  {
+    label: "Dubai 4",
+    value: "dubai 4",
+  },
+  {
+    label: "Dubai 5",
+    value: "dubai 5",
+  },
+];
+
+export const fakeAreaOptions = [
+  {
+    label: "100m",
+    value: "100m",
+  },
+  {
+    label: "300m",
+    value: "300m",
+  },
+  {
+    label: "500m",
+    value: "500m",
+  },
+];
+
+export const fakeDevelopers = [
+  {
+    label: "Hassan Allam",
+    value: "Hassan Allam",
+  },
+  {
+    label: "Hassan Allam 2",
+    value: "Hassan Allam 2",
+  },
+  {
+    label: "Hassan Allam 3",
+    value: "Hassan Allam 3",
+  },
+  {
+    label: "Hassan Allam 4",
+    value: "Hassan Allam 4",
+  },
+  {
+    label: "Hassan Allam 5",
+    value: "Hassan Allam 5",
+  },
+];
+
+export const fakeProjects = [
+  {
+    label: "ICity New Cairo",
+    value: "ICity New Cairo",
+  },
+  {
+    label: "ICity New Cairo 2",
+    value: "ICity New Cairo 2",
+  },
+  {
+    label: "ICity New Cairo 3",
+    value: "ICity New Cairo 3",
+  },
+  {
+    label: "ICity New Cairo 4",
+    value: "ICity New Cairo 4",
+  },
+  {
+    label: "ICity New Cairo 5",
+    value: "ICity New Cairo 5",
+  },
+];
+export const fakeFinishingSpecs = [
+  {
+    label: "Fully Finished",
+    value: "Fully Finished",
+  },
+  {
+    label: "Partially Finished",
+    value: "Partially Finished",
+  },
+  {
+    label: "Not Finished",
+    value: "Not Finished",
+  },
+];
