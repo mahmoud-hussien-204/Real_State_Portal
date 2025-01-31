@@ -142,7 +142,7 @@ const ProjectDetailsPage = () => {
                   <div className='flex flex-wrap gap-1.88rem'>
                     <div className='flex h-[8.68rem] flex-1 flex-col items-center justify-center gap-1rem rounded-1.25rem bg-colors-primary-colors-50 py-1.25rem'>
                       <span className='text-38 font-bold text-colors-primary-colors-400'>39</span>
-                      <h6 className='flex items-center gap-1rem text-16 font-semibold text-colors-grey-colors-1000'>
+                      <h6 className='flex items-center gap-1rem whitespace-nowrap text-16 font-semibold text-colors-grey-colors-1000'>
                         <span className='flex size-[2.3rem] items-center justify-center rounded-full bg-white text-colors-primary-colors-500'>
                           <IconBuilding />
                         </span>
@@ -151,7 +151,7 @@ const ProjectDetailsPage = () => {
                     </div>
                     <div className='flex h-[8.68rem] flex-1 flex-col items-center justify-center gap-1.5rem rounded-1.25rem bg-colors-primary-colors-50 py-1.25rem'>
                       <span className='text-38 font-bold text-colors-primary-colors-400'>39</span>
-                      <h6 className='flex items-center gap-1rem text-16 font-semibold text-colors-grey-colors-1000'>
+                      <h6 className='flex items-center gap-1rem whitespace-nowrap text-16 font-semibold text-colors-grey-colors-1000'>
                         <span className='flex size-[2.3rem] items-center justify-center rounded-full bg-white text-colors-primary-colors-500'>
                           <IconTag />
                         </span>
@@ -160,7 +160,7 @@ const ProjectDetailsPage = () => {
                     </div>
                     <div className='flex h-[8.68rem] flex-1 flex-col items-center justify-center gap-1.5rem rounded-1.25rem bg-colors-primary-colors-50 py-1.25rem'>
                       <span className='text-38 font-bold text-colors-primary-colors-400'>39</span>
-                      <h6 className='flex items-center gap-1rem text-16 font-semibold text-colors-grey-colors-1000'>
+                      <h6 className='flex items-center gap-1rem whitespace-nowrap text-16 font-semibold text-colors-grey-colors-1000'>
                         <span className='flex size-[2.3rem] items-center justify-center rounded-full bg-white text-colors-primary-colors-500'>
                           <IconRefresh />
                         </span>
@@ -172,7 +172,7 @@ const ProjectDetailsPage = () => {
               </section>
               <section id='project-statement' className='col-span-2'>
                 <Box title={t("common.project_statement")}>
-                  <div className='grid grid-cols-2 gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem'>
+                  <div className='grid gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem md:grid-cols-2'>
                     <Item
                       icon={<IconCalender />}
                       title={t("common.project_expected_delivery")}
@@ -198,7 +198,7 @@ const ProjectDetailsPage = () => {
               </section>
               <section id='view' className='col-span-2'>
                 <Box title={t("common.project_view")}>
-                  <div className='grid grid-cols-2 gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem'>
+                  <div className='grid gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem md:grid-cols-2'>
                     <Item
                       icon={<IconCalender />}
                       title={t("common.project_expected_delivery")}
@@ -224,7 +224,7 @@ const ProjectDetailsPage = () => {
               </section>
               <section id='structure' className='col-span-2'>
                 <Box title={t("common.project_structure")}>
-                  <div className='grid grid-cols-3 gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem'>
+                  <div className='grid gap-1rem rounded-1.25rem bg-[#F4F4F4] px-1rem py-1.5rem md:grid-cols-2 lg:grid-cols-3'>
                     <Item title={t("common.area")} subtitle='12/2/2028' />
                     <Item title={t("common.service_charge")} subtitle='New Launch' />
                     <Item title={t("common.view")} subtitle='39' />

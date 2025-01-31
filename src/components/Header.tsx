@@ -15,12 +15,13 @@ import {useTranslations} from "next-intl";
 import LinkButton from "./LinkButton";
 
 import IconMenu from "@/icons/IconMenu";
+import MobileMenu from "./MobileMenu";
 
 const Header = () => {
   const t = useTranslations();
 
   return (
-    <header className='absolute start-0 top-2.5rem z-50 flex h-3.5rem w-full items-center'>
+    <header className='absolute start-0 top-2.5rem z-[9999] flex h-3.5rem w-full items-center'>
       <Container className='flex items-center justify-between'>
         <Link href='/'>
           <Logo />
@@ -48,6 +49,8 @@ const Header = () => {
             {t("common.login_register")}
           </LinkButton>
         </div>
+
+        <MobileMenu />
       </Container>
     </header>
   );

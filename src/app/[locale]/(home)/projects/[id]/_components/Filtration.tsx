@@ -66,7 +66,7 @@ const Filtration = () => {
           key={link.href}
           href={link.href}
           className={AppHelper.className(
-            "rounded-inherit flex h-4.5rem items-center justify-center px-1rem text-center font-medium text-colors-grey-colors-1000 transition-all duration-200 font-18",
+            "rounded-inherit flex h-4.5rem items-center justify-center whitespace-nowrap px-1rem text-center font-medium text-colors-grey-colors-1000 transition-all duration-200 font-18",
             {
               "bg-colors-primary-colors-400 !px-3rem font-bold text-colors-grey-colors-100":
                 link.href === tab,
