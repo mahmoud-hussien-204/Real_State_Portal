@@ -4,8 +4,9 @@ export const defaultLocale = "en";
 
 export const fakeDataProjects = [
   {
+    id: 1,
     title: "Trillionaire Residences",
-    location: "Business Bay - Dubai - United Arab Emirates",
+    location: "Business Bay - KSA - Saudi",
     starting_price: "12,000",
     currency: "AED",
     expected_rol: "4,500",
@@ -15,8 +16,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [25.2048, 55.2708],
   },
   {
+    id: 2,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -28,8 +31,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "under construction",
+    position: [51.53, -0.07],
   },
   {
+    id: 3,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -41,8 +46,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [51.51, -0.07],
   },
   {
+    id: 4,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -54,8 +61,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [51.51, -0.05],
   },
   {
+    id: 5,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -67,8 +76,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [51.53, -0.13],
   },
   {
+    id: 6,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -80,8 +91,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [51.51, -0.12],
   },
   {
+    id: 7,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -93,8 +106,10 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [25.2048, 55.2708],
   },
   {
+    id: 8,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -106,8 +121,11 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [25.2048, 55.2708],
   },
+
   {
+    id: 9,
     title: "Trillionaire Residences",
     location: "Business Bay - Dubai - United Arab Emirates",
     starting_price: "12,000",
@@ -119,6 +137,7 @@ export const fakeDataProjects = [
     },
     discount: "20%",
     status: "available",
+    position: [25.2048, 55.2708],
   },
 ];
 
