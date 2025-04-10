@@ -1,4 +1,6 @@
-import {useTranslations} from "next-intl";
+'use client';
+
+import {useLocale, useTranslations} from "next-intl";
 
 import Container from "./Container";
 
@@ -19,9 +21,25 @@ import IconFacebook from "@/icons/IconFacebook";
 import IconInstagram from "@/icons/IconInstagram";
 
 import IconDoubleChevron from "@/icons/IconDoubleChevron";
+import { useQuery } from "@tanstack/react-query";
+import { apiGetFooterData } from "@/app/[locale]/(home)/_api";
 
 const Footer = () => {
   const t = useTranslations();
+  const locale = useLocale(); // To know the current language code
+
+  const { data } = useQuery({
+    queryKey: ['footer'],
+    queryFn: apiGetFooterData
+  });
+
+  const dataMap: Record<string, string> = data?.data.reduce((map, item) => {
+    map[item.key] = item.value;
+    return map;
+  }, {} as Record<string, string>) || {};
+
+  // console.log("dataMap: ", dataMap);
+  
   return (
     <footer className='bg-grid bg-half-gradient relative py-5rem'>
       <Container>
@@ -29,20 +47,20 @@ const Footer = () => {
           <div className='w-full md:max-w-[28.4375rem]'>
             <Logo />
             <p className='mb-2.5rem mt-1.88rem text-18 font-semibold leading-2rem text-colors-grey-colors-2000'>
-              {t("common.description")}
+              {locale === 'en' ? dataMap['footer_en'] : dataMap['footer_ar']}
             </p>
             <div className='flex flex-wrap items-center gap-0.5rem'>
               <FooterSocialMedia href=''>
                 <IconWhatsApp />
-                <span className='text-colors-grey-colors-1000'>{t("common.whatsapp")}</span>
+                <span className='text-colors-grey-colors-1000'>{locale === 'en' ? 'Whatsapp' : 'واتساب'}</span>
               </FooterSocialMedia>
-              <FooterSocialMedia href=''>
+              <FooterSocialMedia href={dataMap['facebook']}>
                 <IconFacebook />
-                <span className='text-colors-grey-colors-1000'>{t("common.facebook")}</span>
+                <span  className='text-colors-grey-colors-1000'>{locale === 'en' ? 'Facebook' : 'فيسبوك'}</span>
               </FooterSocialMedia>
-              <FooterSocialMedia href=''>
+              <FooterSocialMedia href={dataMap['facebook']}>
                 <IconInstagram />
-                <span className='text-colors-grey-colors-1000'>{t("common.instagram")}</span>
+                <span  className='text-colors-grey-colors-1000'>{locale === 'en' ? 'Instagram' : 'انستجرام'}</span>
               </FooterSocialMedia>
             </div>
           </div>
@@ -113,7 +131,7 @@ const Footer = () => {
                     href='mailto:0PZd1@example.com'
                     className='text-12 font-medium leading-1.25rem text-colors-grey-colors-800 underline'
                   >
-                    info@aera-capital.com
+                    {dataMap["website"] ? dataMap["website"] : 'info@aera-capital.com'}
                   </a>
                 </div>
               </div>
@@ -124,10 +142,10 @@ const Footer = () => {
                     {t("common.phone")}
                   </h6>
                   <a
-                    href='tel:0542285830'
+                    href={` tel:${dataMap["phone"] ? dataMap["phone"] : '0542285830'}`}
                     className='text-12 font-medium leading-1.25rem text-colors-grey-colors-800 underline'
                   >
-                    0542285830
+                    {dataMap["phone"] ? dataMap["phone"] : '0542285830'}
                   </a>
                 </div>
               </div>
@@ -141,7 +159,7 @@ const Footer = () => {
                     href='#'
                     className='text-12 font-medium leading-1.25rem text-colors-grey-colors-800 underline'
                   >
-                    Al Rigga, Dubai, U.A.E
+                    {locale === 'en' ?  dataMap["address_en"] : dataMap['address_ar']}
                   </a>
                 </div>
               </div>

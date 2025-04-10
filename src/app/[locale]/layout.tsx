@@ -7,6 +7,7 @@ import {Urbanist, Cairo} from "next/font/google";
 import AppProviders from "@/providers/AppProviders";
 
 import "../style.css";
+import Providers from "./providers";
 
 const fontEn = Urbanist({
   weight: ["300", "400", "500", "600", "700"],
@@ -48,7 +49,9 @@ export default async function LocaleLayout({children, params: {locale}}: IProps)
       >
         <NextIntlClientProvider messages={messages}>
           <AppProviders>
-            <main>{children}</main>
+            <Providers>
+              <main>{children}</main>
+            </Providers>
           </AppProviders>
         </NextIntlClientProvider>
       </body>

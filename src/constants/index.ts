@@ -2,6 +2,8 @@ export const locales = ["en", "ar"] as const;
 
 export const defaultLocale = "en";
 
+export const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const fakeDataProjects = [
   {
     id: 1,
