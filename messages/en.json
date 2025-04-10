@@ -81,7 +81,9 @@
     "view": "View",
     "furniturex": "FurnitureX",
     "rental_returns": "Rental Returns",
-    "capital_appreciaito": "Capital Appreciation"
+    "capital_appreciaito": "Capital Appreciation",
+    "type": "Type",
+    "hello": "Hello"
   },
   "footer": {
     "create_account": "Create Account",

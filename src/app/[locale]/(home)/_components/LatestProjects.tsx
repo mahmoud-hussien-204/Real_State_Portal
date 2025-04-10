@@ -24,7 +24,7 @@ const LatestProjects = () => {
   const {refSwiper, setRefSwiper} = useSwiperRef();
 
   return (
-    <section className='bg-colors-grey-colors-150 overflow-x-hidden py-4.5rem'>
+    <section className='overflow-x-hidden bg-colors-grey-colors-150 py-4.5rem'>
       <Container>
         <SectionTitle
           subtitle={t("home.featured_projects")}

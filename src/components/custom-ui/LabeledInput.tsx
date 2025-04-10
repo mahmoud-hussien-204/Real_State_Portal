@@ -28,9 +28,10 @@ const LabeledInput = React.forwardRef<HTMLInputElement, LabeledInputProps>(
           <Input
             id={id}
             className={cn(
-              "rounded-full border-none bg-[#F6F6F6] px-4 py-6 text-colors-grey-colors-900 shadow-sm",
+              "h-3.25rem rounded-full border-none bg-[#F6F6F6] px-4 text-colors-grey-colors-900 shadow-sm",
               className
             )}
+            ref={ref}
             {...props}
           />
         </div>

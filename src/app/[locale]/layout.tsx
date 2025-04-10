@@ -4,6 +4,8 @@ import {getMessages, getTranslations} from "next-intl/server";
 
 import {Urbanist, Cairo} from "next/font/google";
 
+import AppProviders from "@/providers/AppProviders";
+
 import "../style.css";
 
 const fontEn = Urbanist({
@@ -45,7 +47,9 @@ export default async function LocaleLayout({children, params: {locale}}: IProps)
         className={`${isRtl ? fontAr.className : fontEn.className} ${fontEn.variable} ${fontAr.variable}`}
       >
         <NextIntlClientProvider messages={messages}>
-          <main>{children}</main>
+          <AppProviders>
+            <main>{children}</main>
+          </AppProviders>
         </NextIntlClientProvider>
       </body>
     </html>
