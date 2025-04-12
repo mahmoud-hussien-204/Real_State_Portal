@@ -10,7 +10,8 @@ import SectionHeader from "@/components/SectionHeader";
 
 import {fakeDataProjects} from "@/constants";
 
-const OfferListingSection = () => {
+const OfferListingSection = ({offers}: {offers: IOffer[]}) => {
+  console.log("resulted offers : ", offers);
   return (
     <section className='mt-4.5rem bg-neural-colors-50 py-4.5rem'>
       <Container>
