@@ -44,7 +44,7 @@ type IPagination = {
 
 type IconfigParams = {
   page?: number;
-  limit?: number;
+  per_page?: number;
   search?: string;
   id?: string;
 };
