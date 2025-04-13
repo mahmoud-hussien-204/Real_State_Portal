@@ -1,15 +1,9 @@
 import {AppHelper} from "@/helpers/appHelper";
-
 import Image from "next/image";
-
 import ImageProject from "@/app/assets/project.png";
-
 import IconLocation from "@/icons/IconLocation";
-
 import ImageProjectAvatar from "@/app/assets/user.png";
-
 import LinkButton from "./LinkButton";
-
 import IconArrowRight from "@/icons/IconArrowRight";
 
 interface IProps {
@@ -20,7 +14,11 @@ interface IProps {
 
 const ProjectItem = ({direction = "horizontal", variant = "light", className}: IProps) => {
   const showOffer = true;
-  const offerText = `30%`;
+  const offerText = `30% offer`;
+  const showSalesStatus = true;
+  const salesStatusText = "Available";
+  const salesStatusColor = salesStatusText === "Available" ? "#1FC16B" : "#DFB400";
+
   return (
     <div
       className={AppHelper.className(
@@ -35,9 +33,19 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
         className
       )}
     >
-      <div
-        className={`relative w-full rounded-sm ${showOffer ? `after:absolute after:bottom-0 after:right-0 after:rounded-br-xl after:rounded-tl-xl after:bg-[#F2002A] after:px-6 after:py-2 after:font-medium after:text-white after:content-["${offerText}"]` : ""} sm:w-auto sm:rounded-1.25rem`}
-      >
+      <div className='relative w-full rounded-sm sm:w-auto sm:rounded-1.25rem'>
+        {showSalesStatus && (
+          <div
+            className='absolute left-0 top-0 rounded-br-xl rounded-tl-xl font-bold text-white'
+            style={{
+              backgroundColor: salesStatusColor,
+              padding: "0.5rem 1.5rem",
+            }}
+          >
+            {salesStatusText}
+          </div>
+        )}
+
         <Image
           src={ImageProject}
           alt=''
@@ -47,6 +55,17 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
             "h-full max-h-[15.9rem] w-full": direction === "vertical",
           })}
         />
+
+        {showOffer && (
+          <div
+            className='absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl bg-[#F2002A] font-bold text-white'
+            style={{
+              padding: "0.5rem 1.5rem",
+            }}
+          >
+            {offerText}
+          </div>
+        )}
       </div>
 
       <div className='flex-1'>
