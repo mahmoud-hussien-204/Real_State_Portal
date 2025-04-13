@@ -19,6 +19,8 @@ interface IProps {
 }
 
 const ProjectItem = ({direction = "horizontal", variant = "light", className}: IProps) => {
+  const showOffer = true;
+  const offerText = `30%`;
   return (
     <div
       className={AppHelper.className(
@@ -33,7 +35,9 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
         className
       )}
     >
-      <div className='w-full rounded-sm sm:w-auto sm:rounded-1.25rem'>
+      <div
+        className={`relative w-full rounded-sm ${showOffer ? `after:absolute after:bottom-0 after:right-0 after:rounded-br-xl after:rounded-tl-xl after:bg-[#F2002A] after:px-6 after:py-2 after:font-medium after:text-white after:content-["${offerText}"]` : ""} sm:w-auto sm:rounded-1.25rem`}
+      >
         <Image
           src={ImageProject}
           alt=''
