@@ -17,7 +17,6 @@ export type SelectInputProp = {
   className?: string;
   icon?: React.ReactNode;
   emptyMessage?: string;
-  allowClear?: boolean;
 } & SelectProps;
 
 const SelectInput = ({
@@ -26,7 +25,6 @@ const SelectInput = ({
   className,
   icon,
   emptyMessage = "No options available",
-
   ...selectProps
 }: SelectInputProp) => {
   return (

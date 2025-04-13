@@ -116,7 +116,8 @@
     "hero_description": "More than 1000+ house avaiable for sell & rent in countrys",
     "residental": "Residental",
     "commercial": "Commercial",
-    "land": "Land"
+    "land": "Land",
+    "no_top_rated_projects": "No rated projects available"
   },
   "projects": {
     "property_listing": "Property Listing",

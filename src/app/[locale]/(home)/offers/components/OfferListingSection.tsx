@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import ProjectItem from "@/components/ProjectItem";
 
 import SectionHeader from "@/components/SectionHeader";
+import Spinner from "@/components/ui/spinner";
 
 const OfferListingSection = ({
   offers,
@@ -18,13 +19,19 @@ const OfferListingSection = ({
       <Container>
         <SectionHeader
           title='offers.offers_listing'
-          subtitle={isLoadingOffers ? 'common.empty_str' : offersCount > 0 ? "offers.available_offers" : "offers.no_offers"}
+          subtitle={
+            isLoadingOffers
+              ? "common.empty_str"
+              : offersCount > 0
+                ? "offers.available_offers"
+                : "offers.no_offers"
+          }
           count={offersCount}
         />
 
         <div className='mt-5 flex w-full flex-wrap justify-center gap-x-[5%] gap-y-8 md:justify-start'>
           {isLoadingOffers ? (
-            <span className='loading loading-spinner loading-lg text-primary'></span>
+            <Spinner />
           ) : offers.length > 0 ? (
             offers.map((project) => (
               <ProjectItem

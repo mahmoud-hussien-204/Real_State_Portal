@@ -229,7 +229,6 @@ const OffersFilterHeader = ({
         }))}
         onValueChange={handleChangeCountry}
         value={countryId > 0 ? countryId.toString() : undefined}
-        allowClear
       />
       <SelectInput
         placeholder={t("common.city")}
@@ -238,7 +237,6 @@ const OffersFilterHeader = ({
         value={cityId ? cityId.toString() : undefined}
         icon={isFetchingCities ? <CgSpinner className='animate-spin' /> : undefined}
         disabled={countryId <= 0 || isFetchingCities}
-        allowClear
       />
       <SelectInput
         placeholder={t("common.area")}
@@ -247,7 +245,6 @@ const OffersFilterHeader = ({
         value={areaId ? areaId.toString() : undefined}
         icon={isFetchingAreas ? <CgSpinner className='animate-spin' /> : undefined}
         disabled={(cityId as number) <= 0 || isFetchingAreas}
-        allowClear
       />
       <SelectInput
         placeholder={t("common.category_type")}
@@ -255,7 +252,6 @@ const OffersFilterHeader = ({
         icon={isFetchingCategories ? <CgSpinner className='animate-spin' /> : undefined}
         onValueChange={handleChangeCategory}
         value={categoryId ? categoryId.toString() : undefined}
-        allowClear
       />
       <Button
         type='submit'
