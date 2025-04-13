@@ -14,9 +14,11 @@ import {useSearchParams} from "next/navigation";
 import {useRouter} from "next/navigation";
 import useAppProvider from "@/hooks/useAppProvider";
 import useQuery from "@/hooks/useQuery";
-import {apiGetAreasOfCity, apiGetCategoryTypes, apiGetCitiesOfCountry} from "../../_api";
 import {Dispatch, SetStateAction, useEffect} from "react";
 import {apiGetOffers} from "../_api";
+import useCitiesInCountry from "../../hooks/useCitiesInCountry";
+import useAreasInCity from "../../hooks/useAreasInCities";
+import useCategories from "../../hooks/useCategories";
 
 const schema = Yup.object().shape({
   country_id: Yup.number().min(1, "country does not exist").required("country is required"),
@@ -60,30 +62,20 @@ const OffersFilterHeader = ({
   const categoryId = watch("category_id");
 
   // Fetch cities based on selected country
-  const {data: citiesData, isFetching: isFetchingCities} = useQuery({
-    queryKey: ["offers-cities", countryId],
-    queryFn: () => apiGetCitiesOfCountry(countryId),
-    enabled: !!countryId && countryId > 0,
-  });
+  const {cities, isFetchingCities} = useCitiesInCountry(countryId);
 
   // Fetch areas based on selected city
-  const {data: areasData, isFetching: isFetchingAreas} = useQuery({
-    queryKey: ["offers-areas", cityId],
-    queryFn: () => apiGetAreasOfCity(cityId as number),
-    enabled: !!cityId && cityId > 0,
-  });
+  const {areas, isFetchingAreas} = useAreasInCity(cityId);
 
-  const {data: categoriesData, isFetching: isFetchingCategories} = useQuery({
-    queryKey: ["offers-categories"],
-    queryFn: apiGetCategoryTypes,
-  });
+  // Fetch categories
+  const {categories, isFetchingCategories} = useCategories();
 
   const {
     refetch,
     isFetching: isFetchingOffers,
     data: offersData,
   } = useQuery({
-    queryKey: ["offers"],
+    queryKey: ["offers", countryId, cityId, areaId, categoryId],
     queryFn: () =>
       apiGetOffers({
         country_id: countryId,
@@ -94,23 +86,30 @@ const OffersFilterHeader = ({
     enabled: false,
   });
 
+  // Process country options
+  const countryOptions =
+    countries?.map((country) => ({
+      label: locale === "en" ? country.name_en : country.name_ar,
+      value: country.id,
+    })) || [];
+
   // Process city options
   const cityOptions =
-    citiesData?.data?.map((city) => ({
+    cities?.map((city) => ({
       label: locale === "en" ? city.name_en : city.name_ar,
       value: city.id,
     })) || [];
 
   // Process area options
   const areaOptions =
-    areasData?.data?.map((area) => ({
+    areas?.map((area) => ({
       label: locale === "en" ? area.name_en : area.name_ar,
       value: area.id,
     })) || [];
 
   // Process category options
   const categoryOptions =
-    categoriesData?.data?.map((category) => ({
+    categories?.map((category) => ({
       label: locale === "en" ? category.name_en : category.name_ar,
       value: category.id,
     })) || [];
@@ -194,12 +193,7 @@ const OffersFilterHeader = ({
 
   const onSubmit = (data: IOffersForm) => {
     refetch();
-    // updateURL({
-    //   area_id: undefined,
-    //   city_id: undefined,
-    //   country_id: undefined,
-    //   category_id: undefined,
-    // });
+
 
     reset();
   };
@@ -223,10 +217,7 @@ const OffersFilterHeader = ({
     >
       <SelectInput
         placeholder={t("common.country")}
-        options={countries.map((country) => ({
-          label: locale === "en" ? country.name_en : country.name_ar,
-          value: country.id,
-        }))}
+        options={countryOptions}
         onValueChange={handleChangeCountry}
         value={countryId > 0 ? countryId.toString() : undefined}
       />

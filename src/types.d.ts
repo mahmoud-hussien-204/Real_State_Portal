@@ -349,3 +349,10 @@ interface IGoogleMapLocation {
   city: ICity;
   area: IArea;
 }
+
+interface IBaseFilterForm {
+  country_id: number;
+  city_id?: number;
+  area_id?: number;
+  category_id?: number;
+}

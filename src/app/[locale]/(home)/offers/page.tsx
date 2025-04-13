@@ -14,6 +14,7 @@ import { useState } from "react";
 const OffersPage = () => {
   const [offers, setOffers] = useState<IOffer[]>([]);
   const [isLoadingOffers, setIsLoadingOffers] = useState(false);
+
   return (
     <>
       <PageHeroSection title='page_hero_title.offers' pageName='page_title.offers' />

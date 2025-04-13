@@ -1,6 +1,1 @@
-export interface IOffersForm {
-    country_id: number;
-    city_id?: number;
-    area_id?: number;
-    category_id?: number;
-}
+export interface IOffersForm extends IBaseFilterForm {}

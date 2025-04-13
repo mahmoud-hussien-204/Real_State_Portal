@@ -21,11 +21,11 @@ export const apiGetCategoryTypes = () => {
 };
 
 export const apiGetTopRatedProjects = (params?: IOffersForm) => {
-  const {country_id, city_id, category_id} = params || {};
+  const {country_id, city_id, area_id} = params || {};
   const paramsString = AppHelper.urlSearchParams({
     country_id,
     city_id,
-    category_id,
+    area_id,
     per_page: 100,
   });
   return InterceptorHelper.intercept<IResponse<IOffer[]>>(`home/popular?${paramsString}`);
