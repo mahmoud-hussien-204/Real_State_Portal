@@ -13,11 +13,12 @@ import { useState } from "react";
 
 const OffersPage = () => {
   const [offers, setOffers] = useState<IOffer[]>([]);
+  const [isLoadingOffers, setIsLoadingOffers] = useState(false);
   return (
     <>
       <PageHeroSection title='page_hero_title.offers' pageName='page_title.offers' />
-      <FilterHeader setOffers={setOffers} />
-      <OfferListingSection offers={offers} />
+      <FilterHeader setOffers={setOffers} setIsLoadingOffers={setIsLoadingOffers} />
+      <OfferListingSection offers={offers} isLoadingOffers={isLoadingOffers} />
       <TopRelatedProjects />
       <Partners />
     </>

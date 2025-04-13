@@ -61,7 +61,8 @@ const TopRelatedProjects = () => {
               },
             }}
             slides={fakeDataProjects}
-            render={() => <ProjectItem direction={isSmallScreen ? "vertical" : "horizontal"} />}
+            // render={() => <ProjectItem direction={isSmallScreen ? "vertical" : "horizontal"} />}
+            render={() => <div>test</div>}
             slideOptions={{
               className: "w-full max-w-[25.2rem] xl:max-w-none",
             }}

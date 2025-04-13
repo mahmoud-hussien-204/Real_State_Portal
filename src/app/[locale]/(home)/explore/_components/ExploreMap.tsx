@@ -68,9 +68,7 @@ const ExploreMap = () => {
 
       {selectedLocation && (
         <div className='absolute start-1rem top-1rem z-[1000]'>
-          <Container>
-            <ProjectItem direction='vertical' />
-          </Container>
+          <Container>{/* <ProjectItem direction='vertical' /> */}</Container>
         </div>
       )}
     </div>

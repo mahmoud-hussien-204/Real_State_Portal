@@ -45,7 +45,7 @@ const ExclusiveProjectOffers = () => {
               onSlideChange: setRefSwiper,
             }}
             slides={fakeDataProjects}
-            render={() => <ProjectItem direction='vertical' />}
+            render={() => <div>test</div>}
             slideOptions={{
               className: "w-full max-w-[25.2rem]",
             }}

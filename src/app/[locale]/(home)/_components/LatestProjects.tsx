@@ -45,7 +45,8 @@ const LatestProjects = () => {
               onSlideChange: setRefSwiper,
             }}
             slides={fakeDataProjects}
-            render={() => <ProjectItem direction='vertical' />}
+            // render={() => <ProjectItem direction='vertical' />}
+            render={() => <div>test</div>}
             className='!overflow-visible'
             slideOptions={{
               className: "w-full max-w-[25.2rem]",

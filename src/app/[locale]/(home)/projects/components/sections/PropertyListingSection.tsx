@@ -20,11 +20,12 @@ const PropertyListingSection = () => {
           </div>
           <div className='grid flex-1 grid-cols-1 justify-items-center gap-x-[5%] gap-y-8 sm:grid-cols-2 lg:justify-items-start'>
             {fakeDataProjects.map((project, index) => (
-              <ProjectItem
-                key={index}
-                direction='vertical'
-                className='max-w-[25rem] lg:max-w-full'
-              />
+              // <ProjectItem
+              //   key={index}
+              //   direction='vertical'
+              //   className='max-w-[25rem] lg:max-w-full'
+              // />
+              <div>test</div>
             ))}
             <Pagination
               totalPages={11}

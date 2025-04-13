@@ -18,13 +18,6 @@ import {apiGetAreasOfCity, apiGetCategoryTypes, apiGetCitiesOfCountry} from "../
 import {Dispatch, SetStateAction, useEffect} from "react";
 import {apiGetOffers} from "../_api";
 
-// Add the missing interface
-interface IOffer {
-  id: number;
-  // Add other properties as needed
-  // This is a placeholder - replace with your actual IOffer interface
-}
-
 const schema = Yup.object().shape({
   country_id: Yup.number().min(1, "country does not exist").required("country is required"),
   city_id: Yup.number().min(1, "city does not exist"),
@@ -32,7 +25,13 @@ const schema = Yup.object().shape({
   category_id: Yup.number().min(1, "category is required"),
 });
 
-const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOffer[]>>}) => {
+const OffersFilterHeader = ({
+  setOffers,
+  setIsLoadingOffers,
+}: {
+  setOffers: Dispatch<SetStateAction<IOffer[]>>;
+  setIsLoadingOffers: Dispatch<SetStateAction<boolean>>;
+}) => {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
@@ -45,7 +44,7 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
   const initialAreaId = parseInt(searchParams.get("area_id") || "-1");
   const initialCategoryId = parseInt(searchParams.get("category_id") || "-1");
 
-  const {setValue, handleSubmit, watch} = useForm<IOffersForm>({
+  const {setValue, handleSubmit, watch, reset} = useForm<IOffersForm>({
     resolver: yupResolver(schema),
     defaultValues: {
       country_id: initialCountryId > 0 ? initialCountryId : undefined,
@@ -195,13 +194,27 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
 
   const onSubmit = (data: IOffersForm) => {
     refetch();
+    // updateURL({
+    //   area_id: undefined,
+    //   city_id: undefined,
+    //   country_id: undefined,
+    //   category_id: undefined,
+    // });
+
+    reset();
   };
 
   useEffect(() => {
     if (offersData) {
       setOffers(offersData.data);
+    } else {
+      setOffers([]);
     }
   }, [offersData, setOffers]);
+
+  useEffect(() => {
+    setIsLoadingOffers(isFetchingOffers);
+  }, [isFetchingOffers]);
 
   return (
     <form
@@ -216,6 +229,7 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
         }))}
         onValueChange={handleChangeCountry}
         value={countryId > 0 ? countryId.toString() : undefined}
+        allowClear
       />
       <SelectInput
         placeholder={t("common.city")}
@@ -224,6 +238,7 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
         value={cityId ? cityId.toString() : undefined}
         icon={isFetchingCities ? <CgSpinner className='animate-spin' /> : undefined}
         disabled={countryId <= 0 || isFetchingCities}
+        allowClear
       />
       <SelectInput
         placeholder={t("common.area")}
@@ -232,6 +247,7 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
         value={areaId ? areaId.toString() : undefined}
         icon={isFetchingAreas ? <CgSpinner className='animate-spin' /> : undefined}
         disabled={(cityId as number) <= 0 || isFetchingAreas}
+        allowClear
       />
       <SelectInput
         placeholder={t("common.category_type")}
@@ -239,11 +255,13 @@ const OffersFilterHeader = ({setOffers}: {setOffers: Dispatch<SetStateAction<IOf
         icon={isFetchingCategories ? <CgSpinner className='animate-spin' /> : undefined}
         onValueChange={handleChangeCategory}
         value={categoryId ? categoryId.toString() : undefined}
+        allowClear
       />
       <Button
         type='submit'
         className='mx-auto flex w-[50%] flex-shrink items-center justify-center gap-2 rounded-full lg:mx-0'
         isLoading={isFetchingOffers}
+        disabled={isFetchingOffers || (!countryId && !cityId && !areaId && !categoryId)}
       >
         {translate("common.search")}
         {!isFetchingOffers && (

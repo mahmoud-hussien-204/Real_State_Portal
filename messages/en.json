@@ -16,6 +16,7 @@
     "contact_us": "<span>Contact Us</span> Page"
   },
   "common": {
+    "empty_str": "",
     "login_register": "Register / Login",
     "login": "Login",
     "register": "Register",
@@ -125,7 +126,8 @@
   },
   "offers": {
     "offers_listing": "Offers Listing",
-    "available_offers": "There are currently 164,814 Availability."
+    "available_offers": "There are currently {count} offers available.",
+    "no_offers": "No Offers Available"
   },
   "contact_us": {
     "contact_form": "Contact Form",

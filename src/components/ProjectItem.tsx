@@ -1,3 +1,5 @@
+"use client";
+
 import {AppHelper} from "@/helpers/appHelper";
 import Image from "next/image";
 import ImageProject from "@/app/assets/project.png";
@@ -5,19 +7,45 @@ import IconLocation from "@/icons/IconLocation";
 import ImageProjectAvatar from "@/app/assets/user.png";
 import LinkButton from "./LinkButton";
 import IconArrowRight from "@/icons/IconArrowRight";
+import {useLocale} from "next-intl";
 
 interface IProps {
   direction?: "vertical" | "horizontal";
   variant?: "dark" | "light";
   className?: string;
+  project: {
+    id: number;
+    name_ar?: string;
+    name_en?: string;
+    image?: string;
+    offer?: string | number;
+    sale_status?: string;
+    views_count?: number;
+    developer_name_en?: string;
+    developer_name_ar?: string;
+    city: ICity;
+    country: ICountry;
+    area: IArea;
+    starting_price?: number | string;
+    expected_roi?: number;
+    project_status?: string;
+    expected_completion_date?: string;
+  };
 }
 
-const ProjectItem = ({direction = "horizontal", variant = "light", className}: IProps) => {
-  const showOffer = true;
-  const offerText = `30% offer`;
-  const showSalesStatus = true;
-  const salesStatusText = "Available";
-  const salesStatusColor = salesStatusText === "Available" ? "#1FC16B" : "#DFB400";
+const ProjectItem = ({direction = "horizontal", variant = "light", className, project}: IProps) => {
+  const locale = useLocale();
+  const projectName = locale === "ar" ? project.name_ar : project.name_en;
+  const projectAddress =
+    locale === "ar"
+      ? `${project.area.name_ar} - ${project.city.name_ar} - ${project.country.name_ar}`
+      : `${project.area.name_en} - ${project.city.name_en} - ${project.country.name_en}`;
+  const developerName = locale === "ar" ? project.developer_name_ar : project.developer_name_en;
+  const showOffer = Boolean(project.offer);
+  const offerText = `${project.offer}% offer`;
+  const showSalesStatus = Boolean(project.sale_status);
+  const salesStatusText = project.sale_status;
+  const salesStatusColor = project.sale_status === "Available" ? "#1FC16B" : "#DFB400";
 
   return (
     <div
@@ -46,15 +74,24 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
           </div>
         )}
 
-        <Image
-          src={ImageProject}
-          alt=''
-          className={AppHelper.className("rounded-inherit", {
-            "h-[17.25rem] max-h-full w-full max-w-full sm:w-[17.3125rem]":
-              direction === "horizontal",
-            "h-full max-h-[15.9rem] w-full": direction === "vertical",
+        <div
+          className={AppHelper.className("rounded-inherit relative", {
+            "h-[17.25rem] w-full sm:w-[17.3125rem]": direction === "horizontal",
+            "h-[15.9rem] w-full": direction === "vertical",
           })}
-        />
+        >
+          <Image
+            src={project.image || ImageProject}
+            alt='project image'
+            width={500}
+            height={400}
+            className='rounded-inherit object-cover'
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
 
         {showOffer && (
           <div
@@ -76,7 +113,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
             "text-colors-grey-colors-100": variant === "dark",
           })}
         >
-          {AppHelper.sliceContent("Trillionaire Residences", 25)}
+          {AppHelper.sliceContent(projectName || "", 25)}
         </h3>
 
         <div
@@ -96,7 +133,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
               "text-colors-grey-colors-300": variant === "dark",
             })}
           >
-            Business Bay - Dubai - United Arab Emirates
+            {projectAddress}
           </h6>
         </div>
 
@@ -119,31 +156,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
                 }
               )}
             >
-              12,000&nbsp;
-              <sub className='font-medium'>
-                <small>AED</small>
-              </sub>
-            </span>
-          </div>
-          <div className='flex-1'>
-            <h6
-              className={AppHelper.className("mb-0.5rem font-12", {
-                "text-colors-grey-colors-2000": variant === "light",
-                "text-colors-grey-colors-100": variant === "dark",
-              })}
-            >
-              Expected ROI:
-            </h6>
-            <span
-              className={AppHelper.className(
-                "flex h-2.5rem w-full min-w-7.75rem items-center justify-center rounded-full text-center font-bold font-22",
-                {
-                  "bg-colors-primary-colors-50 text-colors-primary-colors-600": variant === "light",
-                  "bg-[#201B1C] text-colors-primary-colors-400": variant === "dark",
-                }
-              )}
-            >
-              4,500 &nbsp;
+              {project.starting_price}&nbsp;
               <sub className='font-medium'>
                 <small>AED</small>
               </sub>
@@ -162,6 +175,8 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
           <Image
             src={ImageProjectAvatar}
             alt='project avatar'
+            width={45}
+            height={45}
             className='size-[2.8125rem] rounded-full object-cover'
           />
           <div>
@@ -171,7 +186,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
                 "text-colors-grey-colors-100": variant === "dark",
               })}
             >
-              Kamal AbdelGhany
+              {developerName}
             </h6>
             <span
               className={AppHelper.className("font-medium font-14", {
@@ -190,7 +205,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className}: I
           })}
         >
           <LinkButton
-            href={`/projects/${1}`}
+            href={`/projects/${project.id}`}
             className='min-w-[10.75rem] rounded-full font-14'
             variant='secondary'
           >

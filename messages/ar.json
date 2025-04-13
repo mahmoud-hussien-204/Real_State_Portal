@@ -1,6 +1,14 @@
 {
+  "common": {
+    "empty_str": ""
+  },
   "footer": {
     "helpful_links": "روابط مساعدة",
     "contact_us": "تواصل معنا"
+  },
+  "offers": {
+    "offers_listing": "قائمة العروض",
+    "available_offers": "متاح {count} عروض حاليا.",
+    "no_offers": "لا يوجد عروض متاحة حاليا"
   }
 }

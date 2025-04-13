@@ -66,7 +66,8 @@ const LatestAchievements = () => {
               className: "w-full max-w-[25.2rem] xl:max-w-none",
             }}
             render={() => (
-              <ProjectItem variant='dark' direction={isSmallScreen ? "vertical" : "horizontal"} />
+              // <ProjectItem variant='dark' direction={isSmallScreen ? "vertical" : "horizontal"} />
+              <div>tst</div>
             )}
           />
           <div className='mt-4.75rem flex items-center justify-between gap-1rem'>

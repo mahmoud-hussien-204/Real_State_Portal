@@ -3,12 +3,19 @@ import {Paths, translate} from "@/helpers/translate";
 export type PageSectionTitleProps = {
   title: Paths<IntlMessages>;
   subtitle: Paths<IntlMessages>;
+  count?: number;
 };
-const PageSectionTitle = ({title, subtitle}: PageSectionTitleProps) => {
+const PageSectionTitle = ({title, subtitle, count}: PageSectionTitleProps) => {
+  console.log("subtitle: ", subtitle);
+  console.log("translated subtitle", translate(subtitle));
   return (
     <div>
       <h2 className='mb-2 text-32 font-bold text-[#242526]'>{translate(title)}</h2>
-      <p className='text-18 font-medium text-[#24252699]'>{translate(subtitle)}</p>
+      <p className='text-18 font-medium text-[#24252699]'>
+        {count !== undefined && count > 0
+          ? translate(subtitle, {count: count.toLocaleString()})
+          : translate(subtitle)}
+      </p>
     </div>
   );
 };
