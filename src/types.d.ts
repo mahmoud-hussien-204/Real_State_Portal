@@ -351,7 +351,7 @@ interface IGoogleMapLocation {
 }
 
 interface IBaseFilterForm {
-  country_id: number;
+  country_id?: number;
   city_id?: number;
   area_id?: number;
   category_id?: number;

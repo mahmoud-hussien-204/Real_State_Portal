@@ -8,11 +8,12 @@ import Spinner from "@/components/ui/spinner";
 const OfferListingSection = ({
   offers,
   isLoadingOffers,
+  offersCount,
 }: {
   offers: IOffer[];
   isLoadingOffers: boolean;
+  offersCount: number;
 }) => {
-  const offersCount = offers.length;
 
   return (
     <section className='mt-4.5rem bg-neural-colors-50 py-4.5rem'>

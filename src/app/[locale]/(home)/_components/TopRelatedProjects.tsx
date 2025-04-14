@@ -30,7 +30,7 @@ import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 const schema = Yup.object().shape({
-  country_id: Yup.number().min(1, "country does not exist").required("country is required"),
+  country_id: Yup.number().min(1, "country does not exist"),
   city_id: Yup.number().min(1, "city does not exist"),
   area_id: Yup.number().min(1, "area does not exist"),
 });

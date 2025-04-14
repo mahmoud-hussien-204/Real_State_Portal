@@ -4,57 +4,32 @@ import Button from "@/components/Button";
 import SelectInput from "@/components/custom-ui/SelectInput";
 import {translate} from "@/helpers/translate";
 import {useLocale, useTranslations} from "next-intl";
-import {useForm} from "react-hook-form";
+import {useFormContext} from "react-hook-form";
 import {IoSearch} from "react-icons/io5";
 import {CgSpinner} from "react-icons/cg";
 import {IOffersForm} from "../types";
-import * as Yup from "yup";
-import {yupResolver} from "@hookform/resolvers/yup";
+
 import {useSearchParams} from "next/navigation";
 import {useRouter} from "next/navigation";
 import useAppProvider from "@/hooks/useAppProvider";
-import useQuery from "@/hooks/useQuery";
-import {Dispatch, SetStateAction, useEffect} from "react";
-import {apiGetOffers} from "../_api";
 import useCitiesInCountry from "../../hooks/useCitiesInCountry";
 import useAreasInCity from "../../hooks/useAreasInCities";
 import useCategories from "../../hooks/useCategories";
-
-const schema = Yup.object().shape({
-  country_id: Yup.number().min(1, "country does not exist").required("country is required"),
-  city_id: Yup.number().min(1, "city does not exist"),
-  area_id: Yup.number().min(1, "area does not exist"),
-  category_id: Yup.number().min(1, "category is required"),
-});
+import {QueryObserverResult, RefetchOptions} from "@tanstack/react-query";
 
 const OffersFilterHeader = ({
-  setOffers,
-  setIsLoadingOffers,
+  isFetchingOffers,
+  refetch,
 }: {
-  setOffers: Dispatch<SetStateAction<IOffer[]>>;
-  setIsLoadingOffers: Dispatch<SetStateAction<boolean>>;
+  isFetchingOffers: boolean;
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<IResponse<IOffer[]>, IError>>;
 }) => {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const {countries} = useAppProvider();
-
-  // Extract initial values from URL params if they exist
-  const initialCountryId = parseInt(searchParams.get("country_id") || "-1");
-  const initialCityId = parseInt(searchParams.get("city_id") || "-1");
-  const initialAreaId = parseInt(searchParams.get("area_id") || "-1");
-  const initialCategoryId = parseInt(searchParams.get("category_id") || "-1");
-
-  const {setValue, handleSubmit, watch, reset} = useForm<IOffersForm>({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      country_id: initialCountryId > 0 ? initialCountryId : undefined,
-      city_id: initialCityId > 0 ? initialCityId : undefined,
-      area_id: initialAreaId > 0 ? initialAreaId : undefined,
-      category_id: initialCategoryId > 0 ? initialCategoryId : undefined,
-    },
-  });
+  const {setValue, handleSubmit, watch, reset} = useFormContext<IOffersForm>();
 
   const countryId = watch("country_id");
   const cityId = watch("city_id");
@@ -69,22 +44,6 @@ const OffersFilterHeader = ({
 
   // Fetch categories
   const {categories, isFetchingCategories} = useCategories();
-
-  const {
-    refetch,
-    isFetching: isFetchingOffers,
-    data: offersData,
-  } = useQuery({
-    queryKey: ["offers", countryId, cityId, areaId, categoryId],
-    queryFn: () =>
-      apiGetOffers({
-        country_id: countryId,
-        city_id: cityId,
-        area_id: areaId,
-        category_id: categoryId,
-      }),
-    enabled: false,
-  });
 
   // Process country options
   const countryOptions =
@@ -194,21 +153,8 @@ const OffersFilterHeader = ({
   const onSubmit = (data: IOffersForm) => {
     refetch();
 
-
     reset();
   };
-
-  useEffect(() => {
-    if (offersData) {
-      setOffers(offersData.data);
-    } else {
-      setOffers([]);
-    }
-  }, [offersData, setOffers]);
-
-  useEffect(() => {
-    setIsLoadingOffers(isFetchingOffers);
-  }, [isFetchingOffers]);
 
   return (
     <form
@@ -219,7 +165,7 @@ const OffersFilterHeader = ({
         placeholder={t("common.country")}
         options={countryOptions}
         onValueChange={handleChangeCountry}
-        value={countryId > 0 ? countryId.toString() : undefined}
+        value={countryId ? countryId.toString() : undefined}
       />
       <SelectInput
         placeholder={t("common.city")}
@@ -227,7 +173,7 @@ const OffersFilterHeader = ({
         onValueChange={handleChangeCity}
         value={cityId ? cityId.toString() : undefined}
         icon={isFetchingCities ? <CgSpinner className='animate-spin' /> : undefined}
-        disabled={countryId <= 0 || isFetchingCities}
+        disabled={!countryId || countryId <= 0 || isFetchingCities}
       />
       <SelectInput
         placeholder={t("common.area")}
@@ -235,7 +181,7 @@ const OffersFilterHeader = ({
         onValueChange={handleChangeArea}
         value={areaId ? areaId.toString() : undefined}
         icon={isFetchingAreas ? <CgSpinner className='animate-spin' /> : undefined}
-        disabled={(cityId as number) <= 0 || isFetchingAreas}
+        disabled={!cityId || cityId <= 0 || isFetchingAreas}
       />
       <SelectInput
         placeholder={t("common.category_type")}
