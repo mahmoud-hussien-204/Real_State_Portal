@@ -1,21 +1,33 @@
 "use client";
 
 import {MapContainer, TileLayer, Marker, Pane} from "react-leaflet";
-
 import {fakeDataProjects} from "@/constants";
-
 import {divIcon} from "leaflet";
-
 import {useState} from "react";
-
-import ProjectItem from "@/components/ProjectItem";
-
+// import ProjectItem from "@/components/ProjectItem";
 import Container from "@/components/Container";
-
 import "leaflet/dist/leaflet.css";
 
+// Define the Project type to match your data structure
+type Project = {
+  id: number;
+  title: string;
+  location: string;
+  starting_price: string;
+  currency: string;
+  expected_rol: string;
+  user: {
+    name: string;
+    job_title: string;
+  };
+  discount: string;
+  status: string;
+  position: [number, number]; // Explicitly define as a tuple with 2 numbers
+};
+
 const ExploreMap = () => {
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  // Set the correct type for selectedLocation
+  const [selectedLocation, setSelectedLocation] = useState<Project | null>(null);
 
   return (
     <div className='relative mb-5.25rem mt-4.5rem h-[44rem] w-full'>
@@ -49,7 +61,8 @@ const ExploreMap = () => {
           {fakeDataProjects.slice(0, 5).map((location, index) => (
             <Marker
               key={index}
-              position={location.position}
+              // Ensure position is explicitly typed as a tuple
+              position={location.position as [number, number]}
               icon={divIcon({
                 className: "",
                 html: `<div class='font-bold min-w-min rounded-full px-1.25rem py-0.62rem whitespace-nowrap ${
@@ -59,7 +72,7 @@ const ExploreMap = () => {
                 }'>${location.title}</div>`,
               })}
               eventHandlers={{
-                click: () => setSelectedLocation(location),
+                click: () => setSelectedLocation(location as Project),
               }}
             />
           ))}

@@ -2,7 +2,7 @@
 import Container from "@/components/Container";
 import SectionHeader from "@/components/SectionHeader";
 import PropertyFilters from "./PropertyFilters";
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 import {fakeDataProjects} from "@/constants";
 import Image from "next/image";
 import dreamHomeImage from "@/app/assets/dream-home.png";
@@ -25,7 +25,7 @@ const PropertyListingSection = () => {
               //   direction='vertical'
               //   className='max-w-[25rem] lg:max-w-full'
               // />
-              <div>test</div>
+              <div key={index}>test</div>
             ))}
             <Pagination
               totalPages={11}

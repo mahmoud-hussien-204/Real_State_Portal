@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 
 import ExploreMoreButton from "@/components/ExploreMoreButton";
 
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 
 import SectionTitle from "@/components/SectionTitle";
 

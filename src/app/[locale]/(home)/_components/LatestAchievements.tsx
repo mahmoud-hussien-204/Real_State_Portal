@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 
 import ExploreMoreButton from "@/components/ExploreMoreButton";
 
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 
 import SectionTitle from "@/components/SectionTitle";
 
@@ -14,7 +14,7 @@ import SwiperNavigation from "@/components/SwiperNavigation";
 
 import {fakeDataProjects} from "@/constants";
 
-import useIsSmallScreen from "@/hooks/useIsSmallScreen";
+// import useIsSmallScreen from "@/hooks/useIsSmallScreen";
 
 import {useTranslations} from "next-intl";
 
@@ -27,7 +27,7 @@ const LatestAchievements = () => {
 
   const {refSwiper, setRefSwiper} = useSwiperRef();
 
-  const isSmallScreen = useIsSmallScreen();
+  // const isSmallScreen = useIsSmallScreen();
 
   return (
     <section className='bg-[url("./assets/achievements-bg.png")] bg-cover py-4.5rem'>

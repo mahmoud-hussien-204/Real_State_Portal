@@ -95,14 +95,14 @@ const FilterTopRatedSection = ({refetch}: IProps) => {
           options={countryOptions}
           className='w-[30%] lg:w-[25%]'
           onValueChange={handleChangeCountry}
-          value={countryId > 0 ? countryId.toString() : undefined}
+          value={countryId && countryId > 0 ? countryId.toString() : undefined}
         />
         <SelectInput
           placeholder={t("common.city")}
           options={cityOptions}
           className='w-[30%] lg:w-[25%]'
           icon={isFetchingCities ? <CgSpinner className='animate-spin' /> : undefined}
-          disabled={countryId <= 0 || isFetchingCities}
+          disabled={!countryId || countryId <= 0 || isFetchingCities}
           onValueChange={handleChangeCity}
           value={cityId ? cityId.toString() : undefined}
         />

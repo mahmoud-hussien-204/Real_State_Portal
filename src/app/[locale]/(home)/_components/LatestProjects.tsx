@@ -12,7 +12,7 @@ import SectionTitle from "@/components/SectionTitle";
 
 import {useTranslations} from "next-intl";
 
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 
 import SwiperNavigation from "@/components/SwiperNavigation";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PageSectionTitle, {PageSectionTitleProps} from "./PageSectionTitle";
-import {HiMiniArrowsUpDown} from "react-icons/hi2";
-import {BsSortDown} from "react-icons/bs";
+// import {HiMiniArrowsUpDown} from "react-icons/hi2";
+// import {BsSortDown} from "react-icons/bs";
 type Props = PageSectionTitleProps & {count?: number};
 const SectionHeader = ({title, subtitle, count}: Props) => {
   return (
