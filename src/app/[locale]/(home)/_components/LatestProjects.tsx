@@ -12,7 +12,7 @@ import SectionTitle from "@/components/SectionTitle";
 
 import {useTranslations} from "next-intl";
 
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 
 import SwiperNavigation from "@/components/SwiperNavigation";
 
@@ -45,7 +45,8 @@ const LatestProjects = () => {
               onSlideChange: setRefSwiper,
             }}
             slides={fakeDataProjects}
-            render={() => <ProjectItem direction='vertical' />}
+            // render={() => <ProjectItem direction='vertical' />}
+            render={() => <div>test</div>}
             className='!overflow-visible'
             slideOptions={{
               className: "w-full max-w-[25.2rem]",

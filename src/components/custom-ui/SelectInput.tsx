@@ -16,9 +16,17 @@ export type SelectInputProp = {
   options: SelectOption[];
   className?: string;
   icon?: React.ReactNode;
+  emptyMessage?: string;
 } & SelectProps;
 
-const SelectInput = ({placeholder, options, className, icon, ...selectProps}: SelectInputProp) => {
+const SelectInput = ({
+  placeholder,
+  options,
+  className,
+  icon,
+  emptyMessage = "No options available",
+  ...selectProps
+}: SelectInputProp) => {
   return (
     <Select {...selectProps}>
       <SelectTrigger
@@ -31,15 +39,19 @@ const SelectInput = ({placeholder, options, className, icon, ...selectProps}: Se
         <SelectValue placeholder={<span className='opacity-50'>{placeholder}</span>} />
       </SelectTrigger>
       <SelectContent className='z-[10001] bg-white'>
-        {options.map((option) => (
-          <SelectItem
-            key={option.value}
-            value={option.value?.toString()}
-            className='hover:bg-colors-primary-colors-100'
-          >
-            {option.label}
-          </SelectItem>
-        ))}
+        {options.length > 0 ? (
+          options.map((option) => (
+            <SelectItem
+              key={option.value}
+              value={option.value?.toString()}
+              className='hover:bg-colors-primary-colors-100'
+            >
+              {option.label}
+            </SelectItem>
+          ))
+        ) : (
+          <div className='px-2 py-2 text-center text-sm text-gray-500'>{emptyMessage}</div>
+        )}
       </SelectContent>
     </Select>
   );

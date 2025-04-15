@@ -1,5 +1,5 @@
 import {baseURL} from "@/constants";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 
 
 
@@ -7,8 +7,6 @@ import { toast } from "react-toastify";
 export default class InterceptorHelper {
   // intercept request
   static async interceptRequest(options: RequestInit = {}): Promise<RequestInit> {
-    
-
     // delete content type if the body is an object (eg. FormData)
     if (typeof options.body === "object") {
       if (options.headers?.["Content-Type" as keyof HeadersInit]) {
@@ -25,7 +23,6 @@ export default class InterceptorHelper {
     method: string | undefined,
     showToast: boolean
   ): Promise<T> {
-    
     let responseJson;
     try {
       responseJson = await response.json();
@@ -42,7 +39,7 @@ export default class InterceptorHelper {
       if (Array.isArray(message)) {
         message.forEach((msg) => toast.error(msg));
       } else {
-          toast.error(message);
+        toast.error(message);
       }
 
       return Promise.reject(responseJson);
@@ -54,7 +51,6 @@ export default class InterceptorHelper {
   }
 
   static async interceptResponseBlob(response: Response): Promise<Blob> {
-    
     const responseBlob = await response.blob();
 
     // handle response error
@@ -94,10 +90,7 @@ export default class InterceptorHelper {
     }
   }
 
-  static async interceptBlob(
-    url: string,
-    options: RequestInit = {},
-  ): Promise<Blob> {
+  static async interceptBlob(url: string, options: RequestInit = {}): Promise<Blob> {
     try {
       // handle request
       const requestOptions = await InterceptorHelper.interceptRequest(options);

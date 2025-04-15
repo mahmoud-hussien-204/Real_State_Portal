@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 
 import ExploreMoreButton from "@/components/ExploreMoreButton";
 
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 
 import SectionTitle from "@/components/SectionTitle";
 
@@ -45,7 +45,7 @@ const ExclusiveProjectOffers = () => {
               onSlideChange: setRefSwiper,
             }}
             slides={fakeDataProjects}
-            render={() => <ProjectItem direction='vertical' />}
+            render={() => <div>test</div>}
             slideOptions={{
               className: "w-full max-w-[25.2rem]",
             }}

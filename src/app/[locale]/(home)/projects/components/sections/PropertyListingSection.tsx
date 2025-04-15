@@ -2,7 +2,7 @@
 import Container from "@/components/Container";
 import SectionHeader from "@/components/SectionHeader";
 import PropertyFilters from "./PropertyFilters";
-import ProjectItem from "@/components/ProjectItem";
+// import ProjectItem from "@/components/ProjectItem";
 import {fakeDataProjects} from "@/constants";
 import Image from "next/image";
 import dreamHomeImage from "@/app/assets/dream-home.png";
@@ -20,11 +20,12 @@ const PropertyListingSection = () => {
           </div>
           <div className='grid flex-1 grid-cols-1 justify-items-center gap-x-[5%] gap-y-8 sm:grid-cols-2 lg:justify-items-start'>
             {fakeDataProjects.map((project, index) => (
-              <ProjectItem
-                key={index}
-                direction='vertical'
-                className='max-w-[25rem] lg:max-w-full'
-              />
+              // <ProjectItem
+              //   key={index}
+              //   direction='vertical'
+              //   className='max-w-[25rem] lg:max-w-full'
+              // />
+              <div key={index}>test</div>
             ))}
             <Pagination
               totalPages={11}
