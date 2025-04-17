@@ -34,6 +34,7 @@ import Item from "./_components/Item";
 
 import IconCalender from "@/icons/IconCalender";
 import IconStats from "@/icons/IconStats";
+import DeveloperCard from "./_components/DeveloperCard";
 
 const ProjectDetailsPage = () => {
   const t = useTranslations();
@@ -73,6 +74,11 @@ const ProjectDetailsPage = () => {
                     Copen Gate Project The name of the project is inspired by the Danish capital,
                     Copen Hagen. The project is a mini compound, which is a group of buildings.
                   </BoxText>
+                  <DeveloperCard
+                    developerPhone='0542285830'
+                    developerName='Kamal AbdelGhany'
+                    developerEmail='info@aera-capital.com'
+                  />
                 </Box>
               </div>
               <Box title=''>
