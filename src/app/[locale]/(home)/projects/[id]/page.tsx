@@ -64,16 +64,19 @@ const ProjectDetailsPage = () => {
             >
               <div className='lg:col-span-2'>
                 <Box title={t("common.about_developer")}>
-                  <BoxText>
-                    Copen Gate Project The name of the project is inspired by the Danish capital,
-                    Copen Hagen. The project is a mini compound, which is a group of buildings. The
-                    project location is in the small investor of distinguished housing on the new
-                    tourist road. Compound services (garage, gym, kids area)
-                  </BoxText>
-                  <BoxText>
-                    Copen Gate Project The name of the project is inspired by the Danish capital,
-                    Copen Hagen. The project is a mini compound, which is a group of buildings.
-                  </BoxText>
+                  <Box variant='secondary'>
+                    <BoxText>
+                      Copen Gate Project The name of the project is inspired by the Danish capital,
+                      Copen Hagen. The project is a mini compound, which is a group of buildings.
+                      The project location is in the small investor of distinguished housing on the
+                      new tourist road. Compound services (garage, gym, kids area)
+                    </BoxText>
+                    <BoxText>
+                      Copen Gate Project The name of the project is inspired by the Danish capital,
+                      Copen Hagen. The project is a mini compound, which is a group of buildings.
+                    </BoxText>
+                  </Box>
+
                   <DeveloperCard
                     developerPhone='0542285830'
                     developerName='Kamal AbdelGhany'

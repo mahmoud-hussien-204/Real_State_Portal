@@ -15,7 +15,7 @@ interface IProps {
 function DeveloperCard({developerName, developerPhone, developerEmail}: IProps) {
   return (
     <div
-      className='flex aspect-video h-96 w-full flex-col gap-3 rounded-2xl bg-cover bg-left text-white'
+      className='mt-1rem flex aspect-video h-96 w-full flex-col gap-3 rounded-2xl bg-cover bg-left text-white'
       style={{backgroundImage: `url(${bgImage.src})`}}
     >
       {/* Merchant logo positioned with absolute */}
