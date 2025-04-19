@@ -84,7 +84,17 @@
     "capital_appreciaito": "Capital Appreciation",
     "type": "Type",
     "hello": "Hello",
-    "category_type": "Category type"
+    "category_type": "Category type",
+    "about_office": "About The Office",
+    "project_key_position": "Project Key Position",
+    "airport": "Airport",
+    "malls": "Malls",
+    "hospital_clinic": "Hospital/Clinic",
+    "beaches": "Beaches",
+    "bus_station": "Bus Station",
+    "unit_layout": "Unit Layout",
+    "download_brochure": "Download Brochure",
+    "total_area": "Total Area"
   },
   "footer": {
     "create_account": "Create Account",
