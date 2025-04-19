@@ -35,6 +35,7 @@ import Item from "./_components/Item";
 import IconCalender from "@/icons/IconCalender";
 import IconStats from "@/icons/IconStats";
 import DeveloperCard from "./_components/DeveloperCard";
+import BestTravelSection from "./_components/BestTravelSection";
 
 const ProjectDetailsPage = () => {
   const t = useTranslations();
@@ -84,6 +85,7 @@ const ProjectDetailsPage = () => {
                   />
                 </Box>
               </div>
+
               <Box title=''>
                 <div className='mb-1.75rem flex items-center gap-1rem'>
                   <Image
@@ -139,6 +141,7 @@ const ProjectDetailsPage = () => {
                 </div>
               </Box>
             </section>
+
             <div className='grid grid-cols-1 gap-1.25rem md:grid-cols-2 lg:grid-cols-3'>
               <section id='about' className='col-span-2'>
                 <Box title={t("common.about_project")}>
@@ -247,6 +250,9 @@ const ProjectDetailsPage = () => {
           </div>
         </Container>
       </div>
+      <section>
+        <BestTravelSection />
+      </section>
     </>
   );
 };
