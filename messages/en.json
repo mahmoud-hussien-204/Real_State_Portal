@@ -94,7 +94,14 @@
     "bus_station": "Bus Station",
     "unit_layout": "Unit Layout",
     "download_brochure": "Download Brochure",
-    "total_area": "Total Area"
+    "total_area": "Total Area",
+    "project_main_service_providers": "Project Main Service Providers",
+    "discount_policy": "Discount Policy",
+    "full_cash": "Full Cash",
+    "payment_plan": "Payment Plan",
+    "purchasing_procedures": "Purchasing Procedures",
+    "project_documentation": "Project Documentation",
+    "amenties": "Amenties"
   },
   "footer": {
     "create_account": "Create Account",

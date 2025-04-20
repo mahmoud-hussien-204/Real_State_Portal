@@ -10,12 +10,6 @@ import Container from "@/components/Container";
 
 import Filtration from "./_components/Filtration";
 
-// import IconAirPort from "@/app/assets/project-details/airport.svg";
-// import IconBeaches from "@/app/assets/project-details/beaches.svg";
-// import IconBus from "@/app/assets/project-details/bus.svg";
-// import IconCalendar from "@/app/assets/project-details/calendar.svg";
-// import IconDownload from "@/app/assets/project-details/download.svg";
-
 import BestTravelSection from "./_components/BestTravelSection";
 import SectionProjectKeyPosition from "./_components/SectionProjectKeyPosition";
 import SectionAboutTheOffice from "./_components/SectionAboutTheOffice";
@@ -27,6 +21,14 @@ import SectionProjectView from "./_components/SectionProjectView";
 import SectionProjectStructure from "./_components/SectionProjectStructure";
 import SectionUnitLayout from "./_components/SectionUnitLayout";
 import SectionTotalArea from "./_components/SectionTotalArea";
+import SectionServiceCharge from "./_components/SectionServiceCharge";
+import SectionServiceProviders from "./_components/SectionServiceProviders";
+import SectionDiscountPolicy from "./_components/SectionDiscountPolicy";
+import SectionPurchasingProcedures from "./_components/SectionPurchasingProcedures";
+import SectionProjectDocumentation from "./_components/SectionProjectDocumentation";
+import SectionLocation from "./_components/SectionLocation";
+import SectionAmenties from "./_components/SectionAmenties";
+import SectionConstructed from "./_components/SectionConstructed";
 
 const ProjectDetailsPage = () => {
   return (
@@ -78,6 +80,11 @@ const ProjectDetailsPage = () => {
               <section id='view' className='col-span-2'>
                 <SectionProjectView />
               </section>
+
+              <section id='constructed' className='col-span-2'>
+                <SectionConstructed />
+              </section>
+
               <section id='structure' className='col-span-2'>
                 <SectionProjectStructure />
               </section>
@@ -88,6 +95,34 @@ const ProjectDetailsPage = () => {
 
               <section id='total-area' className='col-span-2'>
                 <SectionTotalArea />
+              </section>
+
+              <section id='service-charge' className='col-span-2'>
+                <SectionServiceCharge />
+              </section>
+
+              <section id='service-providers' className='col-span-2'>
+                <SectionServiceProviders />
+              </section>
+
+              <section id='discount-policy' className='col-span-2'>
+                <SectionDiscountPolicy />
+              </section>
+
+              <section id='purchasing-procedures' className='col-span-2'>
+                <SectionPurchasingProcedures />
+              </section>
+
+              <section id='project-documentation' className='col-span-2'>
+                <SectionProjectDocumentation />
+              </section>
+
+              <section id='amenties' className='col-span-2'>
+                <SectionAmenties />
+              </section>
+
+              <section id='location' className='col-span-2'>
+                <SectionLocation />
               </section>
             </div>
           </div>
