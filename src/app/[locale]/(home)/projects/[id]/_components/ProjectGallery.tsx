@@ -9,8 +9,8 @@ import {ArrowLeft, ArrowRight} from "lucide-react";
 import Image from "next/image";
 import * as React from "react";
 
-const images = [galleryImage, galleryImage2, galleryImage3];
-export default function ProjectGallery() {
+const defImages = [galleryImage, galleryImage2, galleryImage3];
+export default function ProjectGallery({images}: {images: string[]}) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [mainApi, setMainApi] = React.useState<CarouselApi>();
   const [thumbApi, setThumbApi] = React.useState<CarouselApi>();
@@ -30,17 +30,35 @@ export default function ProjectGallery() {
     };
   }, [mainApi, onSelect]);
 
+  // Fix: Use default images if images array is empty
+  const displayedImages = images && images.length > 0 ? images : defImages;
+
   return (
     <>
       <Carousel setApi={setMainApi} className='mt-6 max-w-full' showPagination={false}>
         <CarouselContent className=''>
-          {Array.from({length: 6}).map((src, index) => (
-            <CarouselItem key={index} className='aspect-video max-h-[35rem]'>
-              <Image
-                src={images[index % images.length]}
-                alt={`Image ${index + 1}`}
-                className='h-full w-full rounded-2xl object-cover object-center'
-              />
+          {displayedImages.map((src, index) => (
+            <CarouselItem key={`prj-img-${index}`} className='aspect-video max-h-[35rem]'>
+              {/* Handle external and imported images differently */}
+              {typeof src === "string" && src.startsWith("http") ? (
+                <div className='relative h-full w-full'>
+                  <Image
+                    src={src}
+                    fill
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw'
+                    alt={`Image ${index + 1}`}
+                    className='rounded-2xl object-cover object-center'
+                  />
+                </div>
+              ) : (
+                <Image
+                  src={src}
+                  width={1000}
+                  height={600}
+                  alt={`Image ${index + 1}`}
+                  className='h-full w-full rounded-2xl object-cover object-center'
+                />
+              )}
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -72,7 +90,8 @@ export default function ProjectGallery() {
           }}
         >
           <CarouselContent className='h-[12rem]'>
-            {Array.from({length: 6}).map((src, index) => (
+            {/* Make sure we don't try to access images beyond its length */}
+            {Array.from({length: Math.min(6, displayedImages.length)}).map((_, index) => (
               <CarouselItem
                 key={index}
                 className={cn("h-[10rem] w-[11rem] basis-[11rem]")}
@@ -84,11 +103,27 @@ export default function ProjectGallery() {
                     index === currentIndex ? "border-2 border-colors-primary-colors-500" : ""
                   )}
                 >
-                  <Image
-                    src={images[index % images.length]}
-                    alt={`Thumbnail ${index + 1}`}
-                    className={cn("h-full w-full rounded-2xl object-cover object-center")}
-                  />
+                  {/* Handle external and imported images differently in thumbnails too */}
+                  {typeof displayedImages[index] === "string" &&
+                  displayedImages[index].startsWith("http") ? (
+                    <div className='relative h-full w-full'>
+                      <Image
+                        src={displayedImages[index]}
+                        fill
+                        sizes='150px'
+                        alt={`Thumbnail ${index + 1}`}
+                        className={cn("rounded-2xl object-cover object-center")}
+                      />
+                    </div>
+                  ) : (
+                    <Image
+                      src={displayedImages[index]}
+                      width={150}
+                      height={150}
+                      alt={`Thumbnail ${index + 1}`}
+                      className={cn("h-full w-full rounded-2xl object-cover object-center")}
+                    />
+                  )}
                 </div>
               </CarouselItem>
             ))}

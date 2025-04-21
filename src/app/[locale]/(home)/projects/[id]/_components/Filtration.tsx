@@ -1,3 +1,4 @@
+"use client";
 import {useSyncExternalStore} from "react";
 
 import {AppHelper} from "@/helpers/appHelper";
@@ -9,7 +10,11 @@ const subscribe = (callback: () => void) => {
   };
 };
 
-const snapShot = () => window.location.hash || "#developer";
+// Client-side snapshot
+const getClientSnapshot = () => window.location.hash || "#developer";
+
+// Server-side snapshot (default value for SSR)
+const getServerSnapshot = () => "#developer";
 
 const links = [
   {
@@ -55,9 +60,7 @@ const links = [
 ];
 
 const Filtration = () => {
-  const tab = useSyncExternalStore(subscribe, snapShot);
-
-  console.log(tab);
+  const tab = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   return (
     <nav className='sticky top-2rem z-40 flex items-center justify-between gap-0.75rem overflow-x-auto rounded-full bg-white'>

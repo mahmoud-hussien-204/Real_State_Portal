@@ -2,12 +2,12 @@ import {useTranslations} from "next-intl";
 import Box from "./Box";
 import Item from "./Item";
 
-function SectionServiceCharge() {
+function SectionServiceCharge({serviceCharge}: {serviceCharge?: number}) {
   const t = useTranslations();
   return (
     <Box title={t("common.service_charge")}>
       <Box variant='secondary'>
-        <Item title={t("common.service_charge")} subtitle='5 sqft/M2' />
+        <Item title={t("common.service_charge")} subtitle={`${serviceCharge} sqft/M2`} />
       </Box>
     </Box>
   );

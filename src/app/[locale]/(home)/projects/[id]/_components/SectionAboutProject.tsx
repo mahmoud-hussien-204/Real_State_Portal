@@ -1,21 +1,21 @@
 import {useTranslations} from "next-intl";
 import Box, {BoxText} from "./Box";
-import IconBuilding from "@/icons/IconBuilding";
-import IconTag from "@/icons/IconTag";
-import IconRefresh from "@/icons/IconRefresh";
+// import IconBuilding from "@/icons/IconBuilding";
+// import IconTag from "@/icons/IconTag";
+// import IconRefresh from "@/icons/IconRefresh";
 
-function SectionAboutProject() {
+function SectionAboutProject({aboutProject}: {aboutProject?: IAboutProject}) {
   const t = useTranslations();
-
+  const displayedText =
+    aboutProject?.about_en ||
+    aboutProject?.about_ar ||
+    "Copen Gate Project The name of the project is inspired by the Danish capital, Copen Hagen. The project is a mini compound, which is a group of buildings. The project location is in the small investor of distinguished housing on the new tourist road. Compound services (garage, gym, kids area)";
   return (
     <Box title={t("common.about_project")}>
-      <BoxText>
-        Copen Gate Project The name of the project is inspired by the Danish capital, Copen Hagen.
-        The project is a mini compound, which is a group of buildings. The project location is in
-        the small investor of distinguished housing on the new tourist road. Compound services
-        (garage, gym, kids area)
-      </BoxText>
-      <div className='flex flex-wrap gap-1.88rem'>
+      <Box variant='secondary'>
+        <BoxText>{displayedText}</BoxText>
+      </Box>
+      {/* <div className='flex flex-wrap gap-1.88rem'>
         <div className='flex h-[8.68rem] flex-1 flex-col items-center justify-center gap-1rem rounded-1.25rem bg-colors-primary-colors-50 py-1.25rem'>
           <span className='text-38 font-bold text-colors-primary-colors-400'>39</span>
           <h6 className='flex items-center gap-1rem whitespace-nowrap text-16 font-semibold text-colors-grey-colors-1000'>
@@ -43,7 +43,7 @@ function SectionAboutProject() {
             {t("common.ongoing_projects")}
           </h6>
         </div>
-      </div>
+      </div> */}
     </Box>
   );
 }

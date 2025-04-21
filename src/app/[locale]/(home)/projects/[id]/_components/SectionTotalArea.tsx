@@ -5,14 +5,14 @@ import Icon from "@/app/assets/project-details/project-view.svg";
 import Item from "./Item";
 import Image from "next/image";
 
-function SectionTotalArea() {
+function SectionTotalArea({totalArea}: {totalArea?: number | string}) {
   const t = useTranslations();
   return (
     <Box title={t("common.total_area")}>
       <Box variant='secondary'>
         <Item
           title={t("common.total_area")}
-          subtitle='430 Sqft/M2'
+          subtitle={`${totalArea} Sqft/M`}
           icon={
             <Image
               src={Icon.src}

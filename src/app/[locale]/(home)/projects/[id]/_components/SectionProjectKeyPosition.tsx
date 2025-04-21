@@ -9,9 +9,13 @@ import IconBeaches from "@/app/assets/project-details/beaches.svg";
 import IconBus from "@/app/assets/project-details/bus.svg";
 import Image from "next/image";
 
-function SectionProjectKeyPosition() {
+function SectionProjectKeyPosition({
+  projectKeyPosition,
+}: {
+  projectKeyPosition?: IProjectKeyPosition[];
+}) {
   const t = useTranslations();
-
+  console.log("projectKeyPosition: ", projectKeyPosition);
   return (
     <Box title={t("common.project_key_position")}>
       <Box variant='secondary'>

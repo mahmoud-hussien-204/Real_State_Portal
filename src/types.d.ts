@@ -58,7 +58,6 @@ interface IError extends Error {
   statusCode: number;
 }
 
-
 type IQueryParams = {
   page?: string | number;
   limit?: string | number;

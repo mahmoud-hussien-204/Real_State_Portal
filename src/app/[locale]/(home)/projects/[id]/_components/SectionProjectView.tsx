@@ -5,9 +5,9 @@ import IconProjectView from "@/app/assets/project-details/project-view.svg";
 import {useTranslations} from "next-intl";
 import Image from "next/image";
 
-function SectionProjectView() {
+function SectionProjectView({projectView}: {projectView?: string}) {
   const t = useTranslations();
-
+  console.log("projectView: ", projectView);
   return (
     <Box title={t("common.project_view")}>
       <Box variant='secondary'>

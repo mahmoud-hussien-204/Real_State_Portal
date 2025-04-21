@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Box from "./Box";
 import IconCalendar from "@/app/assets/project-details/calendar.svg";
-function SectionConstructed() {
+function SectionConstructed({constructed}: {constructed?: string}) {
   return (
     <Box>
       <Box variant='secondary'>
@@ -12,7 +12,7 @@ function SectionConstructed() {
 
         <div className='rounded-lg bg-white p-4'>
           <p className='mb-1 font-bold text-[#606060]'>{"Date"}</p>
-          <p className='font-bold'>{"12 Jan 2024"}</p>
+          <p className='font-bold'>{constructed}</p>
         </div>
       </Box>
     </Box>
