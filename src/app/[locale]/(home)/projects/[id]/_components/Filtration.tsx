@@ -1,3 +1,4 @@
+"use client";
 import {useSyncExternalStore} from "react";
 
 import {AppHelper} from "@/helpers/appHelper";
@@ -9,7 +10,11 @@ const subscribe = (callback: () => void) => {
   };
 };
 
-const snapShot = () => window.location.hash || "#developer";
+// Client-side snapshot
+const getClientSnapshot = () => window.location.hash || "#developer";
+
+// Server-side snapshot (default value for SSR)
+const getServerSnapshot = () => "#developer";
 
 const links = [
   {
@@ -21,32 +26,49 @@ const links = [
     href: "#about",
   },
   {
+    title: "Office",
+    href: "#about-office",
+  },
+  {
+    title: "Positions",
+    href: "#project-key-pos",
+  },
+  {
     title: "Statement",
-    href: "#statement",
+    href: "#project-statement",
   },
   {
     title: "View",
     href: "#view",
   },
-  {
-    title: "Plan",
-    href: "#plan",
-  },
-  {
-    title: "Layout",
-    href: "#layout",
-  },
+
   {
     title: "Structure",
     href: "#structure",
   },
   {
-    title: "Available Pricing",
-    href: "#available-pricing",
+    title: "Layout",
+    href: "#unit-layout",
   },
   {
-    title: "Brochure",
-    href: "#brochure",
+    title: "Area",
+    href: "#total-area",
+  },
+  {
+    title: "Service Charge",
+    href: "#service-charge",
+  },
+  {
+    title: "Providers",
+    href: "#service-providers",
+  },
+  {
+    title: "Discount",
+    href: "#discount-policy",
+  },
+  {
+    title: "Purchasing",
+    href: "#purchasing-procedures",
   },
   {
     title: "Location",
@@ -55,9 +77,7 @@ const links = [
 ];
 
 const Filtration = () => {
-  const tab = useSyncExternalStore(subscribe, snapShot);
-
-  console.log(tab);
+  const tab = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   return (
     <nav className='sticky top-2rem z-40 flex items-center justify-between gap-0.75rem overflow-x-auto rounded-full bg-white'>
