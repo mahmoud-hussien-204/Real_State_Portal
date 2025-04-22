@@ -18,8 +18,8 @@ import SectionServiceCharge from "./SectionServiceCharge";
 import SectionServiceProviders from "./SectionServiceProviders";
 import SectionDiscountPolicy from "./SectionDiscountPolicy";
 import SectionPurchasingProcedures from "./SectionPurchasingProcedures";
-import SectionProjectDocumentation from "./SectionProjectDocumentation";
-import SectionAmenties from "./SectionAmenties";
+// import SectionProjectDocumentation from "./SectionProjectDocumentation";
+// import SectionAmenties from "./SectionAmenties";
 import SectionLocation from "./SectionLocation";
 import useQuery from "@/hooks/useQuery";
 import {apiGetProjectDetails} from "../../_api";
@@ -114,13 +114,13 @@ function ProjectDetails({projectId}: {projectId: string | number}) {
               <SectionPurchasingProcedures purchaseingProcedures={project?.purchasing_procedures} />
             </section>
 
-            <section id='project-documentation' className='col-span-2'>
+            {/* <section id='project-documentation' className='col-span-2'>
               <SectionProjectDocumentation />
             </section>
 
             <section id='amenties' className='col-span-2'>
               <SectionAmenties />
-            </section>
+            </section> */}
 
             {project && (
               <section id='location' className='col-span-2'>

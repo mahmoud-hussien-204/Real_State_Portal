@@ -26,32 +26,49 @@ const links = [
     href: "#about",
   },
   {
+    title: "Office",
+    href: "#about-office",
+  },
+  {
+    title: "Positions",
+    href: "#project-key-pos",
+  },
+  {
     title: "Statement",
-    href: "#statement",
+    href: "#project-statement",
   },
   {
     title: "View",
     href: "#view",
   },
-  {
-    title: "Plan",
-    href: "#plan",
-  },
-  {
-    title: "Layout",
-    href: "#layout",
-  },
+
   {
     title: "Structure",
     href: "#structure",
   },
   {
-    title: "Available Pricing",
-    href: "#available-pricing",
+    title: "Layout",
+    href: "#unit-layout",
   },
   {
-    title: "Brochure",
-    href: "#brochure",
+    title: "Area",
+    href: "#total-area",
+  },
+  {
+    title: "Service Charge",
+    href: "#service-charge",
+  },
+  {
+    title: "Providers",
+    href: "#service-providers",
+  },
+  {
+    title: "Discount",
+    href: "#discount-policy",
+  },
+  {
+    title: "Purchasing",
+    href: "#purchasing-procedures",
   },
   {
     title: "Location",
