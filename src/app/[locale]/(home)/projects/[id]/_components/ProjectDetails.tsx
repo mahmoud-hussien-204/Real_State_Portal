@@ -111,7 +111,7 @@ function ProjectDetails({projectId}: {projectId: string | number}) {
             </section>
 
             <section id='purchasing-procedures' className='col-span-2'>
-              <SectionPurchasingProcedures />
+              <SectionPurchasingProcedures purchaseingProcedures={project?.purchasing_procedures} />
             </section>
 
             <section id='project-documentation' className='col-span-2'>
@@ -122,9 +122,11 @@ function ProjectDetails({projectId}: {projectId: string | number}) {
               <SectionAmenties />
             </section>
 
-            <section id='location' className='col-span-2'>
-              <SectionLocation />
-            </section>
+            {project && (
+              <section id='location' className='col-span-2'>
+                <SectionLocation project={project} />
+              </section>
+            )}
           </div>
         </div>
       </Container>
