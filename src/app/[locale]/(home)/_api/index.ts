@@ -30,3 +30,13 @@ export const apiGetTopRatedProjects = (params?: IOffersForm) => {
   });
   return InterceptorHelper.intercept<IResponse<IOffer[]>>(`home/popular?${paramsString}`);
 };
+
+export const apiGetDevelopersFilters = () => {
+  return InterceptorHelper.intercept<IResponse<{data: IDeveloper[]}>>(
+    "home/filters/multi/developers"
+  );
+};
+
+export const apiGetUnitsFilters = () => {
+  return InterceptorHelper.intercept<IResponse<{data: IUnit[]}>>("home/filters/multi/units");
+};

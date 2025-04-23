@@ -5,9 +5,6 @@ import {twMerge} from "tailwind-merge";
 interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   wrapperClassName?: string;
   icon?: React.ReactNode;
-  // Ensure these props are explicitly included in the type
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(

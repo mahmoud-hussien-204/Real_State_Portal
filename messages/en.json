@@ -101,7 +101,9 @@
     "payment_plan": "Payment Plan",
     "purchasing_procedures": "Purchasing Procedures",
     "project_documentation": "Project Documentation",
-    "amenties": "Amenties"
+    "amenties": "Amenties",
+    "price_negative_error": "Price must be higher than 0",
+    "price_range_error": "From price must be lower than To price"
   },
   "footer": {
     "create_account": "Create Account",
@@ -138,7 +140,8 @@
   },
   "projects": {
     "property_listing": "Property Listing",
-    "available_properties": "There are currently 164,814 Availability.",
+    "available_properties": "There are currently {count} offers available.",
+    "no_properties": "No Properties Available",
     "find_property": "Find Property",
     "reset": "Reset"
   },

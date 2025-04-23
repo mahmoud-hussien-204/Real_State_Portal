@@ -10,5 +10,11 @@
     "offers_listing": "قائمة العروض",
     "available_offers": "متاح {count} عروض حاليا.",
     "no_offers": "لا يوجد عروض متاحة حاليا"
+  },
+  "projects": {
+    "property_listing": "قائمة الممتلكات",
+    "available_properties": "متاح {count} عروض حاليا.",
+    "find_property": "ابحث عن الممتلكات",
+    "reset": "إعادة تعيين"
   }
 }
