@@ -65,6 +65,7 @@ const FilterDropdown = ({name, filterName, options, isLoading = false}: Props) =
     <Dropdown
       renderOpenButton={(handleToggle) => (
         <button
+          type='button'
           className='flex w-full items-center justify-between rounded-full border border-[#DFDFDF] bg-white px-4 py-2 text-colors-grey-colors-900 shadow-sm'
           onClick={handleToggle}
         >

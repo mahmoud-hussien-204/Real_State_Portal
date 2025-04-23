@@ -14,17 +14,14 @@ import useCategories from "../../../hooks/useCategories";
 import useDevelopers from "../../../hooks/useDevelopers";
 import useUnits from "../../../hooks/useUnits";
 import {useTranslations} from "next-intl";
+import {QueryObserverResult, RefetchOptions} from "@tanstack/react-query";
 
-const PropertyFilters = () => {
-  const {
-    watch,
-    register,
-    reset,
-    setValue,
-    handleSubmit,
-
-    formState: {errors},
-  } = useFormContext<IProjectsFiltersForm>();
+const PropertyFilters = ({
+  refetch,
+}: {
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<IResponse<IOffer[]>, IError>>;
+}) => {
+  const {watch, register, reset, setValue, handleSubmit} = useFormContext<IProjectsFiltersForm>();
   const t = useTranslations();
   const [cityOptions, setCityOptions] = useState<ICity[]>([]);
   const [isLoadingCities, setIsLoadingCities] = useState(false);
@@ -172,11 +169,8 @@ const PropertyFilters = () => {
   };
 
   const onSubmit = (data: IProjectsFiltersForm) => {
-    // The form validation is now handled by react-hook-form
-    // If the form is valid, we can proceed with search/filter submit logic
-    if (!errors.price_from && !errors.price_to) {
-      console.log("Form submitted with valid data");
-    }
+    console.log("Form submitted:", data);
+    refetch();
   };
 
   return (
@@ -247,16 +241,16 @@ const PropertyFilters = () => {
         <div className='grid grid-cols-2 gap-3'>
           <div className='flex flex-col'>
             <input
+              min={0}
               type='number'
               placeholder={t("common.from") as string}
-              min={1}
               className={`input rounded-full border-input text-colors-grey-colors-1500 ${rangePriceError.length > 0 ? "border-red-500" : ""}`}
               {...register("price_from", {
                 valueAsNumber: true,
-                min: {
-                  value: 1,
-                  message: t("common.price_negative_error"),
-                },
+                // min: {
+                //   value: 1,
+                //   message: t("common.price_negative_error"),
+                // },
               })}
               onChange={(e) => {
                 register("price_from").onChange(e);
@@ -273,14 +267,14 @@ const PropertyFilters = () => {
             <input
               type='number'
               placeholder={t("common.to") as string}
-              min={1}
+              min={0}
               className={`input rounded-full border-input text-colors-grey-colors-1500 ${rangePriceError.length > 0 ? "border-red-500" : ""}`}
               {...register("price_to", {
                 valueAsNumber: true,
-                min: {
-                  value: 1,
-                  message: t("common.price_negative_error"),
-                },
+                // min: {
+                //   value: 1,
+                //   message: t("common.price_negative_error"),
+                // },
               })}
               onChange={(e) => {
                 register("price_to").onChange(e);
