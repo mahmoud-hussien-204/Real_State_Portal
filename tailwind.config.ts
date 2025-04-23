@@ -176,6 +176,8 @@ const config: Config = {
         "custom-black-gradient":
           "linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%)",
         "custom-primary-gradient": "linear-gradient(180deg, #000 0%, #530000 100%)",
+        "custom-primary-gradient-2":
+          "linear-gradient(90deg, #250205 0%, #64020A 37.24%, #D00312 100%)",
       },
       borderRadius: {
         "0.5rem": "0.5rem",

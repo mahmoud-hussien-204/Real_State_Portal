@@ -1,9 +1,7 @@
-import {IProjectsFiltersForm} from "../_interfaces";
 import InterceptorHelper from "@/helpers/interceptHelper";
 
-export const apiGetProjects = async (
-  projectsParams: IProjectsFiltersForm,
-  config?: IconfigParams
-) => {
-  return InterceptorHelper.intercept<IResponse<IProject>>(`projects?`);
+export const apiGetProjectDetails = async (id: string) => {
+  return InterceptorHelper.intercept<
+    Omit<IResponse<{project: IProject; similar_projects: IOffer[]}>, "meta">
+  >(`home/project/${id}`);
 };

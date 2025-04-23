@@ -6,7 +6,7 @@ import useQuery from "@/hooks/useQuery";
 
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
 import {ToastContainer} from "react-toastify";
 
@@ -36,9 +36,17 @@ export const appContext = createContext<{
 const AppContextProvider = ({children}: Required<React.PropsWithChildren>) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
 
-  const [user, setUser] = useState<IUser | null>(
-    localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData") as string) : null
-  );
+  // Initialize with null, then update in useEffect
+  const [user, setUser] = useState<IUser | null>(null);
+
+  // Use useEffect to access localStorage after component mounts (client-side only)
+  useEffect(() => {
+    // Now we're safely in the browser environment
+    const userData = localStorage.getItem("userData");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   useQuery({
     queryKey: ["countries"],
@@ -47,7 +55,7 @@ const AppContextProvider = ({children}: Required<React.PropsWithChildren>) => {
         setCountries(res.data);
         return res.data;
       }),
-      staleTime: 1000 * 60 * 60 * 24, // 1 day
+    staleTime: 1000 * 60 * 60 * 24, // 1 day
   });
 
   return <appContext.Provider value={{countries, user, setUser}}>{children}</appContext.Provider>;
