@@ -1,49 +1,64 @@
 "use client";
 import Dropdown from "@/components/custom-ui/Dropdown";
 import {useRouter, useSearchParams} from "next/navigation";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {BiCheck} from "react-icons/bi";
 import {FiChevronDown} from "react-icons/fi";
 import {twMerge} from "tailwind-merge";
+import {useFormContext} from "react-hook-form";
 
 type Props = {
   name: string;
   filterName: string;
-  options: string[];
+  options: {label: string; value: number | string}[];
+  isLoading?: boolean;
 };
 
-const FilterDropdown = ({name, filterName, options}: Props) => {
+const FilterDropdown = ({name, filterName, options, isLoading = false}: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const {setValue, watch} = useFormContext();
+  const formFieldName = `${filterName}_ids`;
+  const selectedValues = watch(formFieldName) || [];
 
-  // Initialize selected values from URL params
+  // Initialize form values from URL params on mount
   useEffect(() => {
     const params = searchParams.get(filterName);
     if (params) {
-      setSelectedValues(params.split(","));
+      const paramValues = params.split(",").map((value) =>
+        // Try to convert to number if possible
+        isNaN(Number(value)) ? value : Number(value)
+      );
+      setValue(formFieldName, paramValues);
     }
-  }, [searchParams, filterName]);
+  }, []);
 
-  const handleCheckboxChange = (option: string) => {
+  const handleCheckboxChange = (optionValue: number | string) => {
     let newSelectedValues;
-    if (selectedValues.includes(option)) {
+
+    // Check if the value exists in the current selection
+    const valueExists = selectedValues.some((value: number | string) => value === optionValue);
+
+    if (valueExists) {
       // Remove the option if it's already selected
-      newSelectedValues = selectedValues.filter((value) => value !== option);
+      newSelectedValues = selectedValues.filter((value: number | string) => value !== optionValue);
     } else {
       // Add the option if it's not selected
-      newSelectedValues = [...selectedValues, option];
+      newSelectedValues = [...selectedValues, optionValue];
     }
-    setSelectedValues(newSelectedValues);
 
-    // Update the URL search params
+    // Update form state
+    setValue(formFieldName, newSelectedValues);
+
+    // Update URL without causing a page reload
     const newParams = new URLSearchParams(searchParams.toString());
     if (newSelectedValues.length > 0) {
       newParams.set(filterName, newSelectedValues.join(","));
     } else {
       newParams.delete(filterName);
     }
-    router.push(`?${newParams.toString()}`, {scroll: false});
+
+    router.replace(`?${newParams.toString()}`, {scroll: false});
   };
 
   return (
@@ -60,26 +75,35 @@ const FilterDropdown = ({name, filterName, options}: Props) => {
       menuClassName='px-4 left-0 w-full rounded-[20px] py-5 gap-5 shadow-md'
       closeOnSelect={false}
     >
-      {options.map((option) => (
-        <li
-          key={option}
-          className='flex items-center justify-between pe-[1.5rem]'
-          onClick={() => handleCheckboxChange(option)}
-        >
-          {option}
-
-          <div
-            className={twMerge(
-              "border-input flex size-[1.2rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border bg-white",
-              selectedValues.includes(option) && "bg-colors-primary-colors-400"
-            )}
+      {isLoading ? (
+        <li className='py-2 text-center text-gray-500'>Loading...</li>
+      ) : options.length === 0 ? (
+        <li className='py-2 text-center text-gray-500'>No options available</li>
+      ) : (
+        options.map((option) => (
+          <li
+            key={`${option.label}-${option.value}`}
+            className='flex cursor-pointer items-center justify-between py-2 pe-[1.5rem]'
+            onClick={() => handleCheckboxChange(option.value)}
           >
-            <BiCheck
-              className={twMerge("text-[#8B8B8B]", selectedValues.includes(option) && "text-white")}
-            />
-          </div>
-        </li>
-      ))}
+            {option.label}
+
+            <div
+              className={twMerge(
+                "flex size-[1.2rem] flex-shrink-0 cursor-pointer items-center justify-center rounded-full border border-input bg-white",
+                selectedValues.includes(option.value) && "bg-colors-primary-colors-400"
+              )}
+            >
+              <BiCheck
+                className={twMerge(
+                  "text-[#8B8B8B]",
+                  selectedValues.includes(option.value) && "text-white"
+                )}
+              />
+            </div>
+          </li>
+        ))
+      )}
     </Dropdown>
   );
 };
