@@ -1,9 +1,28 @@
-import {baseURL} from "@/constants";
 import {toast} from "react-toastify";
+
+const baseURL = process.env.NEXT_PUBLIC_baseURL;
 
 export default class InterceptorHelper {
   // intercept request
   static async interceptRequest(options: RequestInit = {}): Promise<RequestInit> {
+    // get access token from local storage
+    const accessToken = localStorage.getItem("accessToken");
+    console.log("accessToken", accessToken);
+    if (accessToken) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${accessToken}`,
+      };
+    }
+
+    options.headers = {
+      "Accept-Language": "en",
+      "Content-Language": "en",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      ...options.headers,
+    };
+
     // delete content type if the body is an object (eg. FormData)
     if (typeof options.body === "object") {
       if (options.headers?.["Content-Type" as keyof HeadersInit]) {
@@ -15,23 +34,13 @@ export default class InterceptorHelper {
   }
 
   // intercept response
-  static async interceptResponse<T>(
-    response: Response,
-    method: string | undefined,
-    showToast: boolean
-  ): Promise<T> {
-    let responseJson;
-    try {
-      responseJson = await response.json();
-    } catch (error) {
-      console.error(error);
-      return Promise.reject("JSON Error");
-    }
+  static async interceptResponse<T>(response: Response, method: string | undefined): Promise<T> {
+    const responseJson = await response.json();
 
     const message = responseJson?.message || responseJson?.error || responseJson.success;
 
     // handle response error
-    if (!response.ok) {
+    if (!response.ok || responseJson.success == false) {
       // if message is array
       if (Array.isArray(message)) {
         message.forEach((msg) => toast.error(msg));
@@ -42,67 +51,23 @@ export default class InterceptorHelper {
       return Promise.reject(responseJson);
     }
 
-    if (method !== "GET" && showToast) toast.success(message);
+    toast.success(message);
 
     return responseJson;
   }
 
-  static async interceptResponseBlob(response: Response): Promise<Blob> {
-    const responseBlob = await response.blob();
-
-    // handle response error
-    if (!response.ok) {
-      toast.error("Export Failed");
-
-      return Promise.reject(responseBlob);
-    }
-
-    return responseBlob;
-  }
-
   // intercept function
-  static async intercept<T>(
-    url: string,
-    options: RequestInit = {},
-    showToast: boolean = true
-  ): Promise<T> {
-    try {
-      // handle request
-      const requestOptions = await InterceptorHelper.interceptRequest(options);
+  static async intercept<T>(url: string, options: RequestInit = {}): Promise<T> {
+    // handle request
+    const requestOptions = await InterceptorHelper.interceptRequest(options);
 
-      const path = `${baseURL + "" + url}`;
+    const path = `${baseURL + "" + url}`;
 
-      const response = await fetch(path, requestOptions);
+    const response = await fetch(path, requestOptions);
 
-      // handle response
-      return await InterceptorHelper.interceptResponse<T>(response, options.method, showToast);
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message, {
-          toastId: error.message,
-        });
-        // appStore.dispatch(logout());
-      }
-      return Promise.reject(error);
-    }
-  }
+    // handle response
+    const responseOption = await InterceptorHelper.interceptResponse<T>(response, options.method);
 
-  static async interceptBlob(url: string, options: RequestInit = {}): Promise<Blob> {
-    try {
-      // handle request
-      const requestOptions = await InterceptorHelper.interceptRequest(options);
-
-      const path = `${baseURL + "" + url}`;
-
-      const response = await fetch(path, requestOptions);
-
-      // handle response
-      return await InterceptorHelper.interceptResponseBlob(response);
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-      return Promise.reject(error);
-    }
+    return responseOption;
   }
 }

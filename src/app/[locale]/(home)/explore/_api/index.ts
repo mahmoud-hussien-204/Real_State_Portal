@@ -1,5 +1,5 @@
 import {AppHelper} from "@/helpers/appHelper";
-import InterceptorHelper from "@/helpers/interceptHelper";
+import InterceptorHelper from "@/helpers/interceptorHelper";
 import {IExploreResponse} from "../_interfaces";
 
 export const apiGetExplore = async (exploreParams: IBaseFilterForm, config?: IconfigParams) => {

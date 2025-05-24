@@ -34,15 +34,10 @@ const Footer = () => {
   });
 
   const dataMap: Record<string, string> =
-    data?.data.reduce(
-      (map, item) => {
-        map[item.key] = item.value;
-        return map;
-      },
-      {} as Record<string, string>
-    ) || {};
-
-  // console.log("dataMap: ", dataMap);
+    data?.data.reduce<Record<string, string>>((map, item) => {
+      map[item.key] = item.value;
+      return map;
+    }, {}) || {};
 
   return (
     <footer className='bg-grid bg-half-gradient relative py-5rem'>

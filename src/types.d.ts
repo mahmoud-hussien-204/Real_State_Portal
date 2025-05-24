@@ -362,3 +362,9 @@ interface IBaseFilterForm {
   area_id?: number;
   category_id?: number;
 }
+
+interface IBanner {
+  banner: string;
+  sort: number;
+  section: number;
+}

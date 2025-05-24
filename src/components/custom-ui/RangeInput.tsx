@@ -1,4 +1,4 @@
-import {translate} from "@/helpers/translate";
+import {useTranslate} from "@/helpers/translate";
 import {LabeledInput} from "./LabeledInput";
 
 const RangeInput = ({
@@ -10,6 +10,7 @@ const RangeInput = ({
   icon: React.ReactNode;
   className?: string;
 }) => {
+  const translate = useTranslate();
   return (
     <div className={className}>
       <label className='mb-3 ms-2 flex items-center gap-3'>

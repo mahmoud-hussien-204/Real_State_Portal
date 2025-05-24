@@ -1,4 +1,4 @@
-import InterceptorHelper from "./helpers/interceptHelper";
+import InterceptorHelper from "./helpers/interceptorHelper";
 
 interface IAuthResponse {
   data: {user: IUser};

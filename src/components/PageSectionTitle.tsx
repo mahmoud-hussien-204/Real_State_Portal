@@ -1,4 +1,4 @@
-import {Paths, translate} from "@/helpers/translate";
+import {Paths, useTranslate} from "@/helpers/translate";
 
 export type PageSectionTitleProps = {
   title: Paths<IntlMessages>;
@@ -6,8 +6,7 @@ export type PageSectionTitleProps = {
   count?: number;
 };
 const PageSectionTitle = ({title, subtitle, count}: PageSectionTitleProps) => {
-  console.log("subtitle: ", subtitle);
-  console.log("translated subtitle", translate(subtitle));
+  const translate = useTranslate();
   return (
     <div>
       <h2 className='mb-2 text-32 font-bold text-[#242526]'>{translate(title)}</h2>

@@ -14,7 +14,6 @@ const OfferListingSection = ({
   isLoadingOffers: boolean;
   offersCount: number;
 }) => {
-
   return (
     <section className='mt-4.5rem bg-neural-colors-50 py-4.5rem'>
       <Container>

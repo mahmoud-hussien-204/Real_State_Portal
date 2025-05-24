@@ -148,7 +148,7 @@ const ExploreFilterHeader = ({refetch, isFetchingExplore}: IProps) => {
     });
   };
 
-  const onSubmit = (data: IBaseFilterForm) => {
+  const onSubmit = () => {
     refetch();
 
     reset();
@@ -157,7 +157,7 @@ const ExploreFilterHeader = ({refetch, isFetchingExplore}: IProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='relative z-[200] mx-auto mt-[-3rem] flex max-w-[90%] flex-wrap items-center justify-between gap-y-4 rounded-lg bg-white px-5 py-5 shadow-md lg:max-w-[55rem] lg:flex-nowrap lg:rounded-full'
+      className='relative z-[200] mx-auto mt-[-3rem] flex max-w-[90%] flex-wrap items-center justify-between gap-4 rounded-lg bg-white px-5 py-5 shadow-md lg:max-w-[55rem] lg:flex-nowrap lg:rounded-full'
     >
       <SelectInput
         placeholder={t("common.country")}
@@ -182,11 +182,10 @@ const ExploreFilterHeader = ({refetch, isFetchingExplore}: IProps) => {
       />
       <Button
         type='submit'
-        className='mx-auto flex w-[50%] flex-shrink items-center justify-center gap-2 rounded-full lg:mx-0'
+        className='min-w-[12rem] rounded-full'
         isLoading={isFetchingExplore}
         disabled={isFetchingExplore || (!countryId && !cityId && !categoryId)}
       >
-        {t("common.search")}
         <div className='flex size-[1.5rem] items-center justify-center rounded-full bg-white'>
           <IoSearch className='text-colors-primary-colors-600' />
         </div>

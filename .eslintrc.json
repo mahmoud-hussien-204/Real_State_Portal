@@ -27,7 +27,7 @@
   "rules": {
     "prefer-const": "warn",
     "no-var": "warn",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "object-shorthand": "warn",
     "quote-props": ["warn", "as-needed"],
     "@typescript-eslint/no-explicit-any": "off",
@@ -53,7 +53,7 @@
       }
     ],
     "react-hooks/rules-of-hooks": "warn",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "prettier/prettier": "warn"

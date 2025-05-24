@@ -1,6 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
-import FilterDropdown from "../Dropdowns/FilterDropdown";
 import SearchInput from "@/components/custom-ui/SearchInput";
 import mapImage from "@/app/assets/projects/map.png";
 import Button from "@/components/Button";
@@ -9,12 +8,15 @@ import {useFormContext} from "react-hook-form";
 import {IProjectsFiltersForm} from "../../_interfaces";
 import {IoIosPricetag} from "react-icons/io";
 import useAppProvider from "@/hooks/useAppProvider";
-import {apiGetCitiesOfCountry} from "../../../_api";
 import useCategories from "../../../hooks/useCategories";
 import useDevelopers from "../../../hooks/useDevelopers";
 import useUnits from "../../../hooks/useUnits";
 import {useTranslations} from "next-intl";
 import {QueryObserverResult, RefetchOptions} from "@tanstack/react-query";
+import SelectInput from "@/components/custom-ui/SelectInput";
+import useCitiesInCountry from "../../../hooks/useCitiesInCountry";
+import useAreasInCity from "../../../hooks/useAreasInCities";
+import {CgSpinner} from "react-icons/cg";
 
 const PropertyFilters = ({
   refetch,
@@ -23,8 +25,7 @@ const PropertyFilters = ({
 }) => {
   const {watch, register, reset, setValue, handleSubmit} = useFormContext<IProjectsFiltersForm>();
   const t = useTranslations();
-  const [cityOptions, setCityOptions] = useState<ICity[]>([]);
-  const [isLoadingCities, setIsLoadingCities] = useState(false);
+
   const [rangePriceError, setRangePriceError] = useState<string>("");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -32,103 +33,76 @@ const PropertyFilters = ({
   const {categories, isFetchingCategories} = useCategories();
   const {developers, isFetchingDevelopers} = useDevelopers();
   const {units, isFetchingUnits} = useUnits();
-  const selectedCountries = watch("country_ids") || [];
   const searchValue = watch("search") || "";
+  const countryId = watch("country_id");
+  const cityId = watch("city_id");
   const priceFrom = watch("price_from");
   const priceTo = watch("price_to");
-  const citiesCache = useRef<Map<number, ICity[]>>(new Map());
+  const categoryId = watch("category_id");
   const searchTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // Load form values from URL on mount
-  useEffect(() => {
-    const initializeFormFromURL = () => {
-      // Handle country IDs
-      const countryParam = searchParams.get("country");
-      if (countryParam) {
-        const countryIds = countryParam.split(",").map(Number);
-        setValue("country_ids", countryIds);
-      }
+  const {cities, isFetchingCities} = useCitiesInCountry(countryId);
+  const {areas, isFetchingAreas} = useAreasInCity(cityId);
 
-      // Handle city IDs
-      const cityParam = searchParams.get("city");
-      if (cityParam) {
-        const cityIds = cityParam.split(",").map(Number);
-        setValue("city_ids", cityIds);
-      }
+  const countryOptions = useMemo(
+    () =>
+      countries?.map((country) => ({
+        label: country.name_en,
+        value: country.id,
+      })) || [],
+    [countries]
+  );
 
-      // Handle other parameters
-      const developerParam = searchParams.get("developer");
-      if (developerParam) {
-        const developerIds = developerParam.split(",").map(Number);
-        setValue("developer_ids", developerIds);
-      }
+  const cityOptions = useMemo(
+    () =>
+      cities?.map((city) => ({
+        label: city.name_en,
+        value: city.id,
+      })) || [],
+    [cities]
+  );
 
-      const unitParam = searchParams.get("unit");
-      if (unitParam) {
-        const unitIds = unitParam.split(",").map(Number);
-        setValue("unit_types", unitIds);
-      }
+  const areaOptions = useMemo(
+    () => areas?.map((area) => ({label: area.name_en, value: area.id})) || [],
+    [areas]
+  );
 
-      const categoryParam = searchParams.get("category");
-      if (categoryParam) {
-        const categoryIds = categoryParam.split(",").map(Number);
-        setValue("category_ids", categoryIds);
-      }
+  const developerOptions = useMemo(
+    () =>
+      developers.map((dev) => ({
+        label: dev.name_en,
+        value: dev.id,
+      })),
+    [developers]
+  );
 
-      // Handle search and price params
-      const searchParam = searchParams.get("search");
-      if (searchParam) {
-        setValue("search", searchParam);
-      }
+  const unitOptions = useMemo(
+    () =>
+      units.map((unit) => ({
+        label: unit.name_en,
+        value: unit.id,
+      })),
+    [units]
+  );
 
-      const priceFromParam = searchParams.get("price_from");
-      if (priceFromParam) {
-        setValue("price_from", Number(priceFromParam));
-      }
+  const categoryOptions = useMemo(
+    () =>
+      categories.map((cat) => ({
+        label: cat.name_en,
+        value: cat.id,
+      })),
+    [categories]
+  );
 
-      const priceToParam = searchParams.get("price_to");
-      if (priceToParam) {
-        setValue("price_to", Number(priceToParam));
-      }
-    };
-
-    initializeFormFromURL();
-  }, [setValue, searchParams]);
-
-  // Fetch cities when selected countries change
-  useEffect(() => {
-    const fetchCitiesForCountries = async () => {
-      if (selectedCountries.length === 0) {
-        setCityOptions([]);
-        return;
-      }
-
-      setIsLoadingCities(true);
-      const newCities: ICity[] = [];
-
-      for (const countryId of selectedCountries) {
-        // Check cache first
-        if (citiesCache.current.has(countryId)) {
-          newCities.push(...citiesCache.current.get(countryId)!);
-        } else {
-          try {
-            const citiesData = await apiGetCitiesOfCountry(countryId);
-            if (citiesData?.data) {
-              citiesCache.current.set(countryId, citiesData.data);
-              newCities.push(...citiesData.data);
-            }
-          } catch (error) {
-            console.error(`Failed to fetch cities for country ${countryId}:`, error);
-          }
-        }
-      }
-
-      setCityOptions(newCities);
-      setIsLoadingCities(false);
-    };
-
-    fetchCitiesForCountries();
-  }, [selectedCountries]);
+  const currentCategorySubCategories = useMemo(() => {
+    const currentCategory = categories.find((cat) => cat.id === categoryId);
+    return (
+      currentCategory?.sub.map((subCat) => ({
+        label: subCat.name_en,
+        value: subCat.id,
+      })) || []
+    );
+  }, [categories, categoryId]);
 
   // Handle search input changes with debounce
   useEffect(() => {
@@ -138,7 +112,7 @@ const PropertyFilters = ({
 
     searchTimeout.current = setTimeout(() => {
       updateURLParams("search", searchValue);
-    }, 500); // 500ms debounce
+    }, 100); // 100ms debounce
 
     return () => {
       if (searchTimeout.current) {
@@ -160,9 +134,24 @@ const PropertyFilters = ({
     router.replace(`?${newParams.toString()}`, {scroll: false});
   };
 
+  function handleValueChange(fieldName: keyof IProjectsFiltersForm, value: string | undefined) {
+    // Convert empty string to undefined for proper reset behavior
+    const processedValue = value === "" ? undefined : value;
+
+    setValue(fieldName, processedValue);
+
+    if (processedValue !== undefined && processedValue !== null) {
+      updateURLParams(fieldName, processedValue.toString());
+    } else {
+      updateURLParams(fieldName, null);
+    }
+  }
+
   const handleReset = () => {
     // Reset form values
     reset();
+
+    updateURLParams("search", "");
 
     // Also clear URL parameters by replacing with empty search
     router.replace(window.location.pathname, {scroll: false});
@@ -181,7 +170,7 @@ const PropertyFilters = ({
       <SearchInput
         placeholder='Project Name'
         wrapperClassName='w-full'
-        {...register("search")}
+        value={watch("search") || ""}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           // This properly handles both the register's onChange and our custom URL update
           register("search").onChange(e); // This updates the form value
@@ -199,37 +188,61 @@ const PropertyFilters = ({
         </Button>
       </div>
       <div className='flex w-full flex-col gap-1.5rem'>
-        <FilterDropdown
-          name='Country'
-          filterName='country'
-          options={countries.map((c) => ({label: c.name_en, value: c.id}))}
-        />
-        <FilterDropdown
-          name='City'
-          filterName='city'
-          options={cityOptions.map((c) => ({label: c.name_en, value: c.id}))}
-          isLoading={isLoadingCities}
-        />
-        <FilterDropdown
-          name='Developer'
-          filterName='developer'
-          options={developers.map((dev) => ({label: dev.name_en, value: dev.id}))}
-          isLoading={isFetchingDevelopers}
+        <SelectInput
+          placeholder='Country'
+          options={countryOptions}
+          value={watch("country_id")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("country_id", value)}
         />
 
-        <FilterDropdown
-          name='Unit Type'
-          filterName='unit'
-          options={units.map((unit) => ({label: unit.name_en, value: unit.id}))}
-          isLoading={isFetchingUnits}
+        <SelectInput
+          placeholder='City'
+          options={cityOptions}
+          icon={isFetchingCities && <CgSpinner className='animate-spin' />}
+          disabled={!countryId || countryId <= 0 || isFetchingCities}
+          value={watch("city_id")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("city_id", value)}
+        />
+        <SelectInput
+          placeholder='Area'
+          options={areaOptions}
+          icon={isFetchingAreas && <CgSpinner className='animate-spin' />}
+          disabled={!cityId || cityId <= 0 || isFetchingAreas}
+          value={watch("area_id")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("area_id", value)}
+        />
+        <SelectInput
+          placeholder='Developer'
+          options={developerOptions}
+          icon={isFetchingDevelopers && <CgSpinner className='animate-spin' />}
+          value={watch("developer_id")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("developer_id", value)}
         />
 
-        <FilterDropdown
-          name='Category'
-          filterName='category'
-          options={categories.map((cat) => ({label: cat.name_en, value: cat.id}))}
-          isLoading={isFetchingCategories}
+        <SelectInput
+          placeholder='Unit Type'
+          options={unitOptions}
+          icon={isFetchingUnits && <CgSpinner className='animate-spin' />}
+          value={watch("unit_type")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("unit_type", value)}
         />
+
+        <SelectInput
+          placeholder='Category'
+          options={categoryOptions}
+          icon={isFetchingCategories && <CgSpinner className='animate-spin' />}
+          value={watch("category_id")?.toString() || ""}
+          onValueChange={(value) => handleValueChange("category_id", value)}
+        />
+
+        {currentCategorySubCategories.length > 0 && (
+          <SelectInput
+            placeholder='Sub Category'
+            options={currentCategorySubCategories}
+            value={watch("sub_category_id")?.toString() || ""}
+            onValueChange={(value) => handleValueChange("sub_category_id", value)}
+          />
+        )}
       </div>
 
       {/* Price range */}
