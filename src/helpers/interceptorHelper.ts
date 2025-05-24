@@ -1,9 +1,6 @@
 import {baseURL} from "@/constants";
 import {toast} from "react-toastify";
 
-
-
-
 export default class InterceptorHelper {
   // intercept request
   static async interceptRequest(options: RequestInit = {}): Promise<RequestInit> {

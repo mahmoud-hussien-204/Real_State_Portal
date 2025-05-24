@@ -150,7 +150,7 @@ const OffersFilterHeader = ({
     });
   };
 
-  const onSubmit = (data: IOffersForm) => {
+  const onSubmit = () => {
     refetch();
 
     reset();

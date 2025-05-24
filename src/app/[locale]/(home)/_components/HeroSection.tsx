@@ -24,12 +24,7 @@ import FilterHeroSection from "./FilterHeroSection";
 import {FormProvider, useForm} from "react-hook-form";
 import useCategories from "../hooks/useCategories";
 import {useRouter} from "next/navigation";
-
-export enum EnumTabs {
-  RESIDENTIAL = "residential",
-  COMMERCIAL = "commercial",
-  LAND = "land",
-}
+import {EnumTabs} from "../_interfaces";
 
 const HeroSection = () => {
   // routing

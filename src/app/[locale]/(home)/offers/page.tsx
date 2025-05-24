@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import PageHeroSection from "@/components/PageHeroSection";
 
