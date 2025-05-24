@@ -2,7 +2,6 @@
 
 import Swiper, {useSwiperRef} from "@/components/Swiper";
 
-
 import {Grid, Navigation} from "swiper/modules";
 
 import Container from "@/components/Container";
@@ -21,7 +20,7 @@ import ExploreMoreButton from "@/components/ExploreMoreButton";
 
 import "swiper/css/grid";
 import useQuery from "@/hooks/useQuery";
-import {apiGetTopRatedProjects} from "../_api";
+import {apiGetFeaturedProjects} from "../_api";
 import Spinner from "@/components/ui/spinner";
 import FilterTopRatedSection from "./FilterTopRatedSection";
 import {FormProvider, useForm} from "react-hook-form";
@@ -35,7 +34,7 @@ const schema = Yup.object().shape({
   area_id: Yup.number().min(1, "area does not exist"),
 });
 
-const TopRelatedProjects = () => {
+const FeaturedProjects = () => {
   const t = useTranslations();
   const {refSwiper, setRefSwiper} = useSwiperRef();
   const form = useForm<ITopRatedForm>({
@@ -53,9 +52,9 @@ const TopRelatedProjects = () => {
     isFetching: isFetchingProjects,
     refetch,
   } = useQuery({
-    queryKey: ["top-rated-projects"],
+    queryKey: ["featured-projects"],
     queryFn: () =>
-      apiGetTopRatedProjects({
+      apiGetFeaturedProjects({
         country_id: form.getValues("country_id"),
         city_id: form.getValues("city_id"),
         area_id: form.getValues("area_id"),
@@ -89,7 +88,7 @@ const TopRelatedProjects = () => {
               <Swiper
                 className='xl:h-[40.5rem]'
                 options={{
-                  slidesPerView: "auto",
+                  slidesPerView: 1,
                   spaceBetween: 24,
                   grabCursor: true,
                   modules: [Grid, Navigation],
@@ -97,6 +96,10 @@ const TopRelatedProjects = () => {
                   onSwiper: setRefSwiper,
                   onSlideChange: setRefSwiper,
                   breakpoints: {
+                    768: {
+                      slidesPerView: 2,
+                      slidesPerGroup: 2,
+                    },
                     1280: {
                       slidesPerView: 2,
                       slidesPerGroup: 2,
@@ -142,4 +145,4 @@ const TopRelatedProjects = () => {
   );
 };
 
-export default TopRelatedProjects;
+export default FeaturedProjects;
