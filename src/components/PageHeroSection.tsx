@@ -1,3 +1,5 @@
+"use client";
+
 import {useTranslations} from "next-intl";
 import {GoChevronRight} from "react-icons/go";
 import {IoMdHome} from "react-icons/io";
