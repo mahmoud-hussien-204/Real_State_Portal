@@ -34,7 +34,7 @@ const NavbarItem = ({href, children}: {href: string} & React.PropsWithChildren) 
     <Link
       href={href}
       className={AppHelper.className(
-        "rounded-0.625rem flex h-3rem min-w-[6.75rem] items-center justify-center border border-transparent px-0.25rem font-semibold leading-1.75rem text-colors-grey-colors-1000 transition-colors duration-200 font-14 hover:text-colors-primary-colors-600",
+        "flex h-3rem min-w-[6.75rem] items-center justify-center rounded-0.625rem border border-transparent px-0.25rem font-semibold leading-1.75rem text-colors-grey-colors-1000 transition-colors duration-200 font-14 hover:text-colors-primary-colors-600",
         {
           "border-colors-primary-colors-200 bg-colors-primary-colors-50 text-colors-primary-colors-600":
             isActive,

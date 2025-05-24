@@ -2,7 +2,6 @@
 
 import Button from "@/components/Button";
 import SelectInput from "@/components/custom-ui/SelectInput";
-import {translate} from "@/helpers/translate";
 import {useLocale, useTranslations} from "next-intl";
 import {useFormContext} from "react-hook-form";
 import {IoSearch} from "react-icons/io5";
@@ -150,7 +149,7 @@ const OffersFilterHeader = ({
     });
   };
 
-  const onSubmit = (data: IOffersForm) => {
+  const onSubmit = () => {
     refetch();
 
     reset();
@@ -196,7 +195,7 @@ const OffersFilterHeader = ({
         isLoading={isFetchingOffers}
         disabled={isFetchingOffers || (!countryId && !cityId && !areaId && !categoryId)}
       >
-        {translate("common.search")}
+        {t("common.search")}
         {!isFetchingOffers && (
           <div className='flex size-[1.5rem] items-center justify-center rounded-full bg-white'>
             <IoSearch className='text-colors-primary-colors-600' />

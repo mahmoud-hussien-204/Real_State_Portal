@@ -57,6 +57,7 @@ const LoginPage = () => {
   const onSubmit = handleSubmit((data) => {
     mutate(data, {
       onSuccess: (response) => {
+        console.log("Login successful", response.data.user);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         setUser(response.data.user);

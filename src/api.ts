@@ -1,4 +1,4 @@
-import InterceptorHelper from "./helpers/interceptHelper";
+import InterceptorHelper from "./helpers/interceptorHelper";
 
 interface IAuthResponse {
   data: {user: IUser};
@@ -17,4 +17,4 @@ export const apiRegister = (body: IRegisterForm) =>
   });
 
 export const apiGetCountries = () =>
-  InterceptorHelper.intercept<{data: ICountry[]}>("home/filters/countries");
+  InterceptorHelper.intercept<{data: ICountry[]}>("home/filters/countries?per_page=244");

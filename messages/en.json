@@ -136,7 +136,10 @@
     "residental": "Residental",
     "commercial": "Commercial",
     "land": "Land",
-    "no_top_rated_projects": "No rated projects available"
+    "no_top_rated_projects": "No rated projects available",
+    "latest_projects": "Latest Projects",
+    "no_projects_available": "No Projects Available",
+    "no_projects_found": "No Projects Found"
   },
   "projects": {
     "property_listing": "Property Listing",

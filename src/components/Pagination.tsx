@@ -1,5 +1,5 @@
 "use client";
-import {translate} from "@/helpers/translate";
+import {useTranslations} from "next-intl";
 import React, {useState} from "react";
 import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
 import {twMerge} from "tailwind-merge";
@@ -19,6 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   const [pageRange] = useState(3); // Number of visible page buttons
 
+  const t = useTranslations();
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return; // Prevent invalid page navigation
     onPageChange(page);
@@ -27,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const renderPageNumbers = () => {
     const pages = [];
     let startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
-    let endPage = Math.min(totalPages, startPage + pageRange - 1);
+    const endPage = Math.min(totalPages, startPage + pageRange - 1);
 
     if (endPage - startPage + 1 < pageRange) {
       startPage = Math.max(1, endPage - pageRange + 1);
@@ -44,7 +45,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
       >
         <FiChevronLeft className='size-[1.3rem]' />
-        {translate("common.previous")}
+        {t("common.previous")}
       </button>
     );
 
@@ -117,7 +118,7 @@ const Pagination: React.FC<PaginationProps> = ({
             : "hover:bg-colors-primary-colors-100"
         }`}
       >
-        {translate("common.next")}
+        {t("common.next")}
 
         <FiChevronRight className='size-[1.3rem]' />
       </button>

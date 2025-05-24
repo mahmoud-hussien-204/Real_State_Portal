@@ -28,9 +28,6 @@ const MapCenterAdjuster = ({exploreData}: {exploreData: IExploreResponse[]}) => 
 
 const ExploreMap = ({exploreData}: {exploreData: IExploreResponse[]}) => {
   const [selectedProject, setSelectedProject] = useState<IExploreResponse | null>(null);
-
-
-
   // Default coordinates (Dubai)
   const defaultCenter: [number, number] = [25.2048, 55.2708];
 

@@ -41,10 +41,18 @@ const AppContextProvider = ({children}: Required<React.PropsWithChildren>) => {
 
   // Use useEffect to access localStorage after component mounts (client-side only)
   useEffect(() => {
-    // Now we're safely in the browser environment
-    const userData = localStorage.getItem("userData");
-    if (userData) {
-      setUser(JSON.parse(userData));
+    try {
+      // Now we're safely in the browser environment
+      const userData = localStorage.getItem("userData");
+      if (userData && userData.trim() !== "") {
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+      }
+    } catch (error) {
+      console.error("Error parsing userData from localStorage:", error);
+      // Clear the corrupted data
+      localStorage.removeItem("userData");
+      setUser(null);
     }
   }, []);
 
@@ -56,6 +64,8 @@ const AppContextProvider = ({children}: Required<React.PropsWithChildren>) => {
         return res.data;
       }),
     staleTime: 1000 * 60 * 60 * 24, // 1 day
+    retry: 3,
+    refetchOnWindowFocus: false,
   });
 
   return <appContext.Provider value={{countries, user, setUser}}>{children}</appContext.Provider>;

@@ -15,6 +15,7 @@ import {useTranslations} from "next-intl";
 import {Autoplay, FreeMode, Navigation} from "swiper/modules";
 
 import "swiper/css/free-mode";
+import Image from "next/image";
 
 const Partners = () => {
   const t = useTranslations();
@@ -22,7 +23,7 @@ const Partners = () => {
   const {refSwiper, setRefSwiper} = useSwiperRef();
 
   return (
-    <section className='bg-colors-grey-colors-150 overflow-x-hidden py-4.5rem'>
+    <section className='overflow-x-hidden·bg-colors-grey-colors-150'>
       <Container>
         <SectionTitle
           subtitle={t("home.our_partners")}
@@ -53,7 +54,7 @@ const Partners = () => {
             slides={fakeDataPartners}
             render={(partner) => (
               <div className=''>
-                <img src={partner.image} alt={partner.name} />
+                <Image width={500} height={200} src={partner.image} alt={partner.name} />
               </div>
             )}
             className='!overflow-visible'

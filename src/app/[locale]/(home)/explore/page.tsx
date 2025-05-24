@@ -56,7 +56,13 @@ const ExplorePage = () => {
       <PageHeroSection title='page_hero_title.explore' pageName='page_title.explore' />
       <FormProvider {...form}>
         <ExploreFilterHeader refetch={refetch} isFetchingExplore={isFetchingExplore} />
-        <ExploreMap exploreData={exploreData} />
+        {exploreData.length === 0 ? (
+          <div className='mx-auto my-4 text-center'>
+            <h2 className='text-2xl font-bold text-gray-700'>No results found</h2>
+          </div>
+        ) : (
+          <ExploreMap exploreData={exploreData} />
+        )}
       </FormProvider>
       <FindProjectSection />
     </>

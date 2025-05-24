@@ -1,12 +1,8 @@
-'use client';
+"use client";
 
 import PageHeroSection from "@/components/PageHeroSection";
 
 import FilterHeader from "./components/OffersFilterHeader";
-
-import TopRelatedProjects from "../_components/TopRelatedProjects";
-
-import Partners from "../_components/Partners";
 
 import OfferListingSection from "./components/OfferListingSection";
 import {useEffect} from "react";
@@ -17,6 +13,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {IOffersForm} from "./types";
 import useQuery from "@/hooks/useQuery";
 import {apiGetOffers} from "./_api";
+import FeaturedProjects from "../_components/FeaturedProjects";
 
 const schema = Yup.object().shape({
   country_id: Yup.number().min(1, "country does not exist"),
@@ -70,8 +67,8 @@ const OffersPage = () => {
           offersCount={offersCount}
         />
       </FormProvider>
-      <TopRelatedProjects />
-      <Partners />
+      <FeaturedProjects />
+      {/* <Partners /> */}
     </>
   );
 };

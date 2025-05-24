@@ -1,8 +1,10 @@
+"use client";
+
 import {useTranslations} from "next-intl";
 import {GoChevronRight} from "react-icons/go";
 import {IoMdHome} from "react-icons/io";
 import Container from "./Container";
-import {Paths, translate} from "@/helpers/translate";
+import {Paths, useTranslate} from "@/helpers/translate";
 
 type PageHeroSectionProps = {
   title: Paths<IntlMessages>;
@@ -10,6 +12,7 @@ type PageHeroSectionProps = {
 };
 const PageHeroSection = ({title, pageName}: PageHeroSectionProps) => {
   const t = useTranslations();
+  const translate = useTranslate();
   return (
     <section className='relative flex flex-col bg-colors-primary-colors-50'>
       <div className='bg-grid absolute inset-0 h-full' />
