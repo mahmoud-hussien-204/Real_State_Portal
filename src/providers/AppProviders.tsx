@@ -56,6 +56,8 @@ const AppContextProvider = ({children}: Required<React.PropsWithChildren>) => {
         return res.data;
       }),
     staleTime: 1000 * 60 * 60 * 24, // 1 day
+    retry: 3,
+    refetchOnWindowFocus: false,
   });
 
   return <appContext.Provider value={{countries, user, setUser}}>{children}</appContext.Provider>;

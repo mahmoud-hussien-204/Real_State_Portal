@@ -31,7 +31,7 @@ const Page = () => {
       <div className='relative h-[24.625rem]'>
         <Image src='/ads2.png' alt='ads' fill className='object-cover' />
       </div>
-      <LatestProjects />
+      {/* <LatestProjects /> */}
       <LatestAchievements />
       <div className='relative h-[24.625rem]'>
         <Image src='/ads3.png' alt='ads' fill className='object-cover' />

@@ -17,4 +17,4 @@ export const apiRegister = (body: IRegisterForm) =>
   });
 
 export const apiGetCountries = () =>
-  InterceptorHelper.intercept<{data: ICountry[]}>("home/filters/countries");
+  InterceptorHelper.intercept<{data: ICountry[]}>("home/filters/countries?per_page=244");

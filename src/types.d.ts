@@ -111,6 +111,13 @@ interface ICategory {
   country_id: string | null;
   color: string;
   is_active: boolean;
+  sub: {
+    id: string;
+    name_ar: string;
+    name_en: string;
+    color: string;
+    parent_id: number;
+  }[];
 }
 
 interface IUnit {
