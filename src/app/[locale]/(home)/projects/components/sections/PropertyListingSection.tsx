@@ -3,8 +3,7 @@ import Container from "@/components/Container";
 import SectionHeader from "@/components/SectionHeader";
 import PropertyFilters from "./PropertyFilters";
 import Image from "next/image";
-import dreamHomeImage from "@/app/assets/dream-home.png";
-// import Pagination from "@/components/Pagination";
+
 import {FormProvider, useForm} from "react-hook-form";
 import {IProjectsFiltersForm} from "../../_interfaces";
 import ProjectItem from "@/components/ProjectItem";
@@ -13,6 +12,7 @@ import {apiGetProjects} from "../../_api";
 import Spinner from "@/components/ui/spinner";
 import {useEffect} from "react";
 import {useSearchParams} from "next/navigation";
+import {useProjectsPageBanners} from "../../../hooks/useProjectsPageBanners";
 
 const PropertyListingSection = () => {
   const searchParams = useSearchParams();
@@ -36,9 +36,9 @@ const PropertyListingSection = () => {
     enabled: false,
   });
 
+  const {banners, isFetching: isFetchingBanners} = useProjectsPageBanners();
+  const displayedBanners: IBanner[] = [...(banners?.["1"] || []), ...(banners?.["2"] || [])];
   const projects = data?.data || [];
-  // const totalPages = data?.meta?.total || 0;
-  // const currentPage = data?.meta?.current_page || 1;
 
   useEffect(() => {
     refetch();
@@ -58,7 +58,24 @@ const PropertyListingSection = () => {
           <div className='mt-[2.5rem] flex flex-wrap items-start gap-[2rem] lg:flex-nowrap'>
             <div className='w-full lg:w-[21rem]'>
               <PropertyFilters refetch={refetch} />
-              <Image src={dreamHomeImage} alt='' className='mt-[1.5rem] hidden w-full lg:block' />
+              {isFetchingBanners ? (
+                <Spinner />
+              ) : (
+                <div className='hidden w-full gap-4 lg:mt-6 lg:flex lg:flex-col'>
+                  {displayedBanners?.map((banner, index) => (
+                    <Image
+                      key={`banner-${index}`}
+                      loading='lazy'
+                      src={banner.banner}
+                      alt={`Banner ${index + 1}`}
+                      className='w-full rounded-lg object-cover'
+                      width={500}
+                      height={300}
+                    />
+                  ))}
+                </div>
+              )}
+              {/* <Image src={dreamHomeImage} alt='' className='mt-[1.5rem] hidden w-full lg:block' /> */}
             </div>
             {isFetching ? (
               <Spinner />

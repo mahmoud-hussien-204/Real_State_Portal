@@ -4,20 +4,20 @@ import AreaAcrossTheTown from "./_components/AreaAcrossTheTown";
 
 import ExclusiveProjectOffers from "./_components/ExclusiveProjectOffers";
 
-// import LatestAchievements from "./_components/LatestAchievements";
-
 import HeroSection from "./_components/HeroSection";
 import FeaturedProjects from "./_components/FeaturedProjects";
 import {dehydrate, HydrationBoundary} from "@tanstack/react-query";
 import {getQueryClient} from "../get-query-client";
 import {
+  apiGetContactUsBanners,
   apiGetFeaturedProjects,
   apiGetGalleryProjects,
   apiGetHomeBanners,
   apiGetPopularProjects,
+  apiGetProjectsBanners,
 } from "./_api";
 import {apiGetOffers} from "./offers/_api";
-import BannerSection from "./_components/BannersSection";
+import HomePageBannerSection from "./_components/HomePageBannerSection";
 
 const Page = async () => {
   const queryClient = getQueryClient();
@@ -52,17 +52,29 @@ const Page = async () => {
     queryFn: () => apiGetOffers(),
   });
 
+  /** Prefetch projects banners */
+  await queryClient.prefetchQuery({
+    queryKey: ["projects-banners"],
+    queryFn: () => apiGetProjectsBanners(),
+  });
+
+  /** Prefetch contact-us banners */
+  await queryClient.prefetchQuery({
+    queryKey: ["contact-us-banners"],
+    queryFn: () => apiGetContactUsBanners(),
+  });
+
   return (
     <div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <HeroSection />
-        <BannerSection section='1' />
+        <HomePageBannerSection section='1' />
         <FeaturedProjects />
-        <BannerSection section='2' />
+        <HomePageBannerSection section='2' />
         <LatestProjects />
         <AreaAcrossTheTown />
         <ExclusiveProjectOffers />
-        <BannerSection section='3' />
+        <HomePageBannerSection section='3' />
       </HydrationBoundary>
     </div>
   );
