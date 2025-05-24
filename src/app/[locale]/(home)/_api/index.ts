@@ -78,7 +78,7 @@ export const apiGetProjectDetailsBanners = () => {
   );
 };
 
-export const apiGetProductsBanners = () => {
+export const apiGetProjectsBanners = () => {
   return InterceptorHelper.intercept<IResponse<Record<string, IBanner[]>>>("home/banners/products");
 };
 

@@ -2,20 +2,18 @@
 
 import Spinner from "@/components/ui/spinner";
 import Container from "@/components/Container";
-import {useHomePageBanners} from "../hooks/useHomePageBanners";
 import Swiper, {useSwiperRef} from "@/components/Swiper";
 import SwiperNavigation from "@/components/SwiperNavigation";
 import Image from "next/image";
 import {Autoplay, FreeMode, Navigation} from "swiper/modules";
 
 interface IBannerSectionProps {
-  section: "1" | "2" | "3";
+  bannersData: IBanner[];
+  isFetching: boolean;
 }
 
-function BannerSection({section}: IBannerSectionProps) {
-  const {banners, isFetching} = useHomePageBanners();
+function BannerSection({bannersData, isFetching}: IBannerSectionProps) {
   const {refSwiper, setRefSwiper} = useSwiperRef();
-  const bannersData: IBanner[] = banners[section] || [];
 
   return (
     <section>

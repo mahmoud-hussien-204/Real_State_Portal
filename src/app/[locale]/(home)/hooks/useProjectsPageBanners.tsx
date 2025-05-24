@@ -1,12 +1,12 @@
 "use client";
 
 import useQuery from "@/hooks/useQuery";
-import {apiGetProductsBanners} from "../_api";
+import {apiGetProjectsBanners} from "../_api";
 
-export function useProductsPageBanners() {
+export function useProjectsPageBanners() {
   const {data, isFetching} = useQuery({
     queryKey: ["products-page-banners"],
-    queryFn: apiGetProductsBanners,
+    queryFn: apiGetProjectsBanners,
     refetchOnWindowFocus: false,
   });
 
