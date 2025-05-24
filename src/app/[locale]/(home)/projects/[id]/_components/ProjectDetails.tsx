@@ -27,7 +27,6 @@ import {useLocale} from "next-intl";
 
 function ProjectDetails({projectId}: {projectId: string | number}) {
   const locale = useLocale();
-  console.log("Project: ", projectId);
   const {data} = useQuery({
     queryKey: ["project"],
     queryFn: () => apiGetProjectDetails("project-test2-19363"),
