@@ -55,9 +55,8 @@ const schema = Yup.object().shape({
 
 const RegisterPage = () => {
   const t = useTranslations();
-    const pathname = usePathname();
-
-    const router = useRouter();
+  const pathname = usePathname();
+  const router = useRouter();
 
     const {
       setValue,

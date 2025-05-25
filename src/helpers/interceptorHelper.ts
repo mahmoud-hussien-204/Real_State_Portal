@@ -18,7 +18,6 @@ export default class InterceptorHelper {
       ...options.headers,
     };
 
-    console.log("headers", options.headers);
 
     // delete content type if the body is an object (eg. FormData)
     if (typeof options.body === "object") {

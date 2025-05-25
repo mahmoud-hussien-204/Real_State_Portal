@@ -6,7 +6,6 @@ import {useTranslations} from "next-intl";
 
 import {Link, usePathname} from "@/i18n/routing";
 
-
 import ImageHero from "@/app/assets/hero.png";
 
 import IconHome from "@/icons/IconHome";
