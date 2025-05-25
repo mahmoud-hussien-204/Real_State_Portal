@@ -24,10 +24,11 @@ import SectionLocation from "./SectionLocation";
 import useQuery from "@/hooks/useQuery";
 import {apiGetProjectDetails} from "../../_api";
 import {useLocale} from "next-intl";
+import placeholder from "@/app/assets/project-details/placeholder.webp";
 
 function ProjectDetails({projectId}: {projectId: string | number}) {
   const locale = useLocale();
-  const {data} = useQuery({
+  const {data, isFetching} = useQuery({
     queryKey: ["project"],
     queryFn: () => apiGetProjectDetails("project-test2-19363"),
   });
@@ -44,7 +45,7 @@ function ProjectDetails({projectId}: {projectId: string | number}) {
           {/* {locale === "en" ? project?.address_en : project?.address_ar} */}
         </p>
 
-        <ProjectGallery images={project?.images || []} />
+        <ProjectGallery images={project?.images || [placeholder.src]} isLoading={isFetching} />
         <Filtration />
         <div className='mt-1.25rem flex flex-col gap-1.25rem'>
           <section
