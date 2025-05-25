@@ -58,35 +58,35 @@ const RegisterPage = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-    const {
-      setValue,
-      register,
-      handleSubmit,
-      formState: {errors},
-    } = useForm<IRegisterForm>({
-      resolver: yupResolver(schema),
-      mode: "all",
-      defaultValues: {
-        type: "agent",
+  const {
+    setValue,
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<IRegisterForm>({
+    resolver: yupResolver(schema),
+    mode: "all",
+    defaultValues: {
+      type: "agent",
+    },
+  });
+
+  const {mutate, isPending} = useMutation({
+    mutationFn: apiRegister,
+  });
+
+  const {countries, setUser} = useAppProvider();
+
+  const onSubmit = handleSubmit((data) => {
+    mutate(data, {
+      onSuccess: (response) => {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userData", JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        router.replace("/auth/verify");
       },
     });
-
-    const {mutate, isPending} = useMutation({
-      mutationFn: apiRegister,
-    });
-
-    const {countries, setUser} = useAppProvider();
-
-    const onSubmit = handleSubmit((data) => {
-      mutate(data, {
-        onSuccess: (response) => {
-          localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userData", JSON.stringify(response.data.user));
-          setUser(response.data.user);
-          router.replace("/auth/verify");
-        },
-      });
-    });
+  });
 
   return (
     <>
