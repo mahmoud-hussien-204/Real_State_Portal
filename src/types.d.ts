@@ -8,6 +8,10 @@ type IArMessages = typeof import("../messages/ar.json");
 
 declare interface IntlMessages extends IEnMessages, IArMessages {}
 
+interface ISvgIconProps {
+  svgProps?: import("react").SVGProps<SVGSVGElement>;
+  pathProps?: import("react").SVGProps<SVGPathElement>;
+}
 interface ISVGProps {
   svgProps?: import("react").SVGProps<SVGSVGElement>;
   pathProps?: import("react").SVGProps<SVGPathElement>;

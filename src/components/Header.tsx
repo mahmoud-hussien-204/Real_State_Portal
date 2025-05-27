@@ -22,12 +22,16 @@ import MobileMenu from "./MobileMenu";
 
 import useAppProvider from "@/hooks/useAppProvider";
 import Button from "./Button";
+import IconLogout from "@/icons/IconLogout";
+import {useLogout} from "@/app/[locale]/auth/hooks/useLogout";
+import Spinner from "./ui/spinner";
 
 const Header = () => {
   const t = useTranslations();
 
   const {user} = useAppProvider();
 
+  const {logout, isLoggingOut} = useLogout();
   return (
     <header className='absolute start-0 top-2.5rem z-[9999] flex h-3.5rem w-full items-center'>
       <Container className='flex items-center justify-between'>
@@ -53,9 +57,22 @@ const Header = () => {
           </div>
 
           {user ? (
-            <Button className='hidden h-3.5rem w-[13.4rem] sm:flex'>
-              {t("common.hello")}, {user.name}
-            </Button>
+            <div className='flex items-center gap-1rem'>
+              <Button className='hidden h-3.5rem w-[13.4rem] sm:flex'>
+                {t("common.hello")}, {user.name.split(" ")[0]}!
+              </Button>
+
+              <Button onClick={() => logout({})} variant='secondary'>
+                {isLoggingOut ? (
+                  <Spinner />
+                ) : (
+                  <>
+                    <IconLogout />
+                    {t("common.logout")}{" "}
+                  </>
+                )}
+              </Button>
+            </div>
           ) : (
             <LinkButton href='/auth/login' className='hidden h-3.5rem w-[13.4rem] sm:flex'>
               <IconUser />

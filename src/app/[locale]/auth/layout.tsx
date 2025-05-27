@@ -6,8 +6,6 @@ import {useTranslations} from "next-intl";
 
 import {Link, usePathname} from "@/i18n/routing";
 
-import {AppHelper} from "@/helpers/appHelper";
-
 import ImageHero from "@/app/assets/hero.png";
 
 import IconHome from "@/icons/IconHome";
@@ -27,35 +25,6 @@ const AuthLayout = ({children}: IProps) => {
     <main className='grid min-h-screen grid-cols-1 md:grid-cols-2'>
       <div className='flex justify-center px-3rem py-3rem md:px-1rem lg:px-4rem'>
         <div className='max-w-[28rem] flex-1'>
-          <h1 className='text-center text-38 font-bold uppercase text-colors-grey-colors-1000'>
-            Welcome Back! 👋🏻
-          </h1>
-          <div className='mb-2.5rem mt-2rem flex h-3.5rem w-full items-center gap-0.94rem rounded-full bg-[#ECECEC]'>
-            <Link
-              href='/auth/login'
-              className={AppHelper.className(
-                "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
-                {
-                  "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
-                    pathname.includes("login"),
-                }
-              )}
-            >
-              {t("common.login")}
-            </Link>
-            <Link
-              href='/auth/register'
-              className={AppHelper.className(
-                "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
-                {
-                  "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
-                    pathname.includes("register"),
-                }
-              )}
-            >
-              {t("common.register")}
-            </Link>
-          </div>
           {children}
           {/* 
           <h6 className='mb-1.25rem mt-2.5rem text-center text-16 text-gray-1'>{t("common.or")}</h6>

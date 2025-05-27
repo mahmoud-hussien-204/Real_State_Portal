@@ -18,3 +18,15 @@ export const apiRegister = (body: IRegisterForm) =>
 
 export const apiGetCountries = () =>
   InterceptorHelper.intercept<{data: ICountry[]}>("home/filters/countries?per_page=244");
+
+export const apiVerifyAccount = (body: {otp: string}, params: {userId: string}) =>
+  InterceptorHelper.intercept<IAuthResponse>(`auth/verify-account/${params.userId}`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+
+export function apiLogout() {
+  return InterceptorHelper.intercept("auth/logout", {
+    method: "POST",
+  });
+}

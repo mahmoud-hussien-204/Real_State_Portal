@@ -16,7 +16,7 @@ function BannerSection({bannersData, isFetching}: IBannerSectionProps) {
   const {refSwiper, setRefSwiper} = useSwiperRef();
 
   return (
-    <section>
+    <section className='relative w-full overflow-x-auto'>
       {isFetching ? (
         <Container className='text-center'>
           <Spinner />

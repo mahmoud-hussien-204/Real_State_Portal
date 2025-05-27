@@ -18,7 +18,7 @@ import useAppProvider from "@/hooks/useAppProvider";
 
 import useMutation from "@/hooks/useMutation";
 
-import {useRouter} from "@/i18n/routing";
+import {Link, useRouter} from "@/i18n/routing";
 
 import {yupResolver} from "@hookform/resolvers/yup";
 
@@ -37,6 +37,7 @@ import {FaPhoneAlt} from "react-icons/fa";
 import {PiFlagFill} from "react-icons/pi";
 
 import * as Yup from "yup";
+import {usePathname} from "next/navigation";
 
 const schema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -54,7 +55,7 @@ const schema = Yup.object().shape({
 
 const RegisterPage = () => {
   const t = useTranslations();
-
+  const pathname = usePathname();
   const router = useRouter();
 
   const {
@@ -82,109 +83,141 @@ const RegisterPage = () => {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         setUser(response.data.user);
-        router.replace("/");
+        router.replace("/auth/verify");
       },
     });
   });
 
   return (
-    <form className='' onSubmit={onSubmit}>
-      <div className='flex items-center gap-1rem'>
-        <div className='flex-1'>
-          <LabeledInput
-            wrapperClassName='w-full'
-            placeholder={t("contact_us.full_name")}
-            icon={
-              <BsFillPersonFill className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
+    <>
+      <h1 className='text-center text-38 font-bold uppercase text-colors-grey-colors-1000'>
+        Welcome Back! 👋🏻
+      </h1>
+      <div className='mb-2.5rem mt-2rem flex h-3.5rem w-full items-center gap-0.94rem rounded-full bg-[#ECECEC]'>
+        <Link
+          href='/auth/login'
+          className={AppHelper.className(
+            "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
+            {
+              "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
+                pathname.includes("login"),
             }
-            className='ps-[3rem]'
-            {...register("name")}
+          )}
+        >
+          {t("common.login")}
+        </Link>
+        <Link
+          href='/auth/register'
+          className={AppHelper.className(
+            "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
+            {
+              "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
+                pathname.includes("register"),
+            }
+          )}
+        >
+          {t("common.register")}
+        </Link>
+      </div>
+
+      <form className='' onSubmit={onSubmit}>
+        <div className='flex items-center gap-1rem'>
+          <div className='flex-1'>
+            <LabeledInput
+              wrapperClassName='w-full'
+              placeholder={t("contact_us.full_name")}
+              icon={
+                <BsFillPersonFill className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
+              }
+              className='ps-[3rem]'
+              {...register("name")}
+            />
+          </div>
+          <SelectInput
+            defaultValue='agent'
+            onValueChange={(value) => {
+              setValue("type", value as "investor" | "agent", {
+                shouldValidate: true,
+                shouldDirty: true,
+                shouldTouch: true,
+              });
+            }}
+            placeholder={t("common.type")}
+            options={[
+              {label: "Investor", value: "investor"},
+              {label: "Agent", value: "agent"},
+            ]}
+            icon={<BsFillPersonFill className='size-[1.2rem]' />}
+            className='max-w-10rem'
           />
         </div>
+        <ErrorMsg msg={errors.name?.message} />
+
         <SelectInput
-          defaultValue='agent'
           onValueChange={(value) => {
-            setValue("type", value as "investor" | "agent", {
+            setValue("country_id", +value, {
               shouldValidate: true,
               shouldDirty: true,
               shouldTouch: true,
             });
           }}
-          placeholder={t("common.type")}
-          options={[
-            {label: "Investor", value: "investor"},
-            {label: "Agent", value: "agent"},
-          ]}
-          icon={<BsFillPersonFill className='size-[1.2rem]' />}
-          className='max-w-10rem'
+          placeholder={t("common.country")}
+          // @ts-expect-error check it later
+          options={AppHelper.handleSelectBoxOptions(countries, "name_en", "id")}
+          icon={<PiFlagFill className='size-[1.2rem]' />}
+          className='mt-1.5rem flex-1'
         />
-      </div>
-      <ErrorMsg msg={errors.name?.message} />
+        <ErrorMsg msg={errors.country_id?.message} />
 
-      <SelectInput
-        onValueChange={(value) => {
-          setValue("country_id", +value, {
-            shouldValidate: true,
-            shouldDirty: true,
-            shouldTouch: true,
-          });
-        }}
-        placeholder={t("common.country")}
-        // @ts-expect-error check it later
-        options={AppHelper.handleSelectBoxOptions(countries, "name_en", "id")}
-        icon={<PiFlagFill className='size-[1.2rem]' />}
-        className='mt-1.5rem flex-1'
-      />
-      <ErrorMsg msg={errors.country_id?.message} />
+        <LabeledInput
+          wrapperClassName='w-full'
+          placeholder={t("common.phone")}
+          icon={
+            <FaPhoneAlt className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
+          }
+          className='mt-1.5rem ps-[3rem]'
+          {...register("phone")}
+        />
+        <ErrorMsg msg={errors.phone?.message} />
 
-      <LabeledInput
-        wrapperClassName='w-full'
-        placeholder={t("common.phone")}
-        icon={
-          <FaPhoneAlt className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
-        }
-        className='mt-1.5rem ps-[3rem]'
-        {...register("phone")}
-      />
-      <ErrorMsg msg={errors.phone?.message} />
+        <LabeledInput
+          wrapperClassName='w-full'
+          placeholder={t("common.your_email_address")}
+          icon={
+            <IoMailSharp className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
+          }
+          className='mt-1.5rem ps-[3rem]'
+          {...register("email")}
+        />
+        <ErrorMsg msg={errors.email?.message} />
 
-      <LabeledInput
-        wrapperClassName='w-full'
-        placeholder={t("common.your_email_address")}
-        icon={
-          <IoMailSharp className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
-        }
-        className='mt-1.5rem ps-[3rem]'
-        {...register("email")}
-      />
-      <ErrorMsg msg={errors.email?.message} />
+        <PasswordInput
+          className='mt-1.5rem w-full'
+          placeholder={t("common.password")}
+          {...register("password")}
+        />
+        <ErrorMsg msg={errors.password?.message} />
 
-      <PasswordInput
-        className='mt-1.5rem w-full'
-        placeholder={t("common.password")}
-        {...register("password")}
-      />
-      <ErrorMsg msg={errors.password?.message} />
+        <PasswordInput
+          className='mt-1.5rem w-full'
+          placeholder={t("common.confirm_password")}
+          {...register("password_confirmation")}
+        />
+        <ErrorMsg msg={errors.password_confirmation?.message} />
 
-      <PasswordInput
-        className='mt-1.5rem w-full'
-        placeholder={t("common.confirm_password")}
-        {...register("password_confirmation")}
-      />
-      <ErrorMsg msg={errors.password_confirmation?.message} />
-
-      <Button
-        type='submit'
-        className='mt-[2.5rem] h-3.25rem w-full rounded-full'
-        variant='secondary'
-        isLoading={isPending}
-      >
-        {t("common.register")}
-        <div className='flex size-[1.3rem] flex-shrink-0 items-center justify-center rounded-full bg-white'>
-          <ArrowRight className='size-[1rem] text-colors-grey-colors-1000' />
-        </div>
-      </Button>
-    </form>
+        <Button
+          type='submit'
+          className='mt-[2.5rem] h-3.25rem w-full rounded-full'
+          variant='secondary'
+          isLoading={isPending}
+        >
+          {t("common.register")}
+          <div className='flex size-[1.3rem] flex-shrink-0 items-center justify-center rounded-full bg-white'>
+            <ArrowRight className='size-[1rem] text-colors-grey-colors-1000' />
+          </div>
+        </Button>
+      </form>
+    </>
   );
 };
 

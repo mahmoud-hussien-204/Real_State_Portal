@@ -23,6 +23,8 @@
     "remember_me": "Remember Me",
     "forgot_password": "Forgot Password?",
     "your_email_address": "Your Email Address",
+    "your_otp": "Your OTP",
+    "enter_your_otp": "Enter Your OTP",
     "password": "Password",
     "confirm_password": "Confirm Password",
     "dont_have_an_account": "Don't have an account?",
@@ -103,7 +105,10 @@
     "project_documentation": "Project Documentation",
     "amenties": "Amenties",
     "price_negative_error": "Price must be higher than 0",
-    "price_range_error": "From price must be lower than To price"
+    "price_range_error": "From price must be lower than To price",
+    "verify_account": "Verify Account",
+    "verify_your_account": "Verify Your Account",
+    "logout": "Logout"
   },
   "footer": {
     "create_account": "Create Account",

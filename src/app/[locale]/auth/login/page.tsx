@@ -26,8 +26,10 @@ import {apiLogin} from "@/api";
 
 import Button from "@/components/Button";
 
-import {useRouter} from "@/i18n/routing";
+import {Link, useRouter} from "@/i18n/routing";
 import useAppProvider from "@/hooks/useAppProvider";
+import {AppHelper} from "@/helpers/appHelper";
+import {usePathname} from "next/navigation";
 
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -36,6 +38,7 @@ const schema = Yup.object().shape({
 
 const LoginPage = () => {
   const t = useTranslations();
+  const pathname = usePathname();
 
   const router = useRouter();
 
@@ -67,48 +70,79 @@ const LoginPage = () => {
   });
 
   return (
-    <form className='w-full' onSubmit={onSubmit}>
-      <LabeledInput
-        wrapperClassName='w-full'
-        placeholder={t("common.your_email_address")}
-        icon={
-          <BsFillPersonFill className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
-        }
-        className='ps-[3rem]'
-        {...register("username")}
-      />
-
-      <ErrorMsg msg={errors.username?.message} />
-
-      <PasswordInput
-        className='mt-[1.5rem] w-full'
-        placeholder={t("common.password")}
-        {...register("password")}
-      />
-      <ErrorMsg msg={errors.password?.message} />
-
-      <div className='mt-[2rem] flex w-full justify-between'>
-        <div className='flex items-center gap-2'>
-          <Checkbox />
-          <span className='text-sm text-colors-grey-colors-800'>{t("common.remember_me")}</span>
-        </div>
-        <div className='font-medium text-colors-grey-colors-1000'>
-          {t("common.forgot_password")}
-        </div>
+    <>
+      <h1 className='text-center text-38 font-bold uppercase text-colors-grey-colors-1000'>
+        Welcome Back! 👋🏻
+      </h1>
+      <div className='mb-2.5rem mt-2rem flex h-3.5rem w-full items-center gap-0.94rem rounded-full bg-[#ECECEC]'>
+        <Link
+          href='/auth/login'
+          className={AppHelper.className(
+            "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
+            {
+              "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
+                pathname.includes("login"),
+            }
+          )}
+        >
+          {t("common.login")}
+        </Link>
+        <Link
+          href='/auth/register'
+          className={AppHelper.className(
+            "flex h-full flex-1 items-center justify-center text-center text-20 font-medium",
+            {
+              "rounded-inherit bg-colors-primary-colors-500 font-bold text-white":
+                pathname.includes("register"),
+            }
+          )}
+        >
+          {t("common.register")}
+        </Link>
       </div>
+      <form className='w-full' onSubmit={onSubmit}>
+        <LabeledInput
+          wrapperClassName='w-full'
+          placeholder={t("common.your_email_address")}
+          icon={
+            <BsFillPersonFill className='absolute left-4 top-1/2 size-[1.2rem] -translate-y-1/2 text-colors-grey-colors-800' />
+          }
+          className='ps-[3rem]'
+          {...register("username")}
+        />
 
-      <Button
-        type='submit'
-        className='mt-[2.5rem] h-3.25rem w-full rounded-full'
-        variant='secondary'
-        isLoading={isPending}
-      >
-        {t("common.login")}
-        <div className='flex size-[1.3rem] flex-shrink-0 items-center justify-center rounded-full bg-white'>
-          <ArrowRight className='size-[1rem] text-colors-grey-colors-1000' />
+        <ErrorMsg msg={errors.username?.message} />
+
+        <PasswordInput
+          className='mt-[1.5rem] w-full'
+          placeholder={t("common.password")}
+          {...register("password")}
+        />
+        <ErrorMsg msg={errors.password?.message} />
+
+        <div className='mt-[2rem] flex w-full justify-between'>
+          <div className='flex items-center gap-2'>
+            <Checkbox />
+            <span className='text-sm text-colors-grey-colors-800'>{t("common.remember_me")}</span>
+          </div>
+          <div className='font-medium text-colors-grey-colors-1000'>
+            {t("common.forgot_password")}
+          </div>
         </div>
-      </Button>
-    </form>
+
+        <Button
+          type='submit'
+          className='mt-[2.5rem] h-3.25rem w-full rounded-full'
+          variant='secondary'
+          isLoading={isPending}
+        >
+          {t("common.login")}
+          <div className='flex size-[1.3rem] flex-shrink-0 items-center justify-center rounded-full bg-white'>
+            <ArrowRight className='size-[1rem] text-colors-grey-colors-1000' />
+          </div>
+        </Button>
+      </form>
+    </>
   );
 };
 
