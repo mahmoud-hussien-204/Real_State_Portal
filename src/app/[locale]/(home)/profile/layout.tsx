@@ -1,16 +1,16 @@
 "use client";
 
 import {useTranslations} from "next-intl";
-import {usePathname} from "next/navigation";
 import Container from "@/components/Container";
 import {AppHelper} from "@/helpers/appHelper";
-import {Link} from "@/i18n/routing";
+import {Link, usePathname} from "@/i18n/routing";
 import {User} from "lucide-react";
 import {RiLockLine} from "react-icons/ri";
 import {MdFavorite, MdHistory} from "react-icons/md";
 
 const ProfileLayout = ({children}: {children: React.ReactNode}) => {
   const t = useTranslations();
+
   const pathname = usePathname();
 
   const sidebarLinks = [
@@ -37,21 +37,19 @@ const ProfileLayout = ({children}: {children: React.ReactNode}) => {
   ];
 
   return (
-    <Container className='py-24'>
+    <Container className='mt-10rem'>
       <div className='flex gap-8'>
         {/* Sidebar */}
-        <aside className='w-64 shrink-0'>
-          <nav className='flex flex-col gap-2'>
+        <aside className='sticky top-10rem min-h-[calc(100vh-10rem)] w-64 shrink-0 rounded-lg bg-colors-grey-colors-150 py-2rem'>
+          <nav className='flex flex-col'>
             {sidebarLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={AppHelper.className(
-                  "flex items-center gap-3 rounded-lg px-4 py-3 transition-colors",
+                  "flex items-center gap-3 px-1.5rem py-1rem transition-colors hover:bg-white",
                   {
-                    "bg-colors-primary-colors-50 text-colors-primary-colors-600":
-                      pathname === link.href,
-                    "hover:bg-colors-grey-colors-50": pathname !== link.href,
+                    "!bg-white text-primary": pathname === link.href,
                   }
                 )}
               >

@@ -1,6 +1,7 @@
 import {AppHelper} from "@/helpers/appHelper";
 import InterceptorHelper from "@/helpers/interceptorHelper";
 import {IOffersForm} from "../offers/types";
+import {IBlog} from "../_interfaces";
 
 export const apiGetFooterData = () => {
   return InterceptorHelper.intercept<IResponse<{key: string; value: string}[]>>("home/footer", {
@@ -96,4 +97,10 @@ export const apiGetContactUsBanners = () => {
   return InterceptorHelper.intercept<IResponse<Record<string, IBanner[]>>>(
     "home/banners/contact_us"
   );
+};
+
+export const apiGetBlogs = () => {
+  return InterceptorHelper.intercept<IResponse<IBlog[]>>("home/blogs", {
+    method: "GET",
+  });
 };

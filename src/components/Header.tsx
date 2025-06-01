@@ -25,7 +25,7 @@ import Button from "./Button";
 import IconLogout from "@/icons/IconLogout";
 import {useLogout} from "@/app/[locale]/auth/hooks/useLogout";
 import Spinner from "./ui/spinner";
-import {ChevronDown} from "lucide-react";
+import {ChevronDown, User} from "lucide-react";
 import {useState, useRef} from "react";
 import {useOutsideClick} from "@/hooks/useOutsideClick";
 
@@ -35,7 +35,9 @@ const Header = () => {
   const {user} = useAppProvider();
 
   const {logout, isLoggingOut} = useLogout();
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(dropdownRef, () => setIsDropdownOpen(false));
@@ -79,15 +81,17 @@ const Header = () => {
                 <div className='absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5'>
                   <Link
                     href='/profile'
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                    className='flex w-full items-center gap-0.5rem px-4 py-2 text-gray-700 hover:bg-gray-100'
                   >
+                    <User size={16} />
                     {t("common.profile")}
                   </Link>
                   <button
                     onClick={() => logout({})}
-                    className='block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100'
+                    className='flex w-full items-center gap-0.5rem px-4 py-2 text-gray-700 hover:bg-gray-100'
                   >
-                    {isLoggingOut ? <Spinner /> : t("common.logout")}
+                    {isLoggingOut ? <Spinner className='!loading-xs mx-0' /> : <IconLogout />}{" "}
+                    {t("common.logout")}
                   </button>
                 </div>
               )}
