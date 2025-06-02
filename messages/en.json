@@ -15,7 +15,8 @@
     "explore": "<span>Explore</span> Page",
     "offers": "<span>Offers</span> Page",
     "contact_us": "<span>Contact Us</span> Page",
-    "blogs": "<span>Blogs</span> Page"
+    "blogs": "<span>Blogs</span> Page",
+    "blog_details": "<span>Blog</span> Details"
   },
   "common": {
     "empty_str": "",
@@ -122,7 +123,7 @@
     "info": "Profile Info",
     "security": "Security",
     "favorites": "Favorites",
-    "history": "Browsing History"
+    "browsing_history": "Browsing History"
   },
   "footer": {
     "create_account": "Create Account",

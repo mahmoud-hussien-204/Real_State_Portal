@@ -113,7 +113,7 @@ export default function ProfilePage() {
         />
         <ErrorMsg msg={errors.phone?.message} />
 
-        <div className='relative space-y-2'>
+        <div className='space-y-2'>
           <SelectInput
             onValueChange={(value) => {
               setValue("country_id", +value, {

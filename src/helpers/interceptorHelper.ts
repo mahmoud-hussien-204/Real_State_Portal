@@ -46,6 +46,11 @@ export default class InterceptorHelper {
           message.forEach((msg) => toast.error(msg));
         } else {
           toast.error(message);
+
+          if (message == "Unauthenticated.") {
+            localStorage.removeItem("userData");
+            window.location.href = "/auth/login";
+          }
         }
       }
 

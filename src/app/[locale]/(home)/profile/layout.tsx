@@ -31,7 +31,7 @@ const ProfileLayout = ({children}: {children: React.ReactNode}) => {
     },
     {
       href: "/profile/history",
-      label: t("profile.history"),
+      label: t("profile.browsing_history"),
       icon: <MdHistory className='h-5 w-5' />,
     },
   ];
@@ -40,16 +40,16 @@ const ProfileLayout = ({children}: {children: React.ReactNode}) => {
     <Container className='mt-10rem'>
       <div className='flex gap-8'>
         {/* Sidebar */}
-        <aside className='sticky top-10rem min-h-[calc(100vh-10rem)] w-64 shrink-0 rounded-lg bg-colors-grey-colors-150 py-2rem'>
-          <nav className='flex flex-col'>
+        <aside className='sticky top-10rem min-h-[calc(100vh-10rem)] w-64 shrink-0 rounded-lg bg-colors-grey-colors-150 px-1rem py-2rem'>
+          <nav className='flex flex-col gap-1rem'>
             {sidebarLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={AppHelper.className(
-                  "flex items-center gap-3 px-1.5rem py-1rem transition-colors hover:bg-white",
+                  "flex items-center gap-3 rounded-lg px-1rem py-0.75rem transition-colors duration-300 hover:bg-primary hover:text-white",
                   {
-                    "!bg-white text-primary": pathname === link.href,
+                    "!bg-primary text-white": pathname === link.href,
                   }
                 )}
               >
@@ -61,7 +61,9 @@ const ProfileLayout = ({children}: {children: React.ReactNode}) => {
         </aside>
 
         {/* Main Content */}
-        <main className='flex-1 rounded-xl bg-white p-6 shadow-sm'>{children}</main>
+        <main className='relative flex-1 overflow-hidden rounded-xl bg-white p-6 shadow-sm'>
+          {children}
+        </main>
       </div>
     </Container>
   );

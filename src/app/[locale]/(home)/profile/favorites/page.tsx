@@ -28,23 +28,9 @@ export default function FavoritesPage() {
         </div>
       )}
 
-      <div className='grid gap-6 sm:grid-cols-2'>
+      <div className='grid gap-6 lg:grid-cols-2'>
         {favorites.map((project) => (
-          <ProjectItem
-            key={project.id}
-            project={{
-              ...project,
-              city: "" as unknown as ICity,
-              country: "" as unknown as ICountry,
-              area: "" as unknown as IArea,
-              developer_name_en: project.card_developer.name_en,
-              developer_name_ar: project.card_developer.name_ar,
-              starting_price: project.starting_price as unknown as number,
-              offer: project.offer as unknown as string,
-              sale_status: project.sale_status as unknown as string,
-              image: project.images[0] as unknown as string,
-            }}
-          />
+          <ProjectItem key={project.id} project={project} direction='vertical' />
         ))}
       </div>
     </div>

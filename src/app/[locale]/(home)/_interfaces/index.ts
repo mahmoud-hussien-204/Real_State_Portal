@@ -67,4 +67,10 @@ export interface IUpdatePasswordForm {
   password_confirm: string;
 }
 
-export type IMyFavorite = IProject;
+export type IMyFavorite = IOffer;
+
+export interface IBrowsingHistory {
+  id: number;
+  project: IOffer;
+  created_at: string;
+}

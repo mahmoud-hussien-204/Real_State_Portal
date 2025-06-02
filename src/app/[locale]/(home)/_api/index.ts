@@ -1,7 +1,14 @@
 import {AppHelper} from "@/helpers/appHelper";
 import InterceptorHelper from "@/helpers/interceptorHelper";
 import {IOffersForm} from "../offers/types";
-import {IBlog, IMyFavorite, IProfile, IProfileForm, IUpdatePasswordForm} from "../_interfaces";
+import {
+  IBlog,
+  IBrowsingHistory,
+  IMyFavorite,
+  IProfile,
+  IProfileForm,
+  IUpdatePasswordForm,
+} from "../_interfaces";
 
 export const apiGetFooterData = () => {
   return InterceptorHelper.intercept<IResponse<{key: string; value: string}[]>>("home/footer", {
@@ -105,6 +112,12 @@ export const apiGetBlogs = () => {
   });
 };
 
+export const apiGetBlogDetails = (slug: string) => {
+  return InterceptorHelper.intercept<IResponse<IBlog>>(`home/blogs/${slug}`, {
+    method: "GET",
+  });
+};
+
 export const apiGetProfile = (id: string) => {
   return InterceptorHelper.intercept<IResponse<IProfile>>(`users/${id}`, {
     method: "GET",
@@ -127,6 +140,12 @@ export const apiUpdatePassword = (data: IUpdatePasswordForm) => {
 
 export const apiGetFavorites = () => {
   return InterceptorHelper.intercept<IResponse<IMyFavorite[]>>("users/profile/my-favorite", {
+    method: "GET",
+  });
+};
+
+export const apiGetBrowsingHistory = () => {
+  return InterceptorHelper.intercept<IResponse<IBrowsingHistory[]>>("users/browsing/projects", {
     method: "GET",
   });
 };
