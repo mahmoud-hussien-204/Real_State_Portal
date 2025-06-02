@@ -66,3 +66,5 @@ export interface IUpdatePasswordForm {
   password: string;
   password_confirm: string;
 }
+
+export type IMyFavorite = IProject;

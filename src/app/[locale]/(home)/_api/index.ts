@@ -1,7 +1,7 @@
 import {AppHelper} from "@/helpers/appHelper";
 import InterceptorHelper from "@/helpers/interceptorHelper";
 import {IOffersForm} from "../offers/types";
-import {IBlog, IProfile, IProfileForm, IUpdatePasswordForm} from "../_interfaces";
+import {IBlog, IMyFavorite, IProfile, IProfileForm, IUpdatePasswordForm} from "../_interfaces";
 
 export const apiGetFooterData = () => {
   return InterceptorHelper.intercept<IResponse<{key: string; value: string}[]>>("home/footer", {
@@ -122,5 +122,11 @@ export const apiUpdatePassword = (data: IUpdatePasswordForm) => {
   return InterceptorHelper.intercept<IResponse<IProfile>>("auth/change-password", {
     method: "POST",
     body: JSON.stringify(data),
+  });
+};
+
+export const apiGetFavorites = () => {
+  return InterceptorHelper.intercept<IResponse<IMyFavorite[]>>("users/profile/my-favorite", {
+    method: "GET",
   });
 };

@@ -1,52 +1,48 @@
 "use client";
 
-import {useTranslations} from "next-intl";
 import ProjectItem from "@/components/ProjectItem";
 
-// TODO: Replace with actual data fetching
-const mockFavorites = [
-  {
-    id: 1,
-    title: "Luxury Villa",
-    location: "Dubai Marina",
-    price: "1,500,000",
-    image: "/mock/project1.jpg",
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 250,
-  },
-  {
-    id: 2,
-    title: "Modern Apartment",
-    location: "Downtown",
-    price: "800,000",
-    image: "/mock/project2.jpg",
-    bedrooms: 2,
-    bathrooms: 2,
-    area: 120,
-  },
-];
+import {apiGetFavorites} from "../../_api";
+
+import useQuery from "@/hooks/useQuery";
+
+import Spinner from "@/components/ui/spinner";
 
 export default function FavoritesPage() {
-  const t = useTranslations();
+  const {data, isFetching} = useQuery({
+    queryKey: ["favorites"],
+    queryFn: apiGetFavorites,
+  });
+
+  const favorites = data?.data || [];
 
   return (
     <div>
-      <h1 className='mb-6 text-2xl font-bold'>My Favorites</h1>
+      <h1 className='mb-6 text-2xl font-bold'>
+        {isFetching && <Spinner className='!loading-sm' />} My Favorites
+      </h1>
+
+      {favorites.length === 0 && (
+        <div className='flex items-center justify-center'>
+          <p className='text-center text-xl text-gray-500'>No favorites found</p>
+        </div>
+      )}
+
       <div className='grid gap-6 sm:grid-cols-2'>
-        {mockFavorites.map((project) => (
+        {favorites.map((project) => (
           <ProjectItem
             key={project.id}
             project={{
-              id: project.id,
-              name_en: project.title,
-              image: project.image,
-              city: {name_en: project.location}, // Convert to ICity object
-              country: {name_en: "UAE"}, // Convert to ICountry object
-              price: project.price,
-              bedrooms: project.bedrooms,
-              bathrooms: project.bathrooms,
-              area: project.area,
+              ...project,
+              city: "" as unknown as ICity,
+              country: "" as unknown as ICountry,
+              area: "" as unknown as IArea,
+              developer_name_en: project.card_developer.name_en,
+              developer_name_ar: project.card_developer.name_ar,
+              starting_price: project.starting_price as unknown as number,
+              offer: project.offer as unknown as string,
+              sale_status: project.sale_status as unknown as string,
+              image: project.images[0] as unknown as string,
             }}
           />
         ))}

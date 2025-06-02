@@ -40,11 +40,13 @@ export default class InterceptorHelper {
 
     // handle response error
     if (!response.ok || responseJson.success == false) {
-      // if message is array
-      if (Array.isArray(message)) {
-        message.forEach((msg) => toast.error(msg));
-      } else {
-        toast.error(message);
+      if (typeof window !== "undefined") {
+        // if message is array
+        if (Array.isArray(message)) {
+          message.forEach((msg) => toast.error(msg));
+        } else {
+          toast.error(message);
+        }
       }
 
       return Promise.reject(responseJson);
