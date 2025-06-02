@@ -34,3 +34,35 @@ export interface IBlogImage {
 export interface IBlogProperties {
   alt: string;
 }
+
+export interface IProfile {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  type: string;
+  country_id: number;
+  is_active: number;
+  country: ICountry;
+  favorite: [];
+}
+
+export interface ICountry {
+  id: number;
+  name_ar: string;
+  name_en: string;
+  color: string;
+}
+
+export interface IProfileForm {
+  name: string;
+  email: string;
+  phone: string;
+  country_id: number;
+}
+
+export interface IUpdatePasswordForm {
+  old_password: string;
+  password: string;
+  password_confirm: string;
+}

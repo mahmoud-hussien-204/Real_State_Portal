@@ -111,7 +111,12 @@
     "verify_account": "Verify Account",
     "verify_your_account": "Verify Your Account",
     "logout": "Logout",
-    "profile": "Profile"
+    "profile": "Profile",
+    "profile_updated_successfully": "Profile updated successfully",
+    "password_updated_successfully": "Password updated successfully",
+    "old_password": "Old Password",
+    "password_confirm": "Confirm Password",
+    "security": "Security"
   },
   "profile": {
     "info": "Profile Info",

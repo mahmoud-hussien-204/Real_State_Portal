@@ -38,7 +38,13 @@ const SelectInput = ({
         {icon}
         <SelectValue placeholder={<span className='opacity-50'>{placeholder}</span>} />
       </SelectTrigger>
-      <SelectContent className='z-[10001] bg-white'>
+      <SelectContent
+        className='z-[9999] bg-white'
+        position='popper'
+        sideOffset={5}
+        align='start'
+        side='bottom'
+      >
         {options.length > 0 ? (
           options.map((option) => (
             <SelectItem

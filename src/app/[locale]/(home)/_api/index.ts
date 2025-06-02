@@ -1,7 +1,7 @@
 import {AppHelper} from "@/helpers/appHelper";
 import InterceptorHelper from "@/helpers/interceptorHelper";
 import {IOffersForm} from "../offers/types";
-import {IBlog} from "../_interfaces";
+import {IBlog, IProfile, IProfileForm, IUpdatePasswordForm} from "../_interfaces";
 
 export const apiGetFooterData = () => {
   return InterceptorHelper.intercept<IResponse<{key: string; value: string}[]>>("home/footer", {
@@ -102,5 +102,25 @@ export const apiGetContactUsBanners = () => {
 export const apiGetBlogs = () => {
   return InterceptorHelper.intercept<IResponse<IBlog[]>>("home/blogs", {
     method: "GET",
+  });
+};
+
+export const apiGetProfile = (id: string) => {
+  return InterceptorHelper.intercept<IResponse<IProfile>>(`users/${id}`, {
+    method: "GET",
+  });
+};
+
+export const apiUpdateProfile = (data: IProfileForm) => {
+  return InterceptorHelper.intercept<IResponse<IProfile>>("users/profile/update", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+};
+
+export const apiUpdatePassword = (data: IUpdatePasswordForm) => {
+  return InterceptorHelper.intercept<IResponse<IProfile>>("auth/change-password", {
+    method: "POST",
+    body: JSON.stringify(data),
   });
 };
