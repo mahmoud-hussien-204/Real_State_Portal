@@ -25,6 +25,7 @@ export async function generateMetadata({params}: IProps): Promise<Metadata> {
   const locale = params.locale;
 
   const content = blog?.[`content_${locale}`] || "";
+
   const name = blog?.[`name_${locale}`] || "";
 
   return {

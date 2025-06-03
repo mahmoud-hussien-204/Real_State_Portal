@@ -1,11 +1,14 @@
 "use client";
 
 import {useTranslations} from "next-intl";
-import {format} from "date-fns";
+
 import Spinner from "@/components/ui/spinner";
+
 import useQuery from "@/hooks/useQuery";
+
 import {apiGetBrowsingHistory} from "../../_api";
-import InterceptorHelper from "@/helpers/interceptorHelper";
+
+import ProjectItem from "@/components/ProjectItem";
 
 export default function HistoryPage() {
   const t = useTranslations();
@@ -22,12 +25,16 @@ export default function HistoryPage() {
       <h1 className='mb-6 text-2xl font-bold'>
         {isFetching && <Spinner className='!loading-sm' />} {t("profile.browsing_history")}
       </h1>
-      <div className='space-y-4'>
-        {history.map((item) => (
-          <div
-            key={item.id}
-            className='flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50'
-          ></div>
+
+      {history.length === 0 && (
+        <div className='flex items-center justify-center'>
+          <p className='text-center text-xl text-gray-500'>No history found</p>
+        </div>
+      )}
+
+      <div className='grid gap-6 lg:grid-cols-2'>
+        {history.map((project) => (
+          <ProjectItem key={project.id} project={project} direction='vertical' />
         ))}
       </div>
     </div>
