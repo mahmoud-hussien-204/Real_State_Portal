@@ -1,8 +1,33 @@
 {
+  "page_title": {
+    "real_state_portal": "بوابة العقارات",
+    "home": "الرئيسية",
+    "projects": "المشاريع",
+    "projects_details": "تفاصيل المشروع",
+    "explore": "استكشف",
+    "offers": "العروض",
+    "contact_us": "اتصل بنا",
+    "blogs": "المدونة"
+  },
+  "page_hero_title": {
+    "projects": "صفحة <span>المشاريع</span>",
+    "projects_details": "تفاصيل <span>المشروع</span>",
+    "explore": "صفحة <span>الاستكشاف</span>",
+    "offers": "صفحة <span>العروض</span>",
+    "contact_us": "صفحة <span>اتصل بنا</span>",
+    "blogs": "صفحة <span>المدونة</span>"
+  },
   "common": {
     "empty_str": "",
     "verify_your_account": "قم بتأكيد حسابك",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي"
+  },
+  "profile": {
+    "info": "معلومات الملف الشخصي",
+    "security": "الأمان",
+    "favorites": "المفضلة",
+    "history": "سجل التصفح"
   },
   "footer": {
     "helpful_links": "روابط مساعدة",

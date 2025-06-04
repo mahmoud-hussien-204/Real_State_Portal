@@ -25,6 +25,9 @@ import Button from "./Button";
 import IconLogout from "@/icons/IconLogout";
 import {useLogout} from "@/app/[locale]/auth/hooks/useLogout";
 import Spinner from "./ui/spinner";
+import {ChevronDown, User} from "lucide-react";
+import {useState, useRef} from "react";
+import {useOutsideClick} from "@/hooks/useOutsideClick";
 
 const Header = () => {
   const t = useTranslations();
@@ -32,6 +35,13 @@ const Header = () => {
   const {user} = useAppProvider();
 
   const {logout, isLoggingOut} = useLogout();
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useOutsideClick(dropdownRef, () => setIsDropdownOpen(false));
+
   return (
     <header className='absolute start-0 top-2.5rem z-[9999] flex h-3.5rem w-full items-center'>
       <Container className='flex items-center justify-between'>
@@ -57,21 +67,34 @@ const Header = () => {
           </div>
 
           {user ? (
-            <div className='flex items-center gap-1rem'>
-              <Button className='hidden h-3.5rem w-[13.4rem] sm:flex'>
-                {t("common.hello")}, {user.name.split(" ")[0]}!
+            <div className='relative' ref={dropdownRef}>
+              <Button
+                className='flex items-center gap-2'
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <IconUser />
+                <span className='hidden sm:inline'>{user.name.split(" ")[0]}</span>
+                <ChevronDown className='h-4 w-4' />
               </Button>
 
-              <Button onClick={() => logout({})} variant='secondary'>
-                {isLoggingOut ? (
-                  <Spinner />
-                ) : (
-                  <>
-                    <IconLogout />
-                    {t("common.logout")}{" "}
-                  </>
-                )}
-              </Button>
+              {isDropdownOpen && (
+                <div className='absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5'>
+                  <Link
+                    href='/profile'
+                    className='flex w-full items-center gap-0.5rem px-4 py-2 text-gray-700 hover:bg-gray-100'
+                  >
+                    <User size={16} />
+                    {t("common.profile")}
+                  </Link>
+                  <button
+                    onClick={() => logout({})}
+                    className='flex w-full items-center gap-0.5rem px-4 py-2 text-gray-700 hover:bg-gray-100'
+                  >
+                    {isLoggingOut ? <Spinner className='!loading-xs mx-0' /> : <IconLogout />}{" "}
+                    {t("common.logout")}
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <LinkButton href='/auth/login' className='hidden h-3.5rem w-[13.4rem] sm:flex'>

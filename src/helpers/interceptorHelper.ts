@@ -7,7 +7,11 @@ export default class InterceptorHelper {
   static async interceptRequest(options: RequestInit = {}): Promise<RequestInit> {
     // console.log(JSON.parse(localStorage.getItem("userData") || "{}"));
     // get access token from local storage
-    const accessToken = JSON.parse(localStorage.getItem("userData") || "{}")?.access_token;
+    let accessToken;
+
+    if (typeof window !== "undefined") {
+      accessToken = JSON.parse(localStorage.getItem("userData") || "{}")?.access_token;
+    }
 
     options.headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -36,17 +40,26 @@ export default class InterceptorHelper {
 
     // handle response error
     if (!response.ok || responseJson.success == false) {
-      // if message is array
-      if (Array.isArray(message)) {
-        message.forEach((msg) => toast.error(msg));
-      } else {
-        toast.error(message);
+      if (typeof window !== "undefined") {
+        // if message is array
+        if (Array.isArray(message)) {
+          message.forEach((msg) => toast.error(msg));
+        } else {
+          toast.error(message);
+
+          if (message == "Unauthenticated.") {
+            localStorage.removeItem("userData");
+            window.location.href = "/auth/login";
+          }
+        }
       }
 
       return Promise.reject(responseJson);
     }
 
-    toast.success(message);
+    if (typeof window !== "undefined") {
+      toast.success(message);
+    }
 
     return responseJson;
   }

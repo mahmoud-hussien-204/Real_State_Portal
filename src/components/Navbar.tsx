@@ -18,6 +18,7 @@ const Navbar = ({className}: IProps) => {
       <NavbarItem href='/projects'>{t("page_title.projects")}</NavbarItem>
       <NavbarItem href='/explore'>{t("page_title.explore")}</NavbarItem>
       <NavbarItem href='/offers'>{t("page_title.offers")}</NavbarItem>
+      <NavbarItem href='/blogs'>{t("page_title.blogs")}</NavbarItem>
       <NavbarItem href='/contact-us'>{t("page_title.contact_us")}</NavbarItem>
     </nav>
   );

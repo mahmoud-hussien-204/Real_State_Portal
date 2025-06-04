@@ -64,7 +64,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className, pr
       <div className='relative w-full rounded-sm sm:w-auto sm:rounded-1.25rem'>
         {showSalesStatus && (
           <div
-            className='z-3 absolute left-0 top-0 rounded-br-xl rounded-tl-xl font-bold text-white'
+            className='absolute left-0 top-0 z-40 rounded-br-xl rounded-tl-xl font-bold text-white'
             style={{
               backgroundColor: salesStatusColor,
               padding: "0.5rem 1.5rem",

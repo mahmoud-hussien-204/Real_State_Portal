@@ -6,14 +6,17 @@
     "projects_details": "Projects Details",
     "explore": "Explore",
     "offers": "Offers",
-    "contact_us": "Contact Us"
+    "contact_us": "Contact Us",
+    "blogs": "Blogs"
   },
   "page_hero_title": {
     "projects": "<span>Projects</span> Page",
     "projects_details": "<span>Projects</span> Details",
     "explore": "<span>Explore</span> Page",
     "offers": "<span>Offers</span> Page",
-    "contact_us": "<span>Contact Us</span> Page"
+    "contact_us": "<span>Contact Us</span> Page",
+    "blogs": "<span>Blogs</span> Page",
+    "blog_details": "<span>Blog</span> Details"
   },
   "common": {
     "empty_str": "",
@@ -108,7 +111,19 @@
     "price_range_error": "From price must be lower than To price",
     "verify_account": "Verify Account",
     "verify_your_account": "Verify Your Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "profile": "Profile",
+    "profile_updated_successfully": "Profile updated successfully",
+    "password_updated_successfully": "Password updated successfully",
+    "old_password": "Old Password",
+    "password_confirm": "Confirm Password",
+    "security": "Security"
+  },
+  "profile": {
+    "info": "Profile Info",
+    "security": "Security",
+    "favorites": "Favorites",
+    "browsing_history": "Browsing History"
   },
   "footer": {
     "create_account": "Create Account",
