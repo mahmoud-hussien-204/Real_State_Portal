@@ -9,7 +9,7 @@ import {RiLockLine} from "react-icons/ri";
 import {MdFavorite, MdHistory} from "react-icons/md";
 import {Menu} from "lucide-react";
 import {useState, useEffect} from "react";
-import {Button} from "@/components/ui/button";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
 const ProfileLayout = ({children}: {children: React.ReactNode}) => {
   const t = useTranslations();
@@ -79,39 +79,39 @@ const ProfileLayout = ({children}: {children: React.ReactNode}) => {
   );
 
   return (
-    <Container className='mt-10rem'>
-      <div className='flex gap-8'>
-        {/* Mobile Toggle Button */}
-
-        {/* Sidebar for desktop */}
-        <aside className='sticky top-10rem z-50 hidden min-h-[calc(100vh-10rem)] w-64 shrink-0 rounded-lg bg-colors-grey-colors-150 px-1rem py-2rem lg:block'>
-          <Sidebar />
-        </aside>
-
-        {/* Drawer for mobile */}
-        <div className={`fixed inset-0 z-[99999] lg:hidden ${isDrawerOpen ? "block" : "hidden"}`}>
-          {/* Backdrop */}
-          <div className='fixed inset-0 bg-black/50 transition-opacity' onClick={toggleDrawer} />
-
-          {/* Drawer */}
-          <aside className='fixed left-0 top-0 z-50 h-full w-64 transform bg-colors-grey-colors-150 px-1rem py-2rem transition-transform duration-300 ease-in-out'>
+    <ProtectedRoute>
+      <Container className='mt-10rem'>
+        <div className='flex gap-8'>
+          {/* Sidebar for desktop */}
+          <aside className='sticky top-10rem z-50 hidden min-h-[calc(100vh-10rem)] w-64 shrink-0 rounded-lg bg-colors-grey-colors-150 px-1rem py-2rem lg:block'>
             <Sidebar />
           </aside>
-        </div>
 
-        {/* Main Content */}
-        <main className='relative flex-1 overflow-hidden rounded-xl bg-white p-6 shadow-sm'>
-          <button
-            className='absolute end-6 top-6 flex items-center gap-2 lg:hidden'
-            onClick={toggleDrawer}
-          >
-            <Menu className='h-6 w-6' />
-            <span className='text-sm font-medium'>{t("profile.open_menu")}</span>
-          </button>
-          {children}
-        </main>
-      </div>
-    </Container>
+          {/* Drawer for mobile */}
+          <div className={`fixed inset-0 z-[99999] lg:hidden ${isDrawerOpen ? "block" : "hidden"}`}>
+            {/* Backdrop */}
+            <div className='fixed inset-0 bg-black/50 transition-opacity' onClick={toggleDrawer} />
+
+            {/* Drawer */}
+            <aside className='fixed left-0 top-0 z-50 h-full w-64 transform bg-colors-grey-colors-150 px-1rem py-2rem transition-transform duration-300 ease-in-out'>
+              <Sidebar />
+            </aside>
+          </div>
+
+          {/* Main Content */}
+          <main className='relative flex-1 overflow-hidden rounded-xl bg-white p-6 shadow-sm'>
+            <button
+              className='absolute end-6 top-6 flex items-center gap-2 lg:hidden'
+              onClick={toggleDrawer}
+            >
+              <Menu className='h-6 w-6' />
+              <span className='text-sm font-medium'>{t("profile.open_menu")}</span>
+            </button>
+            {children}
+          </main>
+        </div>
+      </Container>
+    </ProtectedRoute>
   );
 };
 
