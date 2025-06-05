@@ -123,7 +123,8 @@
     "info": "Profile Info",
     "security": "Security",
     "favorites": "Favorites",
-    "browsing_history": "Browsing History"
+    "browsing_history": "Browsing History",
+    "open_menu": "Open Menu"
   },
   "footer": {
     "create_account": "Create Account",

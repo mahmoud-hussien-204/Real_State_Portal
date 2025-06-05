@@ -10,6 +10,8 @@ import {apiGetBrowsingHistory} from "../../_api";
 
 import ProjectItem from "@/components/ProjectItem";
 
+import useIsSmallScreen from "@/hooks/useIsSmallScreen";
+
 export default function HistoryPage() {
   const t = useTranslations();
 
@@ -19,6 +21,8 @@ export default function HistoryPage() {
   });
 
   const history = data?.data || [];
+
+  const isSmallScreen = useIsSmallScreen(768);
 
   return (
     <div>
@@ -32,9 +36,13 @@ export default function HistoryPage() {
         </div>
       )}
 
-      <div className='grid gap-6 lg:grid-cols-2'>
+      <div className='grid gap-6 md:grid-cols-2'>
         {history.map((project) => (
-          <ProjectItem key={project.id} project={project} direction='vertical' />
+          <ProjectItem
+            key={project.id}
+            project={project}
+            direction={isSmallScreen ? "horizontal" : "vertical"}
+          />
         ))}
       </div>
     </div>
