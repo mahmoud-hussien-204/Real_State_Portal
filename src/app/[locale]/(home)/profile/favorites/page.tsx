@@ -8,6 +8,8 @@ import useQuery from "@/hooks/useQuery";
 
 import Spinner from "@/components/ui/spinner";
 
+import useIsSmallScreen from "@/hooks/useIsSmallScreen";
+
 export default function FavoritesPage() {
   const {data, isFetching} = useQuery({
     queryKey: ["favorites"],
@@ -15,6 +17,8 @@ export default function FavoritesPage() {
   });
 
   const favorites = data?.data || [];
+
+  const isSmallScreen = useIsSmallScreen(768);
 
   return (
     <div>
@@ -28,9 +32,13 @@ export default function FavoritesPage() {
         </div>
       )}
 
-      <div className='grid gap-6 lg:grid-cols-2'>
+      <div className='grid gap-6 md:grid-cols-2'>
         {favorites.map((project) => (
-          <ProjectItem key={project.id} project={project} direction='vertical' />
+          <ProjectItem
+            key={project.id}
+            project={project}
+            direction={isSmallScreen ? "horizontal" : "vertical"}
+          />
         ))}
       </div>
     </div>

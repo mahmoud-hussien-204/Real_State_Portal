@@ -6,15 +6,15 @@ const subscribeWindowSize = (callback: () => void) => {
   return () => window.removeEventListener("resize", callback);
 };
 
-const getWindowSize = () => window.innerWidth <= 1280;
+const getWindowSize = (screen: number) => window.innerWidth <= screen;
 
 // Server snapshot - assume large screen on server
 const getServerSnapshot = () => false;
 
-const useIsSmallScreen = () => {
+const useIsSmallScreen = (screen = 1280) => {
   const isSmallScreen = useSyncExternalStore(
     subscribeWindowSize,
-    getWindowSize,
+    () => getWindowSize(screen),
     getServerSnapshot // This is what was missing!
   );
   return isSmallScreen;

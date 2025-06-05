@@ -75,7 +75,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className, pr
         )}
 
         <div
-          className={AppHelper.className("rounded-inherit relative", {
+          className={AppHelper.className("relative rounded-1.25rem", {
             "h-[17.25rem] w-full sm:w-[17.3125rem]": direction === "horizontal",
             "h-[15.9rem] w-full": direction === "vertical",
           })}
@@ -85,7 +85,7 @@ const ProjectItem = ({direction = "horizontal", variant = "light", className, pr
             alt='project image'
             width={500}
             height={400}
-            className='rounded-inherit object-cover'
+            className='rounded-1.25rem object-cover'
             style={{
               width: "100%",
               height: "100%",
